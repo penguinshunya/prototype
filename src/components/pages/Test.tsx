@@ -1,4 +1,3 @@
-export const CODE = `
 import { useEffect, useRef, useState } from "react";
 
 export const Test: React.VFC<{}> = () => {
@@ -24,4 +23,3 @@ export const Test: React.VFC<{}> = () => {
     </div>
   );
 };
-`.trim();

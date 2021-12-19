@@ -9,7 +9,7 @@ type Props = SyntaxHighlighterProps & {};
 export const Pre: React.VFC<Props> = ({ children, ...props }) => {
   const p = useMemo(
     () => ({
-      language: "javascript",
+      language: "typescript",
       showLineNumbers: true,
       style,
       ...props,
