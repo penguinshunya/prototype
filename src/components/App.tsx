@@ -1,12 +1,17 @@
-import RectRotateBoxExample from "./organisms/rect-rotate-box/example";
+import RectRotateBox from "./organisms/rect-rotate-box";
 
-interface Props {
-}
+interface Props {}
 
 export const App: React.VFC<Props> = () => {
   return (
     <>
-      <RectRotateBoxExample />
+      <RectRotateBox
+        width={256}
+        height={64}
+        count={32}
+        lineWidth={2}
+        radius={16}
+      />
     </>
   );
 };

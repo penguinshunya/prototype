@@ -85,12 +85,7 @@ export const RectRotateBox: React.VFC<Props> = ({
     };
   }, [color, count, distPerSec, lineWidth, padding, radius, rate]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      {...props}
-    />
-  );
+  return <canvas ref={canvasRef} {...props} />;
 };
 
 export default RectRotateBox;
