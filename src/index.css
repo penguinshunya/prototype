@@ -1,5 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  font-size: 13px;
+}
+
+code,
+pre {
+  font-family: "Roboto Mono", "Source Code Pro", monospace;
 }
