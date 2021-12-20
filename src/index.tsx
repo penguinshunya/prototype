@@ -4,7 +4,8 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import "./index.css";
 
-const theme = createTheme({});
+const theme = createTheme({
+});
 
 ReactDOM.render(
   <React.StrictMode>

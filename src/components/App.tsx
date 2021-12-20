@@ -1,32 +1,48 @@
-import { CODE } from "./constraints";
 import RectRotateBox from "./organisms/rect-rotate-box";
-import Pre from "./atoms/Pre";
 import { Container } from "@mui/material";
+import Depression from "./pages/Depression";
+import { useEffect, useRef, useState } from "react";
 
 interface Props {}
 
 export const App: React.VFC<Props> = () => {
+  const containerRef = useRef<HTMLDivElement>(null!);
+  const [containerRect, setContainerRect] = useState<DOMRectReadOnly | null>(null);
+  useEffect(() => {
+    const div = containerRef.current;
+    const observer = new ResizeObserver(entries => {
+      for (const e of entries) setContainerRect(e.contentRect);
+    });
+    observer.observe(div);
+    return () => {
+      observer.unobserve(div);
+    };
+  }, []);
+
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" ref={containerRef}>
       <div
         style={{
+          marginTop: 16,
           textAlign: "center",
         }}
       >
-        <RectRotateBox
-          width={256}
-          height={64}
-          count={32}
-          lineWidth={2}
-          radius={16}
-        />
+        {containerRect !== null && (
+          <RectRotateBox
+            width={containerRect.width}
+            height={64}
+            count={128}
+            lineWidth={2}
+            radius={16}
+            padding={2}
+          />
+        )}
       </div>
-      <div
-        style={{
-          display: "grid",
-        }}
-      >
-        <Pre>{CODE}</Pre>
+      <div style={{
+        marginBottom: 512,
+        marginTop: 16,
+      }}>
+        <Depression />
       </div>
     </Container>
   );
