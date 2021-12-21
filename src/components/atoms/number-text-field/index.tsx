@@ -1,5 +1,5 @@
 import { TextField, TextFieldProps } from "@mui/material";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -27,4 +27,4 @@ export const NumberTextField: React.VFC<Props> = ({ value, onChange, ...props })
   return <TextField {...props} value={rawValue} onBlur={handleBlur} onChange={handleChange} />;
 };
 
-export default NumberTextField;
+export default memo(NumberTextField);

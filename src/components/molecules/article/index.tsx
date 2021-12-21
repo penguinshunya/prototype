@@ -16,7 +16,9 @@ export const Article: React.FC<Props> = ({ children, title, ...props }) => {
       >
         {title}
       </Typography>
-      {children}
+      <Box>
+        {children}
+      </Box>
     </Box>
   );
 };

@@ -1,6 +1,7 @@
 import { DateTimePicker, DateTimePickerProps } from "@mui/lab";
 import { TextField } from "@mui/material";
 import { Dayjs } from "dayjs";
+import { memo } from "react";
 
 type Props = Omit<DateTimePickerProps<Dayjs>, "inputFormat" | "mask" | "renderInput" | "views">;
 
@@ -16,4 +17,4 @@ export const DayjsDateTimePicker: React.VFC<Props> = ({ ...props }) => {
   );
 };
 
-export default DayjsDateTimePicker;
+export default memo(DayjsDateTimePicker);

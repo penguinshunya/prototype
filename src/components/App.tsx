@@ -23,7 +23,7 @@ export const App: React.VFC<Props> = () => {
     <div style={{
       height: "100vh",
       overflow: "auto",
-      width: "100vw",
+      width: "100%",
     }}>
       <Container maxWidth="md" ref={containerRef}>
         <Box sx={{ mb: 5, mt: 1 }}>

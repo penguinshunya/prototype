@@ -3,6 +3,7 @@ import Article from "../../../molecules/article";
 import SampleUnixDateTime from "./SampleUnixDateTime";
 import SampleLoadingButton from "./SampleLoadingButton";
 import SampleUseAsyncRetry from "./SampleUseAsyncRetry";
+import Latex from "../../../atoms/latex";
 
 interface Props {}
 
@@ -84,6 +85,19 @@ export const Article20211221: React.VFC<Props> = () => {
       <br />
       これら2つのコンポーネントは、<code>@mui/material</code>と<code>@mui/lab</code>と<code>dayjs</code>に依存している。
       <br />
+      <br />
+      三平方の定理は
+      <Latex content={`c = \\pm\\sqrt{a^2 + b^2}`} />
+      である。
+      <br />
+      <br />
+      ということで、LaTeXが使えるようになった。
+      <br />
+      NPMに<code>katex</code>というライブラリがあり、こちらを使用している。
+      <br />
+      <code>katex</code>の<Link href="https://github.com/KaTeX/KaTeX" target="_blank">GitHubリポジトリ</Link>のスター数は14,600を超えているため信頼できる。<br />
+      <code>katex</code>単体ではReactに対応していないため、30行程度の小さなラッパーを作成した。<br />
+      <code>&lt;Latex content={"{"}`c = \\pm\\sqrt{"{"}a^2 + b^2{"}"}`{"}"} /&gt;</code>と書くことで、先程の数式を表示できる。
     </Article>
   );
 };
