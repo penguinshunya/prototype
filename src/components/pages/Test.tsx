@@ -19,7 +19,13 @@ export const Test: React.VFC<{}> = () => {
 
   return (
     <div ref={divRef}>
-      {size === null ? "-" : <>({size.width}, {size.height})</>}
+      {size === null ? (
+        "-"
+      ) : (
+        <>
+          ({size.width}, {size.height})
+        </>
+      )}
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import { useMemo } from "react";
-import SyntaxHighlighter, {
-  SyntaxHighlighterProps,
-} from "react-syntax-highlighter";
+import SyntaxHighlighter, { SyntaxHighlighterProps } from "react-syntax-highlighter";
 import style from "react-syntax-highlighter/dist/esm/styles/hljs/github";
 
 type Props = SyntaxHighlighterProps & {};

@@ -25,14 +25,8 @@ export const RectRotateBox: React.VFC<Props> = ({
   const count = useMemo(() => rawCount ?? 16, [rawCount]);
   const distPerSec = useMemo(() => rawDistPerSec ?? -8, [rawDistPerSec]);
   const lineWidth = useMemo(() => rawLineWidth ?? 5, [rawLineWidth]);
-  const padding = useMemo(
-    () => (rawPadding ?? 8) + lineWidth / 2,
-    [lineWidth, rawPadding]
-  );
-  const radius = useMemo(
-    () => (rawRadius === 0 ? 1 : rawRadius) ?? 32,
-    [rawRadius]
-  );
+  const padding = useMemo(() => (rawPadding ?? 8) + lineWidth / 2, [lineWidth, rawPadding]);
+  const radius = useMemo(() => (rawRadius === 0 ? 1 : rawRadius) ?? 32, [rawRadius]);
   const rate = useMemo(() => rawRate ?? 0.6, [rawRate]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null!);
@@ -56,9 +50,7 @@ export const RectRotateBox: React.VFC<Props> = ({
       for (let i = 0; i < 1; i += 1 / count) {
         const ps: { x: number; y: number }[] = [];
         for (let j = 0; j < rate; j += 1 / 16) {
-          const t =
-            (i + j * (1 / count) + (time * distPerSec) / (2 * H + 2 * W) / 60) %
-            1;
+          const t = (i + j * (1 / count) + (time * distPerSec) / (2 * H + 2 * W) / 60) % 1;
           const p = f(t);
           p.x += B;
           p.y += B;
