@@ -9,6 +9,8 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
       component="pre"
       sx={{
         backgroundColor: "rgb(248, 248, 248)",
+        maxWidth: "100%",
+        overflow: "auto",
         p: 1,
         whiteSpace: "pre-wrap",
       }}
