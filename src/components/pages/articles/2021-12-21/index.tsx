@@ -77,6 +77,13 @@ export const Article20211221: React.VFC<Props> = () => {
       <Box sx={{ my: 2 }}>
         <SampleUnixDateTime />
       </Box>
+      これは、UNIX時間と日時を相互変換するプログラム。
+      <br />
+      内部では、独自コンポーネントの<code>&lt;NumberTextField /&gt;</code>と<code>&lt;DayjsDateTimePicker /&gt;</code>
+      を使用している。
+      <br />
+      これら2つのコンポーネントは、<code>@mui/material</code>と<code>@mui/lab</code>と<code>dayjs</code>に依存している。
+      <br />
     </Article>
   );
 };
