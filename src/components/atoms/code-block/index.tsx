@@ -12,7 +12,6 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
         maxWidth: "100%",
         overflow: "auto",
         p: 1,
-        whiteSpace: "pre-wrap",
       }}
     >
       {children}
