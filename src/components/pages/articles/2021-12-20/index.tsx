@@ -1,4 +1,5 @@
 import { Link } from "@mui/material";
+import { memo } from "react";
 import Article from "../../../molecules/article";
 
 interface Props {}
@@ -61,4 +62,4 @@ export const Article20211220: React.VFC<Props> = () => {
   );
 };
 
-export default Article20211220;
+export default memo(Article20211220);

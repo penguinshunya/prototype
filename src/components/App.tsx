@@ -1,7 +1,6 @@
 import { Box, Container, Link } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import Div100vh from "react-div-100vh";
-import RectRotateBox from "./organisms/rect-rotate-box";
 import Depression from "./pages/Depression";
 
 interface Props {}
@@ -23,17 +22,13 @@ export const App: React.VFC<Props> = () => {
   return (
     <Div100vh
       style={{
+        backgroundColor: "#fafafa",
         overflow: "auto",
         width: "100%",
       }}
     >
       <Container maxWidth="md" ref={containerRef}>
-        <Box sx={{ mb: 5, mt: 1 }}>
-          {containerRect !== null && (
-            <RectRotateBox width={containerRect.width} height={64} count={128} lineWidth={2} radius={16} padding={2} />
-          )}
-        </Box>
-        <Box sx={{ mb: 16 }}>
+        <Box sx={{ mb: 16, mt: 3 }}>
           <Depression />
         </Box>
       </Container>

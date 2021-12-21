@@ -1,4 +1,5 @@
 import { Link } from "@mui/material";
+import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import Article from "../../../molecules/article";
 
@@ -173,4 +174,4 @@ export const Article20191224: React.VFC<Props> = () => {
   );
 };
 
-export default Article20191224;
+export default memo(Article20191224);

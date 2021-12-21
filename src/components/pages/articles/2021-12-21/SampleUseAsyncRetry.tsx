@@ -43,7 +43,7 @@ export const SampleUseAsyncRetry: React.VFC<Props> = () => {
             borderRadius: 1,
             display: "flex",
             flexWrap: "wrap",
-            fontSize: 11,
+            fontSize: 10,
             mt: 1,
             opacity: loading ? 0.3 : 1.0,
             px: 1,

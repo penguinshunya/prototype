@@ -1,3 +1,4 @@
+import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import Article from "../../../molecules/article";
 
@@ -58,4 +59,4 @@ export const Article20191227: React.VFC<Props> = () => {
   );
 };
 
-export default Article20191227;
+export default memo(Article20191227);

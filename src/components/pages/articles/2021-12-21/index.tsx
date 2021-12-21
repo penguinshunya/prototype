@@ -1,4 +1,5 @@
 import { Box, Link, Typography } from "@mui/material";
+import { memo } from "react";
 import Latex from "../../../atoms/latex";
 import Article from "../../../molecules/article";
 import SampleLoadingButton from "./SampleLoadingButton";
@@ -115,13 +116,15 @@ export const Article20211221: React.VFC<Props> = () => {
       まとめている過程で新たな発見があると思う。
       <br />
       <br />
-      ちょうど2年前、僕はWebGLを使って3Dゲームを作ろうとしていた。その頃はまだTypeScriptをよく知らず、JavaScriptだけで3Dゲームを作っていた。今では考えられないが、参考サイトがJavaScriptで書かれていたことも大きかったんだと思う。<br />
+      ちょうど2年前、僕はWebGLを使って3Dゲームを作ろうとしていた。その頃はまだTypeScriptをよく知らず、JavaScriptだけで3Dゲームを作っていた。今では考えられないが、参考サイトがJavaScriptで書かれていたことも大きかったんだと思う。
       <br />
-      それを踏まえると、TypeScriptでWebGLのチュートリアルを作成すれば需要があるのでは？などと考えたりする。<br />
+      <br />
+      それを踏まえると、TypeScriptでWebGLのチュートリアルを作成すれば需要があるのでは？などと考えたりする。
+      <br />
       <br />
       過去に書いたJavaScriptのプログラムをTypeScriptで書き直してみようかな。
     </Article>
   );
 };
 
-export default Article20211221;
+export default memo(Article20211221);
