@@ -6,7 +6,7 @@ type Props = BoxProps & {
 
 export const Article: React.FC<Props> = ({ children, title, ...props }) => {
   return (
-    <Box component="article" {...props} sx={{ mb: 10, typography: "body1", ...props.sx }}>
+    <Box component="article" {...props} sx={{ mb: 10, typography: "string", ...props.sx }}>
       <Typography
         variant="h2"
         sx={{

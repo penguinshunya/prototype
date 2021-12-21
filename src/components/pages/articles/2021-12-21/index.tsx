@@ -1,5 +1,6 @@
-import { Box, Link } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import Article from "../../../molecules/article";
+import SampleUnixDateTime from "./SampleUnixDateTime";
 import SampleLoadingButton from "./SampleLoadingButton";
 import SampleUseAsyncRetry from "./SampleUseAsyncRetry";
 
@@ -20,8 +21,9 @@ export const Article20211221: React.VFC<Props> = () => {
       <code>&lt;LoadingButton /&gt;</code>が追加されたり、
       <code>&lt;Box /&gt;</code>コンポーネントに<code>sx</code>
       プロパティが追加されたりしている。
-      <Box sx={{ my: 2 }}>
+      <Box sx={{ alignItems: "center", columnGap: 1, display: "flex", my: 2 }}>
         <SampleLoadingButton />
+        <Typography sx={{ color: "info.main" }}>押すと1秒間ローディング状態になるボタン</Typography>
       </Box>
       <code>sx</code>プロパティは<code>style</code>
       プロパティを拡張したもので、<code>useTheme</code>を使わずに
@@ -72,7 +74,7 @@ export const Article20211221: React.VFC<Props> = () => {
       ふと非同期処理を実装したくなったので、QiitaのAPIサーバーからユーザー情報を取得するボタンを作った。<br />
       Reactをベースに日記を書くと、ふと実装したくなった機能をTypeScriptで気軽に実装できるのが嬉しい。
       <Box sx={{ my: 2 }}>
-        
+        <SampleUnixDateTime />
       </Box>
     </Article>
   );
