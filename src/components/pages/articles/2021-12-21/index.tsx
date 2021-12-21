@@ -4,6 +4,7 @@ import SampleUnixDateTime from "./SampleUnixDateTime";
 import SampleLoadingButton from "./SampleLoadingButton";
 import SampleUseAsyncRetry from "./SampleUseAsyncRetry";
 import Latex from "../../../atoms/latex";
+import CodeBlock from "../../../atoms/code-block";
 
 interface Props {}
 
@@ -95,9 +96,31 @@ export const Article20211221: React.VFC<Props> = () => {
       <br />
       NPMに<code>katex</code>というライブラリがあり、こちらを使用している。
       <br />
-      <code>katex</code>の<Link href="https://github.com/KaTeX/KaTeX" target="_blank">GitHubリポジトリ</Link>のスター数は14,600を超えているため信頼できる。<br />
-      <code>katex</code>単体ではReactに対応していないため、30行程度の小さなラッパーを作成した。<br />
-      <code>&lt;Latex content={"{"}`c = \\pm\\sqrt{"{"}a^2 + b^2{"}"}`{"}"} /&gt;</code>と書くことで、先程の数式を表示できる。
+      <code>katex</code>の
+      <Link href="https://github.com/KaTeX/KaTeX" target="_blank">
+        GitHubリポジトリ
+      </Link>
+      のスター数は14,600を超えているため信頼できる。
+      <br />
+      <br />
+      <code>katex</code>単体ではReactに対応していないため、30行程度の小さなラッパーを作成した。
+      <br />
+      <code>
+        &lt;Latex content={"{"}`c = \\pm\\sqrt{"{"}a^2 + b^2{"}"}`{"}"} /&gt;
+      </code>
+      と書くことで、先程の数式を表示できる。
+      <br />
+      <br />
+      唐突だけど、過去に書いた文章のすべてをここに残すことにした
+      <br />
+      まとめている過程で新たな発見があると思う。
+      <br />
+      <br />
+      ちょうど2年前、僕はWebGLを使って3Dゲームを作ろうとしていた。その頃はまだTypeScriptをよく知らず、JavaScriptだけで3Dゲームを作っていた。今では考えられないが、参考サイトがJavaScriptで書かれていたことも大きかったんだと思う。<br />
+      <br />
+      それを踏まえると、TypeScriptでWebGLのチュートリアルを作成すれば需要があるのでは？などと考えたりする。<br />
+      <br />
+      過去に書いたJavaScriptのプログラムをTypeScriptで書き直してみようかな。
     </Article>
   );
 };

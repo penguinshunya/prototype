@@ -22,7 +22,7 @@ export const Latex: React.FC<Props> = ({ content, options }) => {
       }
     }
   }, [content, options]);
-  
+
   return <span dangerouslySetInnerHTML={{ __html }} />;
 };
 
