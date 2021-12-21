@@ -71,7 +71,8 @@ export const Article20211221: React.VFC<Props> = () => {
       </Link>
       <br />
       <br />
-      ふと非同期処理を実装したくなったので、QiitaのAPIサーバーからユーザー情報を取得するボタンを作った。<br />
+      ふと非同期処理を実装したくなったので、QiitaのAPIサーバーからユーザー情報を取得するボタンを作った。
+      <br />
       Reactをベースに日記を書くと、ふと実装したくなった機能をTypeScriptで気軽に実装できるのが嬉しい。
       <Box sx={{ my: 2 }}>
         <SampleUnixDateTime />
