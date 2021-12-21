@@ -1,5 +1,6 @@
 import { Box, Container, Link } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import Div100vh from "react-div-100vh";
 import RectRotateBox from "./organisms/rect-rotate-box";
 import Depression from "./pages/Depression";
 
@@ -20,9 +21,8 @@ export const App: React.VFC<Props> = () => {
   }, []);
 
   return (
-    <div
+    <Div100vh
       style={{
-        height: "100vh",
         overflow: "auto",
         width: "100%",
       }}
@@ -74,7 +74,7 @@ export const App: React.VFC<Props> = () => {
           </Box>
         </Box>
       </Box>
-    </div>
+    </Div100vh>
   );
 };
 
