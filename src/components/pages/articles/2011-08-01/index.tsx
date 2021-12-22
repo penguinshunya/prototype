@@ -32,7 +32,7 @@ export const Article20110801: React.VFC<Props> = () => {
       </P>
       <P sx={{ mb: 0.5 }}>2回戦目</P>
       <Box>
-        <Image src={image1} />
+        <Image src={image2} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         7Hはパンミでした。
