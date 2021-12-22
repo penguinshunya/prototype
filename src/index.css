@@ -31,6 +31,7 @@ code {
 
 ol,
 ul {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   list-style-position: inside;
   text-indent: -1em;
   padding-left: 1em;
