@@ -151,6 +151,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
         Storageに保存されているオブジェクトの値を書き換える。その証拠として、ボタン押下後にページをリロードしても状態は保持されていることがわかる。
       </P>
       <Othello />
+      <P>状態をLocal Storageに保存するオセロゲームを作った。リロードしてもゲームの状態は保持される。</P>
     </ArticleContent>
   );
 });
