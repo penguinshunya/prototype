@@ -1,5 +1,6 @@
 import _ from "lodash";
 import { memo, useMemo } from "react";
+import { useTitle } from "react-use";
 import { articles } from "../../../common/articles";
 import { Article } from "../../organisms/article";
 
@@ -12,6 +13,8 @@ export const ArticlesPage: React.VFC<Props> = memo(() => {
       .reverse()
       .value();
   }, []);
+
+  useTitle("試作品");
 
   return (
     <div>

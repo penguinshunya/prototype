@@ -1,5 +1,6 @@
 import { memo, useMemo } from "react";
 import { useParams } from "react-router";
+import { useTitle } from "react-use";
 import { articles } from "../../../common/articles";
 import Article from "../../organisms/article";
 
@@ -14,6 +15,8 @@ export const ArticlePage: React.VFC<Props> = memo(() => {
     if (id === null) return;
     return articles.filter((a) => a.id === id)[0];
   }, [id]);
+
+  useTitle(`${article == null ? "試作品" : `${article?.date.locale("ja").format("YYYY年MM月DD日")} - 試作品`}`);
 
   if (id === null || article == null) {
     return null;
