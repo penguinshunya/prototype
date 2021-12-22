@@ -32,9 +32,12 @@ export const Article: React.VFC<ArticleProps> = memo(({ isTitleLink, ...a }) => 
       {a.tags.size > 0 && (
         <Box sx={{ display: "flex", gap: 1 }}>
           {[...a.tags].map((t) => (
-            <Box key={t} sx={{ bgcolor: "rgba(232, 232, 232)", borderRadius: 1, fontSize: 12, padding: "2px 8px" }}>
+            <Typography
+              key={t}
+              sx={{ bgcolor: "rgba(232, 232, 232)", borderRadius: 1, fontSize: 12, padding: "2px 8px" }}
+            >
               {t}
-            </Box>
+            </Typography>
           ))}
         </Box>
       )}

@@ -16,10 +16,13 @@ export const UUIDCreate: React.VFC<Props> = memo(() => {
     setValues(_.range(COUNT).map(() => uuidv4()));
   }, []);
 
-  const handleClickLi = useCallback(async (uuid: string) => {
-    await navigator.clipboard.writeText(uuid);
-    snack.enqueueSnackbar("クリップボードにコピーしました");
-  }, [snack]);
+  const handleClickLi = useCallback(
+    async (uuid: string) => {
+      await navigator.clipboard.writeText(uuid);
+      snack.enqueueSnackbar("クリップボードにコピーしました");
+    },
+    [snack]
+  );
 
   return (
     <Box sx={{ display: "grid", gap: 1 }}>

@@ -20,12 +20,7 @@ export const Image: React.VFC<Props> = ({ width, ...props }) => {
         }}
         onClick={() => setOpen(true)}
       />
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        transitionDuration={0}
-        maxWidth="xl"
-      >
+      <Dialog open={open} onClose={() => setOpen(false)} transitionDuration={0} maxWidth="xl">
         <DialogContent>
           <img
             alt=""

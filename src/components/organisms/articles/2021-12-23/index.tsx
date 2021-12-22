@@ -3,8 +3,7 @@ import { memo } from "react";
 import ArticleContent from "../../../molecules/article-content";
 import { UUIDCreate } from "./UUIDCreate";
 
-interface Props {
-}
+interface Props {}
 
 export const Article20211223: React.VFC<Props> = memo(() => {
   return (
