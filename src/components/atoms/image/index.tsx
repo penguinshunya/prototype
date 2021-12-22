@@ -1,4 +1,4 @@
-import { Dialog, DialogContent } from "@mui/material";
+import { Dialog } from "@mui/material";
 import { memo, useState } from "react";
 
 type Props = Omit<JSX.IntrinsicElements["img"], "onClick">;
