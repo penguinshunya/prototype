@@ -1,7 +1,10 @@
-import { Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { memo } from "react";
+import { Image } from "../../../atoms/image";
 import { P } from "../../../atoms/p";
 import Article from "../../../molecules/article";
+import image1 from "./images/1-08064.jpeg";
+import image2 from "./images/2-631ff.jpeg";
 
 interface Props {}
 
@@ -16,18 +19,22 @@ export const Article20110801: React.VFC<Props> = () => {
           http://www.newx2.com/pangya/
         </Link>
       </P>
-      <P>
-        1回戦目
-        <br />
+      <P sx={{ mb: 0.5 }}>1回戦目</P>
+      <Box>
+        <Image src={image1} />
+      </Box>
+      <P sx={{ mt: 0.5 }}>
         8Hは、7mの素BIを外しました。
         <br />
         ワイド画面・フルスクリーンモードでのモカズラシは、旗の輪郭の濃さを見分けるのが難しいです。
         <br />
         これからは、そういう状況でも正確にモカズラシができるようにしないといけないです。
       </P>
-      <P>
-        2回戦目
-        <br />
+      <P sx={{ mb: 0.5 }}>2回戦目</P>
+      <Box>
+        <Image src={image1} />
+      </Box>
+      <P sx={{ mt: 0.5 }}>
         7Hはパンミでした。
         <br />
         風がとても良かったので、29分11秒で回り切ることができました。

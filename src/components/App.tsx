@@ -27,8 +27,8 @@ export const App: React.VFC<Props> = () => {
         width: "100%",
       }}
     >
-      <Container maxWidth="md" ref={containerRef}>
-        <Box sx={{ mb: 16, mt: 3 }}>
+      <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white" }}>
+        <Box sx={{ py: 3 }}>
           <Depression />
         </Box>
       </Container>

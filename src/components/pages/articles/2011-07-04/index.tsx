@@ -1,13 +1,21 @@
+import { Box } from "@mui/material";
 import { memo } from "react";
+import { Image } from "../../../atoms/image";
 import { P } from "../../../atoms/p";
 import Article from "../../../molecules/article";
+import zurashi from "./images/zurashi.png";
+import muri from "./images/muri.png";
+import center from "./images/center.jpeg";
 
 interface Props {}
 
 export const Article20110704: React.VFC<Props> = () => {
   return (
     <Article title="2011年07月04日（月）">
-      <P>
+      <Box>
+        <Image src={zurashi} />
+      </Box>
+      <P sx={{ mt: 0.5 }}>
         直線ACを正確にずらす方法は、モカズラシです。
         <br />
         曲線ABを正確にずらそうとする方法は、クリックズラシやグリーン模様ズラシです。
@@ -34,7 +42,10 @@ export const Article20110704: React.VFC<Props> = () => {
         <br />
         曲線を正確にずらそうとは考えないようにしましょう。
       </P>
-      <P>直線の連続のイメージ</P>
+      <Box>
+        <Image src={muri} />
+      </Box>
+      <P sx={{ mt: 0.5 }}>直線の連続のイメージ</P>
       <P>
         直線の連続であるクリックズラシ・グリーン模様ズラシには欠点があります。
         <br />
@@ -64,12 +75,15 @@ export const Article20110704: React.VFC<Props> = () => {
         <br />
         この性質を利用することで、中心はどこかを調べることができます。
       </P>
-      <P>
+      <P sx={{ mb: 0.5 }}>
         中心線は横座標320であることがわかります。
         <br />
         つまり中心線はゲージ50%地点を通る縦線です。
       </P>
-      <P>
+      <Box>
+        <Image src={center} width={456} />
+      </Box>
+      <P sx={{ mt: 0.5 }}>
         当たり前のようなことですが、こういう基本的なことを確認するのはとても大切なことです。
         <br />
         右にゲージ30%ずらして倍率調節して左にゲージ70%分ずらすのと、左にゲージ30%分ずらして倍率調節して左にゲージ70%分ずらすのは、同じ幅をずらしたことになるということです。
