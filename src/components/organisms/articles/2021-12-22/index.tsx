@@ -4,6 +4,7 @@ import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
 import ArticleContent from "../../../molecules/article-content";
 import { InnerBox } from "./InnerBox";
+import { Othello } from "./Othello";
 import { SampleLocalStorage } from "./SampleLocalStorage";
 
 const CODE_FIRESTORE = `
@@ -149,6 +150,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
         <code>useLocalStorage</code>を使って簡単なコンポーネントを作成した。ボタンを押すと、Local
         Storageに保存されているオブジェクトの値を書き換える。その証拠として、ボタン押下後にページをリロードしても状態は保持されていることがわかる。
       </P>
+      <Othello />
     </ArticleContent>
   );
 });
