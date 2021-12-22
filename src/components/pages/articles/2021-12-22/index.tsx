@@ -113,7 +113,7 @@ const InnerBox: React.FC<BoxProps> = ({ children, ...props }) => {
     <Box
       {...props}
       sx={{
-        bgcolor: "hsl(160, 24%, 94%)",
+        bgcolor: "hsl(160, 36%, 96%)",
         my: 2,
         p: 1,
         "> .MuiTypography-root:first-of-type": {
