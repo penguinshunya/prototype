@@ -10,7 +10,7 @@ export interface ArticleProps {
 };
 
 export const Article: React.VFC<ArticleProps> = memo(({ ...a }) => {
-  const date = useMemo(() => a.date.locale("ja").format("YYYY年MM月DD日（dd）"), [a]);
+  const date = useMemo(() => a.date.locale("ja").format("YYYY年MM月DD日 dddd"), [a]);
 
   return (
     <Box component="article" sx={{ mb: 10 }}>
