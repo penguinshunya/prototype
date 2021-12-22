@@ -1,28 +1,22 @@
-import { Box, Typography } from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
-import Article20110620 from "./articles/2011-06-20";
-import Article20110703 from "./articles/2011-07-03";
-import Article20110704 from "./articles/2011-07-04";
-import Article20110716 from "./articles/2011-07-16";
-import Article20110801 from "./articles/2011-08-01";
-import Article20110831 from "./articles/2011-08-31";
-import Article20110919 from "./articles/2011-09-19";
-import Article20191224 from "./articles/2019-12-24";
-import Article20191225 from "./articles/2019-12-25";
-import Article20191227 from "./articles/2019-12-27";
-import Article20211220 from "./articles/2021-12-20";
-import Article20211221 from "./articles/2021-12-21";
-import Article20211222 from "./articles/2021-12-22";
-
-type ArticleType = {
-  Content: React.VFC;
-  date: Dayjs;
-  title?: string;
-  tags: ("パンヤ" | "プログラミング")[];
-};
+import { memo } from "react";
+import dayjs from "dayjs";
+import Article20110620 from "../../organisms/articles/2011-06-20";
+import Article20110703 from "../../organisms/articles/2011-07-03";
+import Article20110704 from "../../organisms/articles/2011-07-04";
+import Article20110716 from "../../organisms/articles/2011-07-16";
+import Article20110801 from "../../organisms/articles/2011-08-01";
+import Article20110831 from "../../organisms/articles/2011-08-31";
+import Article20110919 from "../../organisms/articles/2011-09-19";
+import Article20191224 from "../../organisms/articles/2019-12-24";
+import Article20191225 from "../../organisms/articles/2019-12-25";
+import Article20191227 from "../../organisms/articles/2019-12-27";
+import Article20211220 from "../../organisms/articles/2021-12-20";
+import Article20211221 from "../../organisms/articles/2021-12-21";
+import Article20211222 from "../../organisms/articles/2021-12-22";
+import { Article, ArticleProps } from "./Article";
 
 // prettier-ignore
-const articles: ArticleType[] = [
+const articles: ArticleProps[] = [
   { Content: Article20110620, date: dayjs("2011-06-20"), title: "傾斜影響の求め方", tags: ["パンヤ"] },
   { Content: Article20110703, date: dayjs("2011-07-03"), title: "正確にずらす方法①", tags: ["パンヤ"] },
   { Content: Article20110704, date: dayjs("2011-07-04"), title: "正確にずらす方法②", tags: ["パンヤ"] },
@@ -40,25 +34,14 @@ const articles: ArticleType[] = [
 
 interface Props {}
 
-export const Depression: React.VFC<Props> = () => {
+export const Articles: React.VFC<Props> = memo(() => {
   return (
     <div>
       {articles.map((a) => (
-        <Box component="article" key={a.date.unix()} sx={{ mb: 10 }}>
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: 24,
-              mb: 2,
-            }}
-          >
-            {a.date.locale("ja").format("YYYY年MM月DD日（dd）")}
-          </Typography>
-          <a.Content />
-        </Box>
+        <Article key={a.date.unix()} {...a} />
       ))}
     </div>
   );
-};
+});
 
-export default Depression;
+export default memo(Articles);

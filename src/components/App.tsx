@@ -1,7 +1,7 @@
 import { Box, Container, Link } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import Div100vh from "react-div-100vh";
-import Depression from "./pages/Depression";
+import { Articles } from "./pages/articles";
 
 interface Props {}
 
@@ -66,7 +66,7 @@ export const App: React.VFC<Props> = () => {
       </Box>
       <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white" }}>
         <Box sx={{ py: 2 }}>
-          <Depression />
+          <Articles />
         </Box>
       </Container>
     </Div100vh>
