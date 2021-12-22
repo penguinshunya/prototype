@@ -12,14 +12,7 @@ export const SampleLoadingButton: React.VFC<Props> = () => {
   }, []);
 
   return (
-    <LoadingButton
-      loading={loading}
-      variant="contained"
-      onClick={handleClick}
-      sx={{
-        textTransform: "none",
-      }}
-    >
+    <LoadingButton loading={loading} variant="contained" onClick={handleClick}>
       Click Me!
     </LoadingButton>
   );

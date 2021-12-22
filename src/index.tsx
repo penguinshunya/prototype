@@ -13,6 +13,13 @@ import "dayjs/locale/ja";
 
 const theme = createTheme({
   components: {
+    MuiButton: {
+      defaultProps: {
+        sx: {
+          textTransform: "none",
+        },
+      },
+    },
     MuiTextField: {
       defaultProps: {
         size: "small",

@@ -1,5 +1,5 @@
 import { Box, Container, Link } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Link as RrdLink, Route, Routes } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Div100vh from "react-div-100vh";
 import ArticlesPage from "./pages/articles";
@@ -48,7 +48,11 @@ export const App: React.VFC<Props> = () => {
             width: containerRect?.width ?? "initial",
           }}
         >
-          <Box sx={{ columnGap: 2, display: "flex" }}></Box>
+          <Box sx={{ columnGap: 2, display: "flex" }}>
+            <Link component={RrdLink} to="/">
+              Top
+            </Link>
+          </Box>
           <Box sx={{ columnGap: 2, display: "flex" }}>
             <Link href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview" target="_blank">
               Netlify

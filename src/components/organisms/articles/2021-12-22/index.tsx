@@ -1,8 +1,10 @@
-import { Box, BoxProps, Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
 import ArticleContent from "../../../molecules/article-content";
+import { InnerBox } from "./InnerBox";
+import { SampleLocalStorage } from "./SampleLocalStorage";
 
 const CODE_FIRESTORE = `
 const { users, modifyUser, deleteUser } = useFirestoreUsers();
@@ -102,30 +104,53 @@ export const Article20211222: React.VFC<Props> = memo(() => {
           「その変数についての情報を得たければ、その変数をクリックするだけで良い」というのは便利である。VSCodeはその機能を提供してくれている。
         </P>
       </InnerBox>
+      <P>
+        記事のタグには同じタグが複数含まれてはいけないため、Setデータ構造を使うのが適切である。
+        <br />
+      </P>
+      <P>
+        最終的に保存される場所がたとえSetデータ構造の存在しないRDBだとしても、フロントエンドにバックエンドの「都合」が反映されてはならない。よって、Setデータ構造が自然な選択であればSetを選択すべきである。
+      </P>
+      <P>JavaScriptのSetデータ構造の要素の順序は「追加された順序」である。</P>
+      <CodeBlock>{`[...new Set([1, 3, 2])].join(", ")`}</CodeBlock>
+      <P>
+        上記のコードの評価値は<code>{[...new Set([1, 3, 2])].join(", ")}</code>になる。
+      </P>
+      <P>
+        僕はReact+TypeScriptが好きなので、これから開発するアプリも極力React+TypeScriptであれば良いと考えている。そして、ReactとTypeScriptの知見をもっと蓄えたいと思っている。この目的とReactで日記を書く手段の相性がとても良い。なぜかというと、日記を書いていて疑問に思ったことは、新たな環境を用意せずともすぐに試せるからだ。たとえば、Setデータ構造を配列に変換する方法を知ったときに、すぐに結果をここで試すことができる。
+      </P>
+      <P>
+        プログラミングが可能な日記（のようなもの）として他に思いつくのは、Jupyter
+        Notebookである。Pythonが流行っている理由には、Jupyter Notebookが多少なりとも関わっているのかもしれない。
+      </P>
+      <P>そういえば、Local Storageをまともに触ったことがない。ということで、これから試してみる。</P>
+      <P>
+        実際に調べる前に少し考える。Local
+        Storageは文字列としてしか情報を保存できない。具体的には、オブジェクトを保存しようとすると、
+        <code>[Object object]</code>
+        のような文字列が保存されてしまう。よって、保存する値がオブジェクトの場合は、JSONエンコードを行ってから保存しなければならない。数値型や真偽値型も同様である。
+      </P>
+      <P>
+        Local
+        Storageを扱うフックを設計することを考える。フックはget系の関数とset系の関数を返すべきである。それ以外の値は、今は返さなくても良い。get系の関数は型引数を使って取得値の型を取得できるようにすると楽だろう。生データはJSON文字列として扱い、get時のデコードとset時のエンコードは徹底する。次のような実装になるだろう。
+      </P>
+      <P>
+        自分で開発せずとも、既に
+        <Link href="https://github.com/juliencrn/usehooks-ts" target="_blank">
+          usehooks-ts
+        </Link>
+        というライブラリに<code>useLocalStorage</code>
+        というフックがあった。このフックは想像以上の出来で、別の場所で書き換えられた値の変更も検知できるようだ。
+      </P>
+      <Box>
+        <SampleLocalStorage />
+      </Box>
+      <P>
+        <code>useLocalStorage</code>を使って簡単なコンポーネントを作成した。ボタンを押すと、Local
+        Storageに保存されているオブジェクトの値を書き換える。その証拠として、ボタン押下後にページをリロードしても状態は保持されていることがわかる。
+      </P>
     </ArticleContent>
   );
 });
 
 export default Article20211222;
-
-const InnerBox: React.FC<BoxProps> = ({ children, ...props }) => {
-  return (
-    <Box
-      {...props}
-      sx={{
-        bgcolor: "hsl(160, 36%, 96%)",
-        my: 2,
-        p: 1,
-        "> .MuiTypography-root:first-of-type": {
-          mt: 0,
-        },
-        "> .MuiTypography-root:last-of-type": {
-          mb: 0,
-        },
-        ...props.sx,
-      }}
-    >
-      {children}
-    </Box>
-  );
-};
