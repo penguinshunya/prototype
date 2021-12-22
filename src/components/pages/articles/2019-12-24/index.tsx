@@ -2,7 +2,7 @@ import { Link } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 const CODE_BLOCK = `
 gl.activeTexture(gl.TEXTURE0);
@@ -11,9 +11,9 @@ gl.bindTexture(gl.TEXTURE_2D, fBuffer.t);
 
 interface Props {}
 
-export const Article20191224: React.VFC<Props> = () => {
+export const Article20191224: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2019年12月24日（火）">
+    <ArticleContent>
       <P>
         何かを勉強すると何かを書き残したくなる。今はWebGLを学んでいるのだけど、それについて書き残したくて仕方がない。
       </P>
@@ -154,8 +154,8 @@ export const Article20191224: React.VFC<Props> = () => {
         </li>
         <li>テクスチャを描画</li>
       </ol>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20191224);
+export default Article20191224;

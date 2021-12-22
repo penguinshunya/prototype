@@ -1,7 +1,7 @@
 import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 const CODE_BLOCK = `
 const VERTEX_SOURCE = \`
@@ -38,9 +38,9 @@ gl.drawArrays(gl.TRIANGLES, 0, 3);
 
 interface Props {}
 
-export const Article20191227: React.VFC<Props> = () => {
+export const Article20191227: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2019年12月27日（金）">
+    <ArticleContent>
       <P>仕事中、暇があればWebGLについて考えていた。</P>
       <P>
         どうしても腑に落ちないことがある。それは「なぜ光方向ベクトルに逆行列を掛けるとうまく影を表現できるか」という問題。どうしても「光を変換する」というのがイメージできない。それよりも、面の法線ベクトルに普通の行列を掛けたほうがイメージしやすい。だから僕はこちらの方針でいく。
@@ -54,8 +54,8 @@ export const Article20191227: React.VFC<Props> = () => {
         を満たす立方体の空間である。もし描画したい図形の座標がこの範囲に納まっているなら、行列による変換をする必要はない。つまり次のように書くだけで描画が完了する。
       </P>
       <CodeBlock language="javascript">{CODE_BLOCK.trim()}</CodeBlock>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20191227);
+export default Article20191227;

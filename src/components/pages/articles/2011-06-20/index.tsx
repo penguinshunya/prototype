@@ -1,7 +1,7 @@
 import { Box, Link } from "@mui/material";
 import { memo } from "react";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 import q1 from "./images/q1.png";
 import q2 from "./images/q2.png";
 import q3 from "./images/3bai.png";
@@ -10,9 +10,9 @@ import { Image } from "../../../atoms/image";
 
 interface Props {}
 
-export const Article20110620: React.VFC<Props> = () => {
+export const Article20110620: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年06月20日（月）">
+    <ArticleContent>
       <P>カップ方向の傾斜影響を求める手順を書きます。</P>
       <P>
         ①カップ方向の風角度を読む
@@ -100,8 +100,8 @@ export const Article20110620: React.VFC<Props> = () => {
         <br />
         ご要望ありがとうございました。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110620);
+export default Article20110620;

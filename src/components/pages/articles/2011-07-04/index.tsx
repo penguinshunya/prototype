@@ -2,16 +2,16 @@ import { Box } from "@mui/material";
 import { memo } from "react";
 import { Image } from "../../../atoms/image";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 import zurashi from "./images/zurashi.png";
 import muri from "./images/muri.png";
 import center from "./images/center.jpeg";
 
 interface Props {}
 
-export const Article20110704: React.VFC<Props> = () => {
+export const Article20110704: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年07月04日（月）">
+    <ArticleContent>
       <Box>
         <Image src={zurashi} />
       </Box>
@@ -95,8 +95,8 @@ export const Article20110704: React.VFC<Props> = () => {
         <br />
         ずらしに関する記事おしまい。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110704);
+export default Article20110704;

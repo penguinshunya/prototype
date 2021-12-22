@@ -2,15 +2,15 @@ import { Box, Link } from "@mui/material";
 import { memo } from "react";
 import { Image } from "../../../atoms/image";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 import image1 from "./images/1-08064.jpeg";
 import image2 from "./images/2-631ff.jpeg";
 
 interface Props {}
 
-export const Article20110801: React.VFC<Props> = () => {
+export const Article20110801: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年08月01日（月）">
+    <ArticleContent>
       <P>
         今回は僕の最も好きなコース、DeepInfernoでした。
         <br />
@@ -56,8 +56,8 @@ export const Article20110801: React.VFC<Props> = () => {
         <br />
         運営さん、次のコースはBlueLagoonでお願いしますm(_ _)m
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110801);
+export default Article20110801;

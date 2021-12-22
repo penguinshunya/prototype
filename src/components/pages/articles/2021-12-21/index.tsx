@@ -2,16 +2,16 @@ import { Box, Link, Typography } from "@mui/material";
 import { memo } from "react";
 import Latex from "../../../atoms/latex";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 import SampleLoadingButton from "./SampleLoadingButton";
 import SampleUnixDateTime from "./SampleUnixDateTime";
 import SampleUseAsyncRetry from "./SampleUseAsyncRetry";
 
 interface Props {}
 
-export const Article20211221: React.VFC<Props> = () => {
+export const Article20211221: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2021年12月21日（火）">
+    <ArticleContent>
       <P>
         <Link href="https://mui.com/getting-started/installation/" target="_blank">
           MUI
@@ -86,8 +86,8 @@ export const Article20211221: React.VFC<Props> = () => {
       <P>
         ちょうど2年前、僕はWebGLを使って3Dゲームを作ろうとしていた。その頃はまだTypeScriptをよく知らず、JavaScriptだけで3Dゲームを作っていた。今では考えられないが、参考サイトがJavaScriptで書かれていたことも大きかったんだと思う。それを踏まえると、TypeScriptでWebGLのチュートリアルを作成すれば需要があるのでは？などと考えたりする。過去に書いたJavaScriptのプログラムをTypeScriptで書き直してみようかな。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20211221);
+export default Article20211221;

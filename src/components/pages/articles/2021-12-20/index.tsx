@@ -1,13 +1,13 @@
 import { Link } from "@mui/material";
 import { memo } from "react";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 interface Props {}
 
-export const Article20211220: React.VFC<Props> = () => {
+export const Article20211220: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2021年12月20日（月）">
+    <ArticleContent>
       <P>最近は自堕落な日々を過ごしている。</P>
       <P>
         今は在宅勤務をしていて、誰にも監視されない環境にいる。遊んだり寝たりしていても誰にも注意されない。規則正しい生活を送るためにはしっかりと自制する必要がある。しかし、僕には自制する力がないため、寝る時間や食事の時間が不規則になってしまっている。
@@ -34,8 +34,8 @@ export const Article20211220: React.VFC<Props> = () => {
         これはおそらく、最も単純な空気抵抗の式 -kv を使っているのが原因だと思う。
         紙のような平べったい物質は、進行方向から見た物質の表面積が大きいほど空気抵抗が大きくなるのが正しい。この性質は、最も単純な空気抵抗では表すことができない。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20211220);
+export default Article20211220;

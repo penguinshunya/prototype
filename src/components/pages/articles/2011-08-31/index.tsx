@@ -1,13 +1,13 @@
 import { Link } from "@mui/material";
 import { memo } from "react";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 interface Props {}
 
-export const Article20110831: React.VFC<Props> = () => {
+export const Article20110831: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年08月31日（水）">
+    <ArticleContent>
       <P>youtubeにプレイ動画を上げました。</P>
       <P>
         <Link href="http://www.youtube.com/watch?v=WP2ZJSMactg" target="_blank">
@@ -21,8 +21,8 @@ export const Article20110831: React.VFC<Props> = () => {
         <br />
         よかったら見てください。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110831);
+export default Article20110831;

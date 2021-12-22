@@ -1,13 +1,13 @@
 import { Link } from "@mui/material";
 import { memo } from "react";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 interface Props {}
 
-export const Article20110716: React.VFC<Props> = () => {
+export const Article20110716: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年07月16日（土）">
+    <ArticleContent>
       <P>
         サイレントを使わずに素BIゲーで限界値出す動画を上げました。
         <br />
@@ -26,8 +26,8 @@ export const Article20110716: React.VFC<Props> = () => {
         <br />
         これからは、変に目標とか立てずに気の向くままにやっていこうと思います。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110716);
+export default Article20110716;

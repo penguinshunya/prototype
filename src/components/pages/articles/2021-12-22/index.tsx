@@ -2,7 +2,7 @@ import { Box, BoxProps, Link } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 const CODE_FIRESTORE = `
 const { users, modifyUser, deleteUser } = useFirestoreUsers();
@@ -14,9 +14,9 @@ const { users, modifyUser, deleteUser } = useLocalStorageUsers();
 
 interface Props {}
 
-export const Article20211222: React.VFC<Props> = () => {
+export const Article20211222: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2021年12月22日（水）">
+    <ArticleContent>
       <P>
         &lt;br /&gt;しか使わなかった場合、Chrome
         DevToolsで文章を選択したときに全文が選択されてしまう。これは不便なので、段落ごとに&lt;p
@@ -102,11 +102,11 @@ export const Article20211222: React.VFC<Props> = () => {
           「その変数についての情報を得たければ、その変数をクリックするだけで良い」というのは便利である。VSCodeはその機能を提供してくれている。
         </P>
       </InnerBox>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20211222);
+export default Article20211222;
 
 const InnerBox: React.FC<BoxProps> = ({ children, ...props }) => {
   return (

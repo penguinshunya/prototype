@@ -8,6 +8,7 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import BaseProvider from "./components/templates/Provider";
 import "./index.css";
+import "dayjs/locale/ja";
 
 const theme = createTheme({
   components: {

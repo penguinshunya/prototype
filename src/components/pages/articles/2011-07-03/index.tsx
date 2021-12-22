@@ -2,15 +2,15 @@ import { Box } from "@mui/material";
 import { memo } from "react";
 import { Image } from "../../../atoms/image";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 import pangya_724 from "./images/pangya_724.jpeg";
 import pangya_725 from "./images/pangya_725.jpeg";
 
 interface Props {}
 
-export const Article20110703: React.VFC<Props> = () => {
+export const Article20110703: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年07月03日（日）">
+    <ArticleContent>
       <P>
         <span style={{ color: "red" }}>
           カップ中心を最大拡大し、その拡大率を維持したまま、カップ中心がゲージ100%の部分にくるようにする
@@ -65,8 +65,8 @@ export const Article20110703: React.VFC<Props> = () => {
         <br />
         次は「正確にずらすの定義は人それぞれ」について書きます。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110703);
+export default Article20110703;

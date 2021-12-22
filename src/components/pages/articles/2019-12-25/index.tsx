@@ -1,13 +1,13 @@
 import { Link } from "@mui/material";
 import { memo } from "react";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 interface Props {}
 
-export const Article20191225: React.VFC<Props> = () => {
+export const Article20191225: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2019年12月25日（水）">
+    <ArticleContent>
       <P>
         今日はクリスマスだけど、悲しいことに僕には関係がない。ということで、昨日に引き続きシャドウマッピングの勉強をしている。
       </P>
@@ -43,8 +43,8 @@ export const Article20191225: React.VFC<Props> = () => {
         <code>texture2DProj()</code>の第二引数として渡す<code>vec4</code>型の変数の<code>z</code>と<code>w</code>
         は無視されるのだろうか。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20191225);
+export default Article20191225;

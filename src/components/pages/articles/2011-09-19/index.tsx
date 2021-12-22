@@ -1,12 +1,12 @@
 import { memo } from "react";
 import { P } from "../../../atoms/p";
-import Article from "../../../molecules/article";
+import ArticleContent from "../../../molecules/article-content";
 
 interface Props {}
 
-export const Article20110919: React.VFC<Props> = () => {
+export const Article20110919: React.VFC<Props> = memo(() => {
   return (
-    <Article title="2011年09月19日（月）">
+    <ArticleContent>
       <P>
         先程SepiaWindをサイレント安定7個、セーフティー1個で回ると、2万pp超えました。
         <br />
@@ -28,8 +28,8 @@ export const Article20110919: React.VFC<Props> = () => {
         <br />
         どうにかしないといけないです。
       </P>
-    </Article>
+    </ArticleContent>
   );
-};
+});
 
-export default memo(Article20110919);
+export default Article20110919;
