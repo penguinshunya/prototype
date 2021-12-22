@@ -1,6 +1,10 @@
+import { Box } from "@mui/material";
 import { memo } from "react";
+import { Image } from "../../../atoms/image";
 import { P } from "../../../atoms/p";
 import Article from "../../../molecules/article";
+import pangya_724 from "./images/pangya_724.jpeg";
+import pangya_725 from "./images/pangya_725.jpeg";
 
 interface Props {}
 
@@ -16,11 +20,14 @@ export const Article20110703: React.VFC<Props> = () => {
         <br />
         文章だけではわかりづらいので、画像をつけて説明します。
       </P>
-      <P>
-        ①カップを画面中心にもってきて、最大拡大します
-        <br />
-        ②その拡大率を維持したまま、カップの中心がゲージ100%の部分と重なるようにする
-      </P>
+      <P sx={{ mb: 0.5 }}>①カップを画面中心にもってきて、最大拡大します</P>
+      <Box>
+        <Image src={pangya_724} width={456} />
+      </Box>
+      <P sx={{ mb: 0.5 }}>②その拡大率を維持したまま、カップの中心がゲージ100%の部分と重なるようにする</P>
+      <Box>
+        <Image src={pangya_725} width={456} />
+      </Box>
       <P>
         これで正確にずらせています。
         <br />
@@ -44,13 +51,15 @@ export const Article20110703: React.VFC<Props> = () => {
         <br />
         中心の高低差が違ってもずらす幅は同じ、と言い換えることもできます。
       </P>
-      <P sx={{ mt: 5 }}>
+      <P sx={{ mt: 5, mb: 0.5 }}>
         カップの中心ではなく、ずらした後を最大拡大するというずらしは、正確にずらすことはできません。
         <br />
         このずらしで左にゲージ50%分ずらして右にゲージ50%分ずらしても、画面の中心とカップの中心は重ならないからです。
-        <br />
-        261yピンでは、このようにずれが生じます。
       </P>
+      <Box>
+        <Image src={pangya_724} width={456} />
+      </Box>
+      <P sx={{ mt: 0.5 }}>261yピンでは、このようにずれが生じます。</P>
       <P sx={{ mt: 5 }}>
         今日は「グリーンに起伏があっても正確にずらす方法」を書きました。
         <br />

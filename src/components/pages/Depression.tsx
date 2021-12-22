@@ -1,3 +1,4 @@
+import Article20110620 from "./articles/2011-06-20";
 import Article20110703 from "./articles/2011-07-03";
 import Article20110704 from "./articles/2011-07-04";
 import Article20110716 from "./articles/2011-07-16";
@@ -16,6 +17,7 @@ interface Props {}
 export const Depression: React.VFC<Props> = () => {
   return (
     <div>
+      <Article20110620 />
       <Article20110703 />
       <Article20110704 />
       <Article20110716 />

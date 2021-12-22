@@ -116,10 +116,10 @@ const InnerBox: React.FC<BoxProps> = ({ children, ...props }) => {
         bgcolor: "hsl(160, 24%, 94%)",
         my: 2,
         p: 1,
-        "> .MuiTypography-root:first-child": {
+        "> .MuiTypography-root:first-of-type": {
           mt: 0,
         },
-        "> .MuiTypography-root:last-child": {
+        "> .MuiTypography-root:last-of-type": {
           mb: 0,
         },
         ...props.sx,
