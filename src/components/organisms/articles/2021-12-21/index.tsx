@@ -23,7 +23,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
         <code>&lt;LoadingButton /&gt;</code>が追加されたり、<code>&lt;Box /&gt;</code>コンポーネントに<code>sx</code>
         プロパティが追加されたりしている。
       </P>
-      <Box sx={{ alignItems: "center", columnGap: 1, display: "flex", my: 2 }}>
+      <Box sx={{ alignItems: "center", display: "flex", flexWrap: "wrap", gap: 1, my: 2 }}>
         <SampleLoadingButton />
         <Typography sx={{ color: "info.main" }}>押すと1秒間ローディング状態になるボタン</Typography>
       </Box>

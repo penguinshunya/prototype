@@ -35,7 +35,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={DateAdapter} locale={ja}>
-        <SnackbarProvider>
+        <SnackbarProvider maxSnack={1}>
           <BrowserRouter>
             <BaseProvider>
               <App />
