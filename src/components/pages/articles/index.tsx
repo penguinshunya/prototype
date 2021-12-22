@@ -1,47 +1,17 @@
 import { memo } from "react";
-import dayjs from "dayjs";
-import Article20110620 from "../../organisms/articles/2011-06-20";
-import Article20110703 from "../../organisms/articles/2011-07-03";
-import Article20110704 from "../../organisms/articles/2011-07-04";
-import Article20110716 from "../../organisms/articles/2011-07-16";
-import Article20110801 from "../../organisms/articles/2011-08-01";
-import Article20110831 from "../../organisms/articles/2011-08-31";
-import Article20110919 from "../../organisms/articles/2011-09-19";
-import Article20191224 from "../../organisms/articles/2019-12-24";
-import Article20191225 from "../../organisms/articles/2019-12-25";
-import Article20191227 from "../../organisms/articles/2019-12-27";
-import Article20211220 from "../../organisms/articles/2021-12-20";
-import Article20211221 from "../../organisms/articles/2021-12-21";
-import Article20211222 from "../../organisms/articles/2021-12-22";
-import { Article, ArticleProps } from "./Article";
-
-// prettier-ignore
-const articles: ArticleProps[] = [
-  { Content: Article20110620, date: dayjs("2011-06-20"), title: "傾斜影響の求め方", tags: ["パンヤ"] },
-  { Content: Article20110703, date: dayjs("2011-07-03"), title: "正確にずらす方法①", tags: ["パンヤ"] },
-  { Content: Article20110704, date: dayjs("2011-07-04"), title: "正確にずらす方法②", tags: ["パンヤ"] },
-  { Content: Article20110716, date: dayjs("2011-07-16"), title: "動画上げたでござる", tags: ["パンヤ"] },
-  { Content: Article20110801, date: dayjs("2011-08-01"), title: "シーズンカップの結果", tags: ["パンヤ"] },
-  { Content: Article20110831, date: dayjs("2011-08-31"), title: "BlueWater楽しいです", tags: ["パンヤ"] },
-  { Content: Article20110919, date: dayjs("2011-09-19"), title: "SW2万pp", tags: ["パンヤ"] },
-  { Content: Article20191224, date: dayjs("2019-12-24"), tags: ["プログラミング"] },
-  { Content: Article20191225, date: dayjs("2019-12-25"), tags: ["プログラミング"] },
-  { Content: Article20191227, date: dayjs("2019-12-27"), tags: ["プログラミング"] },
-  { Content: Article20211220, date: dayjs("2021-12-20"), tags: [] },
-  { Content: Article20211221, date: dayjs("2021-12-21"), tags: ["プログラミング"] },
-  { Content: Article20211222, date: dayjs("2021-12-22"), tags: ["プログラミング"] },
-];
+import { articles } from "../../../common/articles";
+import { Article } from "../../organisms/article";
 
 interface Props {}
 
-export const Articles: React.VFC<Props> = memo(() => {
+export const ArticlesPage: React.VFC<Props> = memo(() => {
   return (
     <div>
       {articles.map((a) => (
-        <Article key={a.date.unix()} {...a} />
+        <Article key={a.id} isTitleLink {...a} />
       ))}
     </div>
   );
 });
 
-export default memo(Articles);
+export default ArticlesPage;

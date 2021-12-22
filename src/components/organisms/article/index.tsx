@@ -1,24 +1,30 @@
 import { Box, Typography } from "@mui/material";
-import { Dayjs } from "dayjs";
+import { Link } from "react-router-dom";
 import { memo, useMemo } from "react";
+import { ArticleType } from "../../../common/articles";
 
-export interface ArticleProps {
-  Content: React.VFC;
-  date: Dayjs;
-  title?: string;
-  tags: ("パンヤ" | "プログラミング")[];
+export type ArticleProps = ArticleType & {
+  isTitleLink?: boolean;
 };
 
-export const Article: React.VFC<ArticleProps> = memo(({ ...a }) => {
+export const Article: React.VFC<ArticleProps> = memo(({ isTitleLink, ...a }) => {
   const date = useMemo(() => a.date.locale("ja").format("YYYY年MM月DD日 dddd"), [a]);
 
   return (
     <Box component="article" sx={{ mb: 10 }}>
       <Typography
-        variant="h2"
+        variant={"h2"}
+        component={isTitleLink ? Link : "h2"}
+        to={isTitleLink ? `/article/${a.id}` : ""}
         sx={{
+          color: "black",
+          display: "inline-block",
           fontSize: 24,
           mb: 2,
+          textDecoration: "none",
+          ":hover": {
+            textDecoration: isTitleLink ? "underline" : "none",
+          },
         }}
       >
         {date}
@@ -35,4 +41,4 @@ export const Article: React.VFC<ArticleProps> = memo(({ ...a }) => {
   );
 });
 
-export default memo(Article);
+export default Article;

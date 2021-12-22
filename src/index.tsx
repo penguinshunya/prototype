@@ -7,6 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import BaseProvider from "./components/templates/Provider";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import "dayjs/locale/ja";
 
@@ -28,9 +29,11 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={DateAdapter} locale={ja}>
         <SnackbarProvider>
-          <BaseProvider>
-            <App />
-          </BaseProvider>
+          <BrowserRouter>
+            <BaseProvider>
+              <App />
+            </BaseProvider>
+          </BrowserRouter>
         </SnackbarProvider>
       </LocalizationProvider>
     </ThemeProvider>

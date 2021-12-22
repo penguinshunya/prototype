@@ -1,7 +1,9 @@
 import { Box, Container, Link } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Div100vh from "react-div-100vh";
-import { Articles } from "./pages/articles";
+import ArticlesPage from "./pages/articles";
+import { ArticlePage } from "./pages/article";
 
 interface Props {}
 
@@ -46,6 +48,7 @@ export const App: React.VFC<Props> = () => {
             width: containerRect?.width ?? "initial",
           }}
         >
+          <Box sx={{ columnGap: 2, display: "flex" }}></Box>
           <Box sx={{ columnGap: 2, display: "flex" }}>
             <Link href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview" target="_blank">
               Netlify
@@ -53,8 +56,6 @@ export const App: React.VFC<Props> = () => {
             <Link href="https://github.com/penguinshunya/prototype" target="_blank">
               GitHub
             </Link>
-          </Box>
-          <Box sx={{ columnGap: 2, display: "flex" }}>
             <Link href="https://qiita.com/penguinshunya" target="_blank">
               Qiita
             </Link>
@@ -64,10 +65,11 @@ export const App: React.VFC<Props> = () => {
           </Box>
         </Box>
       </Box>
-      <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white" }}>
-        <Box sx={{ py: 2 }}>
-          <Articles />
-        </Box>
+      <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white", pt: 2 }}>
+        <Routes>
+          <Route path="/article/:id" element={<ArticlePage />} />
+          <Route path="/" element={<ArticlesPage />} />
+        </Routes>
       </Container>
     </Div100vh>
   );

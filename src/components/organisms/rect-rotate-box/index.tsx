@@ -57,15 +57,15 @@ export const RectRotateBox: React.VFC<Props> = ({
           ps.push(p);
         }
         ctx.beginPath();
-        ctx.moveTo(ps[0].x, ps[0].y);
+        ctx.moveTo(ps[0]!.x, ps[0]!.y);
 
         let j;
         for (j = 1; j < ps.length - 2; j++) {
-          const xc = (ps[j].x + ps[j + 1].x) / 2;
-          const yc = (ps[j].y + ps[j + 1].y) / 2;
-          ctx.quadraticCurveTo(ps[j].x, ps[j].y, xc, yc);
+          const xc = (ps[j]!.x + ps[j + 1]!.x) / 2;
+          const yc = (ps[j]!.y + ps[j + 1]!.y) / 2;
+          ctx.quadraticCurveTo(ps[j]!.x, ps[j]!.y, xc, yc);
         }
-        ctx.quadraticCurveTo(ps[j].x, ps[j].y, ps[j + 1].x, ps[j + 1].y);
+        ctx.quadraticCurveTo(ps[j]!.x, ps[j]!.y, ps[j + 1]!.x, ps[j + 1]!.y);
         ctx.stroke();
       }
     }
