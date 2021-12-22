@@ -1,4 +1,4 @@
-import { Dialog } from "@mui/material";
+import { Dialog, DialogContent } from "@mui/material";
 import { memo, useState } from "react";
 
 type Props = Omit<JSX.IntrinsicElements["img"], "onClick">;
@@ -31,14 +31,16 @@ export const Image: React.VFC<Props> = ({ width, ...props }) => {
           },
         }}
       >
-        <img
-          alt=""
-          {...props}
-          style={{
-            verticalAlign: "middle",
-          }}
-          onClick={() => setOpen(true)}
-        />
+        <DialogContent>
+          <img
+            alt=""
+            {...props}
+            style={{
+              verticalAlign: "middle",
+            }}
+            onClick={() => setOpen(true)}
+          />
+        </DialogContent>
       </Dialog>
     </>
   );
