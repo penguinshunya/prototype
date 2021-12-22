@@ -27,17 +27,12 @@ export const App: React.VFC<Props> = () => {
         width: "100%",
       }}
     >
-      <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white" }}>
-        <Box sx={{ py: 3 }}>
-          <Depression />
-        </Box>
-      </Container>
       <Box
         sx={{
           backgroundColor: "white",
-          borderTop: "1px solid rgba(0, 0, 0, 0.2)",
-          bottom: 0,
+          borderBottom: "1px solid rgba(0, 0, 0, 0.2)",
           position: "sticky",
+          top: 0,
           // https://mui.com/customization/default-theme/
           zIndex: "appBar",
         }}
@@ -69,6 +64,11 @@ export const App: React.VFC<Props> = () => {
           </Box>
         </Box>
       </Box>
+      <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white" }}>
+        <Box sx={{ py: 2 }}>
+          <Depression />
+        </Box>
+      </Container>
     </Div100vh>
   );
 };
