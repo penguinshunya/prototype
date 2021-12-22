@@ -1,5 +1,8 @@
 import _ from "lodash";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef } from "react";
+import { useLocalStorage } from "react-use";
+
+const KEY_BOARD = "b5438e65-cda0-5703-a956-7ce284c69326";
 
 const dx = [1, 0, -1, 0, 1, 1, -1, -1];
 const dy = [0, 1, 0, -1, 1, -1, 1, -1];
@@ -13,9 +16,10 @@ function initBoard(): Cell[][] {
   return board;
 }
 
-export function useOthello() {
-  const rawBoard = useRef<Cell[][]>(initBoard());
-  const [board, setBoard] = useState<Cell[][]>(rawBoard.current);
+export function useOthelloBoard() {
+  const [_board, setBoard] = useLocalStorage(KEY_BOARD, initBoard());
+  const board = useMemo(() => _board ?? initBoard(), [_board]);
+  const rawBoard = useRef<Cell[][]>(board ?? initBoard());
 
   const can = useCallback((x: number, y: number, color: Omit<Cell, "none">) => {
     const board = rawBoard.current;
@@ -101,13 +105,65 @@ export function useOthello() {
       rawBoard.current = board;
       setBoard(board);
     },
-    [can]
+    [can, setBoard]
   );
 
   const reset = useCallback(() => {
     rawBoard.current = initBoard();
     setBoard(rawBoard.current);
-  }, []);
+  }, [setBoard]);
 
   return { board, can, canAny, put, reset };
+}
+
+const KEY_TURN = "366ce105-4581-8d4b-a317-e6181f32ecdf";
+const KEY_IS_FINISH = "a8a57336-f5a0-328c-face-4d4c92230b9f";
+
+export function useOthello() {
+  const { board, can, canAny, put, reset: _reset } = useOthelloBoard();
+  const [_turn, setTurn] = useLocalStorage<"black" | "white">(KEY_TURN, "black");
+  const [_isFinish, setIsFinish] = useLocalStorage(KEY_IS_FINISH, false);
+  const turn = useMemo(() => _turn ?? "black", [_turn]);
+  const isFinish = useMemo(() => _isFinish ?? false, [_isFinish]);
+
+  const next = useCallback(
+    (x: number, y: number) => {
+      if (isFinish) return;
+      if (!can(x, y, turn)) return;
+      put(x, y, turn);
+      let t: "black" | "white" = turn === "black" ? "white" : "black";
+      setTurn(t);
+      if (canAny(t)) return;
+      t = t === "black" ? "white" : "black";
+      setTurn(t);
+      if (canAny(t)) return;
+      setIsFinish(true);
+    },
+    [can, canAny, isFinish, put, setIsFinish, setTurn, turn]
+  );
+
+  const takeRandom = useCallback(() => {
+    const ps: { x: number; y: number }[] = [];
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        if (can(i, j, turn)) ps.push({ x: i, y: j });
+      }
+    }
+    return ps.length === 0 ? null : ps[~~(Math.random() * ps.length)]!;
+  }, [can, turn]);
+
+  const reset = useCallback(() => {
+    setTurn("black");
+    _reset();
+    setIsFinish(false);
+  }, [_reset, setIsFinish, setTurn]);
+
+  return {
+    board,
+    isFinish,
+    next,
+    reset,
+    takeRandom,
+    turn,
+  };
 }

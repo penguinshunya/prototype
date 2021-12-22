@@ -5,52 +5,27 @@ import { useOthello } from "./hooks";
 interface Props {}
 
 export const Othello: React.VFC<Props> = memo(() => {
-  const { board, can, canAny, put, reset } = useOthello();
+  const { board, isFinish, next, reset, takeRandom, turn } = useOthello();
   const [auto, setAuto] = useState(false);
-  const [turn, setTurn] = useState<"black" | "white">("black");
-  const [isFinish, setIsFinish] = useState(false);
 
   useEffect(() => {
     if (!auto || isFinish) return;
     function tick() {
-      if (!canAny(turn)) return;
-      let x = -1;
-      let y = -1;
-      while (true) {
-        const r = Math.floor(Math.random() * 64);
-        x = Math.floor(r / 8);
-        y = r % 8;
-        if (can(x, y, turn)) break;
-      }
-      put(x, y, turn);
-      let t: "black" | "white" = turn === "black" ? "white" : "black";
-      setTurn(t);
-      if (canAny(t)) return;
-      t = t === "black" ? "white" : "black";
-      setTurn(t);
-      if (canAny(t)) return;
-      setIsFinish(true);
+      const pos = takeRandom();
+      if (pos === null) return;
+      next(pos.x, pos.y);
     }
     let id = window.setTimeout(tick, 32);
     return () => {
       window.clearTimeout(id);
     };
-  }, [auto, can, canAny, isFinish, turn, put]);
+  }, [auto, isFinish, next, takeRandom]);
 
   const handleClick = useCallback(
     (x: number, y: number) => {
-      if (isFinish) return;
-      if (!can(x, y, turn)) return;
-      put(x, y, turn);
-      let t: "black" | "white" = turn === "black" ? "white" : "black";
-      setTurn(t);
-      if (canAny(t)) return;
-      t = t === "black" ? "white" : "black";
-      setTurn(t);
-      if (canAny(t)) return;
-      setIsFinish(true);
+      next(x, y);
     },
-    [can, canAny, isFinish, turn, put]
+    [next]
   );
 
   const message = useMemo(() => {
@@ -72,10 +47,8 @@ export const Othello: React.VFC<Props> = memo(() => {
   }, [isFinish, board, turn]);
 
   const handleReset = useCallback(() => {
-    setTurn("black");
     setAuto(false);
     reset();
-    setIsFinish(false);
   }, [reset]);
 
   return (
@@ -120,7 +93,14 @@ export const Othello: React.VFC<Props> = memo(() => {
               onClick={() => handleClick(i, j)}
               sx={{ alignItems: "center", bgcolor: "green", display: "flex", justifyContent: "center" }}
             >
-              <Box sx={{ bgcolor: c === "black" ? "black" : c === "white" ? "white" : "transparent", borderRadius: 16, height: 30, width: 30 }} />
+              <Box
+                sx={{
+                  bgcolor: c === "black" ? "black" : c === "white" ? "white" : "transparent",
+                  borderRadius: 16,
+                  height: 30,
+                  width: 30,
+                }}
+              />
             </Box>
           ))
         )}
