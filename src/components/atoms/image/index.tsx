@@ -25,11 +25,6 @@ export const Image: React.VFC<Props> = ({ width, ...props }) => {
         onClose={() => setOpen(false)}
         transitionDuration={0}
         maxWidth="xl"
-        PaperProps={{
-          sx: {
-            borderRadius: 0,
-          },
-        }}
       >
         <DialogContent>
           <img
