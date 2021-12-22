@@ -5,10 +5,13 @@ type Props = TypographyProps;
 
 export const P: React.VFC<Props> = ({ sx, ...props }) => {
   return (
-    <Typography {...props} sx={{
-      my: 2,
-      ...sx,
-    }} />
+    <Typography
+      {...props}
+      sx={{
+        my: 2,
+        ...sx,
+      }}
+    />
   );
 };
 
