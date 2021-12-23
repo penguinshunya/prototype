@@ -20,13 +20,20 @@ interface Board {
   board: boolean[][];
 }
 
+function initInput(): Input {
+  return {
+    lineCount: 16,
+    height: 8,
+  };
+}
+
 const BORDER_COLOR = "black";
 
 interface Props {}
 
 export const Amidakuji: React.VFC<Props> = memo(() => {
   const snack = useSnackbar();
-  const [input, setInput] = useLocalStorage<Input>(KEY_INPUT, { lineCount: 16, height: 8 });
+  const [input, setInput] = useLocalStorage<Input>(KEY_INPUT, initInput());
   const [ref, { width }] = useMeasure();
 
   const [frequency, setFrequency] = useLocalStorage<number | null>(KEY_FREQUENCY, 0.4);
@@ -102,9 +109,12 @@ export const Amidakuji: React.VFC<Props> = memo(() => {
           helperText="0.0〜1.0"
         />
       </Box>
-      <Box>
+      <Box sx={{ display: "flex", gap: 1 }}>
         <Button size="small" variant="contained" sx={{ mb: 1 }} onClick={handleClick}>
           あみだくじを生成
+        </Button>
+        <Button size="small" variant="outlined" sx={{ mb: 1 }} onClick={() => setInput(initInput())}>
+          初期値を設定
         </Button>
       </Box>
       {boardInfo != null && (
