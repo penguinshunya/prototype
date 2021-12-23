@@ -13,7 +13,7 @@ export const GameWrapper: React.VFC<Props> = memo(() => {
   return (
     <>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography sx={{ color: (theme) => theme.palette.error.main, textDecoration: "underline" }}>
+        <Typography sx={{ color: (theme) => theme.palette.secondary.main, fontWeight: "bold" }}>
           Firestore
         </Typography>
         {user === null ? (

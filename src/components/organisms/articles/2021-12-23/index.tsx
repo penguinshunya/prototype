@@ -99,11 +99,11 @@ export const Article20211223: React.VFC<Props> = memo(() => {
       </P>
       <Box sx={{ display: "flex", flexWrap: "wrap", columnGap: 1, justifyContent: "space-around", my: 2, rowGap: 2 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography sx={{ color: (theme) => theme.palette.error.main, textDecoration: "underline" }}>State</Typography>
+          <Typography sx={{ color: (theme) => theme.palette.secondary.main, fontWeight: "bold" }}>State</Typography>
           <SampleOthelloByState />
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography sx={{ color: (theme) => theme.palette.error.main, textDecoration: "underline" }}>
+          <Typography sx={{ color: (theme) => theme.palette.secondary.main, fontWeight: "bold" }}>
             LocalStorage
           </Typography>
           <SampleOthelloByLocalStorage />
