@@ -1,25 +1,34 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { memo } from "react";
+import { SampleOthelloByFirestore } from "../../othello/SampleOthelloByFirestore";
 import { useFirebaseUser } from "./hooks";
 import { LoginForm } from "./LoginForm";
 import LogoutForm from "./LogoutForm";
-import { SampleOthello } from "./SampleOthello";
 
 interface Props {}
 
 export const GameWrapper: React.VFC<Props> = memo(() => {
   const user = useFirebaseUser();
 
-  if (user === null) {
-    return <LoginForm />;
-  }
-
   return (
     <>
-      <Box sx={{ mb: 1 }}>
-        <SampleOthello />
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Typography sx={{ color: (theme) => theme.palette.error.main, textDecoration: "underline" }}>
+          Firestore
+        </Typography>
+        {user === null ? (
+          <Box sx={{ mt: 4, width: 263 }}>
+            <LoginForm />
+          </Box>
+        ) : (
+          <>
+            <SampleOthelloByFirestore />
+            <Box sx={{ mt: 1 }}>
+              <LogoutForm />
+            </Box>
+          </>
+        )}
       </Box>
-      <LogoutForm />
     </>
   );
 });

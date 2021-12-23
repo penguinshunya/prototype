@@ -45,13 +45,12 @@ export const LoginForm: React.VFC<Props> = memo(() => {
 
   return (
     <Box>
-      <Box component="form" sx={{ display: "flex", flexWrap: "wrap", columnGap: 1, rowGap: 2 }} onSubmit={handleSubmit}>
+      <Box component="form" sx={{ display: "flex", flexDirection: "column", flexWrap: "wrap", columnGap: 1, rowGap: 2 }} onSubmit={handleSubmit}>
         <TextField
           type="email"
           label="メールアドレス"
           value={input.email}
           onChange={(e) => setInput({ ...input, email: e.target.value })}
-          InputProps={{ sx: { width: 256 } }}
         />
         <TextField
           type="password"

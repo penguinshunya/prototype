@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { initOthelloType, useOthello, useOthelloByLocalStorage } from "../../othello/hooks";
+import { initOthelloType, useOthello, useOthelloByLocalStorage } from "./hooks";
 
 interface Props {}
 
-export const SampleOthello: React.VFC<Props> = memo(() => {
+export const SampleOthelloByLocalStorage: React.VFC<Props> = memo(() => {
   const { ajax, data, update } = useOthelloByLocalStorage();
   const { board, isFinish, turn } = useMemo(() => data ?? initOthelloType(), [data]);
   const { next, reset, takeRandom } = useOthello(data, update);
@@ -111,4 +111,4 @@ export const SampleOthello: React.VFC<Props> = memo(() => {
   );
 });
 
-export default memo(SampleOthello);
+export default SampleOthelloByLocalStorage;

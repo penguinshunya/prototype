@@ -39,6 +39,20 @@ export function initOthelloType(): OthelloType {
   };
 }
 
+export function useOthelloByState() {
+  const [data, setData] = useState(initOthelloType());
+
+  const update = useCallback(async (d: Partial<OthelloType>) => {
+    setData((data) => ({ ...data, ...d }));
+  }, []);
+
+  return {
+    ajax: false,
+    data,
+    update,
+  };
+}
+
 const KEY_BOARD = "b5438e65-cda0-5703-a956-7ce284c69326";
 const KEY_TURN = "366ce105-4581-8d4b-a317-e6181f32ecdf";
 const KEY_IS_FINISH = "a8a57336-f5a0-328c-face-4d4c92230b9f";

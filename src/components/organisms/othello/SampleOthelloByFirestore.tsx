@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { initOthelloType, useOthello, useOthelloByFirestore } from "../../othello/hooks";
+import { initOthelloType, useOthello, useOthelloByFirestore } from "./hooks";
 
 interface Props {}
 
-export const SampleOthello: React.VFC<Props> = memo(() => {
+export const SampleOthelloByFirestore: React.VFC<Props> = memo(() => {
   const { ajax, data, update } = useOthelloByFirestore();
   const { board, isFinish, turn } = useMemo(() => data ?? initOthelloType(), [data]);
   const { next, reset, takeRandom } = useOthello(data, update);
@@ -17,7 +17,7 @@ export const SampleOthello: React.VFC<Props> = memo(() => {
       if (pos === null) return;
       next(pos.x, pos.y);
     }
-    let id = window.setTimeout(tick, 32);
+    let id = window.setTimeout(tick, 1000);
     return () => {
       window.clearTimeout(id);
     };
@@ -111,4 +111,4 @@ export const SampleOthello: React.VFC<Props> = memo(() => {
   );
 });
 
-export default memo(SampleOthello);
+export default SampleOthelloByFirestore;

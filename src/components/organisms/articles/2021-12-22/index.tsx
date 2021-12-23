@@ -4,7 +4,7 @@ import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
 import ArticleContent from "../../../molecules/article-content";
 import { InnerBox } from "./InnerBox";
-import { SampleOthello } from "./SampleOthello";
+import { SampleOthelloByLocalStorage } from "../../othello/SampleOthelloByLocalStorage";
 import { SampleLocalStorage } from "./SampleLocalStorage";
 
 const CODE_FIRESTORE = `
@@ -155,7 +155,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
       </P>
       <Divider />
       <Box sx={{ my: 2 }}>
-        <SampleOthello />
+        <SampleOthelloByLocalStorage />
       </Box>
       <P>状態をLocal Storageに保存するオセロゲームを作った。リロードしてもゲームの状態は保持される。</P>
     </ArticleContent>
