@@ -45,7 +45,7 @@ export const LoginForm: React.VFC<Props> = memo(() => {
 
   return (
     <Box>
-      <Box component="form" sx={{ display: "flex", gap: 1 }} onSubmit={handleSubmit}>
+      <Box component="form" sx={{ display: "flex", flexWrap: "wrap", columnGap: 1, rowGap: 2 }} onSubmit={handleSubmit}>
         <TextField
           type="email"
           label="メールアドレス"
