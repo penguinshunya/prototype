@@ -1,8 +1,13 @@
 import { Box, Button } from "@mui/material";
 import _ from "lodash";
 import { useSnackbar } from "notistack";
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useMemo } from "react";
+import { useLocalStorage, useMeasure } from "react-use";
 import { NumberTextField } from "../../../atoms/number-text-field";
+
+const KEY_INPUT = "3b811adb-5d95-4982-9e0a-3bafb1b864cf";
+const KEY_FREQUENCY = "bc2119d5-9de6-4bbb-a612-e74ca99026de";
+const KEY_BOARD = "8193a46a-6ec2-466d-8598-1573aefc7e27";
 
 interface Input {
   lineCount: number | null;
@@ -21,13 +26,14 @@ interface Props {}
 
 export const Amidakuji: React.VFC<Props> = memo(() => {
   const snack = useSnackbar();
-  const [input, setInput] = useState<Input>({ lineCount: 8, height: 8 });
+  const [input, setInput] = useLocalStorage<Input>(KEY_INPUT, { lineCount: 16, height: 8 });
+  const [ref, { width }] = useMeasure();
 
-  const [frequency, setFrequency] = useState<number | null>(0.3);
-  const [boardInfo, setBoardInfo] = useState<Board | null>(null);
+  const [frequency, setFrequency] = useLocalStorage<number | null>(KEY_FREQUENCY, 0.4);
+  const [boardInfo, setBoardInfo] = useLocalStorage<Board | null>(KEY_BOARD, null);
 
   const handleClick = useCallback(() => {
-    if (input.lineCount === null || input.height === null) {
+    if (input == null || input.lineCount === null || input.height === null) {
       snack.enqueueSnackbar("入力されていない項目があります", { variant: "error" });
       return;
     }
@@ -67,39 +73,39 @@ export const Amidakuji: React.VFC<Props> = memo(() => {
       width,
       board,
     });
-  }, [frequency, input, snack]);
+  }, [frequency, input, setBoardInfo, snack]);
 
   const nthChild = useMemo(() => {
     return `> *:nth-of-type(${boardInfo?.width ?? 0}n + 1)`;
   }, [boardInfo?.width]);
 
   return (
-    <Box>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+    <Box ref={ref}>
+      <Box sx={{ display: "flex", gap: 1 }}>
         <NumberTextField
           type="number"
           label="線の本数"
-          value={input.lineCount}
-          onChange={(v) => setInput({ ...input, lineCount: v })}
+          value={input?.lineCount ?? 0}
+          onChange={(v) => setInput(input === undefined ? undefined : { ...input, lineCount: v })}
         />
         <NumberTextField
           type="number"
           label="線の高さ"
-          value={input.height}
-          onChange={(v) => setInput({ ...input, height: v })}
+          value={input?.height ?? 0}
+          onChange={(v) => setInput(input === undefined ? undefined : { ...input, height: v })}
         />
-        <NumberTextField label="線の出現頻度" isFloat value={frequency} onChange={setFrequency} helperText="0.0〜1.0" />
+        <NumberTextField label="出現頻度" isFloat value={frequency ?? 0} onChange={setFrequency} helperText="0.0〜1.0" />
       </Box>
       <Box>
         <Button size="small" variant="contained" sx={{ mb: 1 }} onClick={handleClick}>
           あみだくじを生成
         </Button>
       </Box>
-      {boardInfo !== null && (
+      {boardInfo != null && (
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: `repeat(${boardInfo.width}, 64px)`,
+            gridTemplateColumns: `repeat(${boardInfo.width}, ${Math.min(64, width / boardInfo.width)}px)`,
             gridTemplateRows: `repeat(${boardInfo.height + 2}, 24px)`,
             [nthChild]: {
               borderLeft: `1px solid ${BORDER_COLOR}`,
