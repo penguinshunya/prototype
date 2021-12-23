@@ -42,6 +42,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      defaultProps: {
+        sx: {
+          overflowWrap: "break-word",
+        },
+      },
+    },
     MuiTextField: {
       defaultProps: {
         size: "small",
