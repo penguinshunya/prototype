@@ -110,6 +110,11 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         </Box>
         <GameWrapper />
       </Box>
+      <P>
+        こちらの3つのオセロは、保存先の違いによる保持期間の違いを確かめるためのサンプルである。保存先がStateの場合、リロードすると状態がリセットされる。保存先がLocalStorageの場合、ブラウザを再起動しても状態は保持される。この点はFirestoreも同じだが、LocalStorageはクライアント側に保存されるのに対してFirestoreはサーバー側に保存される点が異なる。
+      </P>
+      <Divider />
+      <P></P>
     </ArticleContent>
   );
 });
