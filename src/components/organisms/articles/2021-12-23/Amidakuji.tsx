@@ -86,6 +86,11 @@ export const Amidakuji: React.VFC<Props> = memo(() => {
     return `> *:nth-of-type(${boardInfo?.width ?? 0}n + 1)`;
   }, [boardInfo?.width]);
 
+  const handleReset = useCallback(() => {
+    setFrequency(0.4);
+    setInput(initInput());
+  }, [setFrequency, setInput]);
+
   return (
     <Box ref={ref}>
       <Box sx={{ display: "flex", gap: 1 }}>
@@ -113,7 +118,7 @@ export const Amidakuji: React.VFC<Props> = memo(() => {
         <Button size="small" variant="contained" sx={{ mb: 1 }} onClick={handleClick}>
           あみだくじを生成
         </Button>
-        <Button size="small" variant="outlined" sx={{ mb: 1 }} onClick={() => setInput(initInput())}>
+        <Button size="small" variant="outlined" sx={{ mb: 1 }} onClick={handleReset}>
           初期値を設定
         </Button>
       </Box>
