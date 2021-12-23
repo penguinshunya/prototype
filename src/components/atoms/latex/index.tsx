@@ -6,7 +6,7 @@ interface Props {
   options?: KatexOptions;
 }
 
-export const Latex: React.FC<Props> = ({ content, options }) => {
+export const Latex: React.FC<Props> = memo(({ content, options }) => {
   const __html = useMemo(() => {
     try {
       return katex.renderToString(content, {
@@ -24,6 +24,6 @@ export const Latex: React.FC<Props> = ({ content, options }) => {
   }, [content, options]);
 
   return <span dangerouslySetInnerHTML={{ __html }} />;
-};
+});
 
-export default memo(Latex);
+export default Latex;

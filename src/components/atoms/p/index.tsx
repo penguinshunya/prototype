@@ -3,7 +3,7 @@ import { memo } from "react";
 
 type Props = TypographyProps;
 
-export const P: React.VFC<Props> = ({ sx, ...props }) => {
+export const P: React.VFC<Props> = memo(({ sx, ...props }) => {
   return (
     <Typography
       {...props}
@@ -13,6 +13,6 @@ export const P: React.VFC<Props> = ({ sx, ...props }) => {
       }}
     />
   );
-};
+});
 
-export default memo(P);
+export default P;

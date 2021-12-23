@@ -9,7 +9,7 @@ type Props = Omit<TextFieldProps, "value" | "onBlur" | "onChange"> & {
   isFloat?: boolean;
 };
 
-export const NumberTextField: React.VFC<Props> = ({ value, onChange, isFloat, ...props }) => {
+export const NumberTextField: React.VFC<Props> = memo(({ value, onChange, isFloat, ...props }) => {
   const [rawValue, setRawValue] = useState("");
 
   useEffect(() => {
@@ -26,6 +26,6 @@ export const NumberTextField: React.VFC<Props> = ({ value, onChange, isFloat, ..
   }, []);
 
   return <TextField {...props} value={rawValue} onBlur={handleBlur} onChange={handleChange} />;
-};
+});
 
-export default memo(NumberTextField);
+export default NumberTextField;

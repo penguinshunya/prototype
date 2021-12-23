@@ -25,4 +25,4 @@ export const ArticlePage: React.VFC<Props> = memo(() => {
   return <Article {...article} id={id} />;
 });
 
-export default memo(ArticlePage);
+export default ArticlePage;

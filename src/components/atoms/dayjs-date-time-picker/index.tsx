@@ -5,7 +5,7 @@ import { memo } from "react";
 
 type Props = Omit<DateTimePickerProps<Dayjs>, "inputFormat" | "mask" | "renderInput" | "views">;
 
-export const DayjsDateTimePicker: React.VFC<Props> = ({ ...props }) => {
+export const DayjsDateTimePicker: React.VFC<Props> = memo(({ ...props }) => {
   return (
     <DateTimePicker
       {...props}
@@ -15,6 +15,6 @@ export const DayjsDateTimePicker: React.VFC<Props> = ({ ...props }) => {
       views={["year", "month", "day", "hours", "minutes", "seconds"]}
     />
   );
-};
+});
 
-export default memo(DayjsDateTimePicker);
+export default DayjsDateTimePicker;

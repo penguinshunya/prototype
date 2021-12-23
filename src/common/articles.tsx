@@ -1,21 +1,22 @@
 import dayjs, { Dayjs } from "dayjs";
-import Article20110620 from "../components/organisms/articles/2011-06-20";
-import Article20110703 from "../components/organisms/articles/2011-07-03";
-import Article20110704 from "../components/organisms/articles/2011-07-04";
-import Article20110716 from "../components/organisms/articles/2011-07-16";
-import Article20110801 from "../components/organisms/articles/2011-08-01";
-import Article20110831 from "../components/organisms/articles/2011-08-31";
-import Article20110919 from "../components/organisms/articles/2011-09-19";
-import Article20191224 from "../components/organisms/articles/2019-12-24";
-import Article20191225 from "../components/organisms/articles/2019-12-25";
-import Article20191227 from "../components/organisms/articles/2019-12-27";
-import Article20210216 from "../components/organisms/articles/2021-02-16";
-import Article20210416 from "../components/organisms/articles/2021-04-16";
-import Article20210807 from "../components/organisms/articles/2021-08-07";
-import Article20211220 from "../components/organisms/articles/2021-12-20";
-import Article20211221 from "../components/organisms/articles/2021-12-21";
-import Article20211222 from "../components/organisms/articles/2021-12-22";
-import Article20211223 from "../components/organisms/articles/2021-12-23";
+import Article20110620 from "../components/organisms/articles/2011/2011-06-20";
+import Article20110703 from "../components/organisms/articles/2011/2011-07-03";
+import Article20110704 from "../components/organisms/articles/2011/2011-07-04";
+import Article20110716 from "../components/organisms/articles/2011/2011-07-16";
+import Article20110801 from "../components/organisms/articles/2011/2011-08-01";
+import Article20110831 from "../components/organisms/articles/2011/2011-08-31";
+import Article20110919 from "../components/organisms/articles/2011/2011-09-19";
+import Article20191224 from "../components/organisms/articles/2019/2019-12-24";
+import Article20191225 from "../components/organisms/articles/2019/2019-12-25";
+import Article20191227 from "../components/organisms/articles/2019/2019-12-27";
+import Article20210216 from "../components/organisms/articles/2021/2021-02-16";
+import Article20210416 from "../components/organisms/articles/2021/2021-04-16";
+import Article20210807 from "../components/organisms/articles/2021/2021-08-07";
+import Article20211220 from "../components/organisms/articles/2021/2021-12-20";
+import Article20211221 from "../components/organisms/articles/2021/2021-12-21";
+import Article20211222 from "../components/organisms/articles/2021/2021-12-22";
+import Article20211223 from "../components/organisms/articles/2021/2021-12-23";
+import Article20211224 from "../components/organisms/articles/2021/2021-12-24";
 
 export interface ArticleType {
   id: string;
@@ -133,6 +134,12 @@ export const articles: ArticleType[] = [
     id: "982c9eaf-3b32-8f7b-3962-5283437e4048",
     Content: Article20211223,
     date: dayjs("2021-12-23"),
+    tags: new Set(["プログラミング"]),
+  },
+  {
+    id: "dd548262-5b19-467e-841d-2f79f96e66df",
+    Content: Article20211224,
+    date: dayjs("2021-12-24"),
     tags: new Set(["プログラミング"]),
   },
 ];

@@ -3,7 +3,7 @@ import { memo, useState } from "react";
 
 type Props = Omit<JSX.IntrinsicElements["img"], "onClick">;
 
-export const Image: React.VFC<Props> = ({ width, ...props }) => {
+export const Image: React.VFC<Props> = memo(({ width, ...props }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -34,6 +34,6 @@ export const Image: React.VFC<Props> = ({ width, ...props }) => {
       </Dialog>
     </>
   );
-};
+});
 
-export default memo(Image);
+export default Image;
