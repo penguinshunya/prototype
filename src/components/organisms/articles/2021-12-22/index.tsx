@@ -1,4 +1,4 @@
-import { Box, Link } from "@mui/material";
+import { Box, Divider, Link } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../atoms/code-block";
 import { P } from "../../../atoms/p";
@@ -105,6 +105,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
           「その変数についての情報を得たければ、その変数をクリックするだけで良い」というのは便利である。VSCodeはその機能を提供してくれている。
         </P>
       </InnerBox>
+      <Divider />
       <P>
         記事のタグには同じタグが複数含まれてはいけないため、Setデータ構造を使うのが適切である。
         <br />
@@ -117,6 +118,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
       <P>
         上記のコードの評価値は<code>{[...new Set([1, 3, 2])].join(", ")}</code>になる。
       </P>
+      <Divider />
       <P>
         僕はReact+TypeScriptが好きなので、これから開発するアプリも極力React+TypeScriptであれば良いと考えている。そして、ReactとTypeScriptの知見をもっと蓄えたいと思っている。この目的とReactで日記を書く手段の相性がとても良い。なぜかというと、日記を書いていて疑問に思ったことは、新たな環境を用意せずともすぐに試せるからだ。たとえば、Setデータ構造を配列に変換する方法を知ったときに、すぐに結果をここで試すことができる。
       </P>
@@ -135,6 +137,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
         Local
         Storageを扱うフックを設計することを考える。フックはget系の関数とset系の関数を返すべきである。それ以外の値は、今は返さなくても良い。get系の関数は型引数を使って取得値の型を取得できるようにすると楽だろう。生データはJSON文字列として扱い、get時のデコードとset時のエンコードは徹底する。次のような実装になるだろう。
       </P>
+      <Divider />
       <P>
         自分で開発せずとも、既に
         <Link href="https://github.com/juliencrn/usehooks-ts" target="_blank">
@@ -150,7 +153,10 @@ export const Article20211222: React.VFC<Props> = memo(() => {
         <code>useLocalStorage</code>を使って簡単なコンポーネントを作成した。ボタンを押すと、Local
         Storageに保存されているオブジェクトの値を書き換える。その証拠として、ボタン押下後にページをリロードしても状態は保持されていることがわかる。
       </P>
-      <Othello />
+      <Divider />
+      <Box sx={{ my: 2 }}>
+        <Othello />
+      </Box>
       <P>状態をLocal Storageに保存するオセロゲームを作った。リロードしてもゲームの状態は保持される。</P>
     </ArticleContent>
   );
