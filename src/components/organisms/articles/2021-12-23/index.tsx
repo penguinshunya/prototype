@@ -97,7 +97,7 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         とりあえずは2人で対戦することではなく、「2つのデバイスで全く同じゲームの状態を共有する」ことをとりあえずの目的にする。昨日開発したオセロが使えそうだ。オセロの状態はLocal
         Storage固定であるため、まずはその部分を外に切り出す必要がある。そして、切り出した部分をFirestoreのフックに置き換えることで実装が完了となる。
       </P>
-      <Box sx={{ display: "flex", flexWrap: "wrap", columnGap: 1, justifyContent: "space-between", my: 2, rowGap: 2 }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", columnGap: 1, justifyContent: "space-around", my: 2, rowGap: 2 }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <Typography sx={{ color: (theme) => theme.palette.error.main, textDecoration: "underline" }}>State</Typography>
           <SampleOthelloByState />
