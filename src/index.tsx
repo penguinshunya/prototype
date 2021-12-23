@@ -1,15 +1,30 @@
 import { LocalizationProvider } from "@mui/lab";
 import DateAdapter from "@mui/lab/AdapterDayjs";
-import ja from "dayjs/locale/ja";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "dayjs/locale/ja";
+import ja from "dayjs/locale/ja";
+import { initializeApp } from "firebase/app";
 import { SnackbarProvider } from "notistack";
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import BaseProvider from "./components/templates/Provider";
-import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import "dayjs/locale/ja";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA73vYC2x0h4imL3qO-6kwFYsQi2gDyuw4",
+  authDomain: "prototype-penguinshunya-com.firebaseapp.com",
+  projectId: "prototype-penguinshunya-com",
+  storageBucket: "prototype-penguinshunya-com.appspot.com",
+  messagingSenderId: "515717172132",
+  appId: "1:515717172132:web:aea26257fc6942f36b0f31",
+  measurementId: "G-15229L2FNS"
+};
+
+initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
 const theme = createTheme({
   components: {

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useLocalStorage } from "react-use";
 
 const KEY_BOARD = "b5438e65-cda0-5703-a956-7ce284c69326";
@@ -8,18 +8,61 @@ const dx = [1, 0, -1, 0, 1, 1, -1, -1];
 const dy = [0, 1, 0, -1, 1, -1, 1, -1];
 
 type Cell = "white" | "black" | "none";
+type Board = Cell[][];
 
-function initBoard(): Cell[][] {
-  const board: Cell[][] = _.range(8).map(() => _.range(8).map(() => "none"));
+function initBoard(): Board {
+  const board: Board = _.range(8).map(() => _.range(8).map(() => "none"));
   board[3]![3] = board[4]![4] = "white";
   board[3]![4] = board[4]![3] = "black";
   return board;
 }
 
-export function useOthelloBoard() {
-  const [_board, setBoard] = useLocalStorage(KEY_BOARD, initBoard());
-  const board = useMemo(() => _board ?? initBoard(), [_board]);
-  const rawBoard = useRef<Cell[][]>(board ?? initBoard());
+interface OthelloType {
+  board: Board;
+  isFinish: boolean;
+  turn: "black" | "white";
+}
+
+export function useOthelloByLocalStorage() {
+  const [ajax, setAjax] = useState(false);
+  const [board, setBoard] = useLocalStorage(KEY_BOARD, initBoard());
+  const [turn, setTurn] = useLocalStorage<"black" | "white">(KEY_TURN, "black");
+  const [isFinish, setIsFinish] = useLocalStorage(KEY_IS_FINISH, false);
+
+  const data: OthelloType | null = useMemo(() => {
+    if (board === undefined || turn === undefined || isFinish === undefined) {
+      return null;
+    }
+    return { board, isFinish, turn };
+  }, [board, isFinish, turn]);
+
+  const update = useCallback(
+    async (othello: Partial<OthelloType>) => {
+      setAjax(true);
+      if (othello.board !== undefined) {
+        setBoard(othello.board);
+      }
+      if (othello.isFinish !== undefined) {
+        setIsFinish(othello.isFinish);
+      }
+      if (othello.turn !== undefined) {
+        setTurn(othello.turn);
+      }
+      setAjax(false);
+    },
+    [setBoard, setIsFinish, setTurn]
+  );
+
+  return {
+    ajax,
+    data,
+    update,
+  };
+}
+
+export function useOthelloBoard(data: OthelloType | null, update: (data: Partial<OthelloType>) => Promise<unknown>) {
+  const board = useMemo(() => data?.board ?? initBoard(), [data?.board]);
+  const rawBoard = useRef<Board>(board ?? initBoard());
 
   const can = useCallback((x: number, y: number, color: Omit<Cell, "none">) => {
     const board = rawBoard.current;
@@ -103,15 +146,15 @@ export function useOthelloBoard() {
         }
       }
       rawBoard.current = board;
-      setBoard(board);
+      update({ board });
     },
-    [can, setBoard]
+    [can, update]
   );
 
   const reset = useCallback(() => {
     rawBoard.current = initBoard();
-    setBoard(rawBoard.current);
-  }, [setBoard]);
+    update({ board: rawBoard.current });
+  }, [update]);
 
   return { board, can, canAny, put, reset };
 }
@@ -119,12 +162,10 @@ export function useOthelloBoard() {
 const KEY_TURN = "366ce105-4581-8d4b-a317-e6181f32ecdf";
 const KEY_IS_FINISH = "a8a57336-f5a0-328c-face-4d4c92230b9f";
 
-export function useOthello() {
-  const { board, can, canAny, put, reset: _reset } = useOthelloBoard();
-  const [_turn, setTurn] = useLocalStorage<"black" | "white">(KEY_TURN, "black");
-  const [_isFinish, setIsFinish] = useLocalStorage(KEY_IS_FINISH, false);
-  const turn = useMemo(() => _turn ?? "black", [_turn]);
-  const isFinish = useMemo(() => _isFinish ?? false, [_isFinish]);
+export function useOthello(data: OthelloType | null, update: (data: Partial<OthelloType>) => Promise<unknown>) {
+  const { board, can, canAny, put, reset: _reset } = useOthelloBoard(data, update);
+  const turn = useMemo(() => data?.turn ?? "black", [data?.turn]);
+  const isFinish = useMemo(() => data?.isFinish ?? false, [data?.isFinish]);
 
   const next = useCallback(
     (x: number, y: number) => {
@@ -132,14 +173,14 @@ export function useOthello() {
       if (!can(x, y, turn)) return;
       put(x, y, turn);
       let t: "black" | "white" = turn === "black" ? "white" : "black";
-      setTurn(t);
+      update({ turn: t });
       if (canAny(t)) return;
       t = t === "black" ? "white" : "black";
-      setTurn(t);
+      update({ turn: t });
       if (canAny(t)) return;
-      setIsFinish(true);
+      update({ isFinish: true });
     },
-    [can, canAny, isFinish, put, setIsFinish, setTurn, turn]
+    [can, canAny, isFinish, put, update, turn]
   );
 
   const takeRandom = useCallback(() => {
@@ -153,10 +194,9 @@ export function useOthello() {
   }, [can, turn]);
 
   const reset = useCallback(() => {
-    setTurn("black");
+    update({ turn: "black", isFinish: false });
     _reset();
-    setIsFinish(false);
-  }, [_reset, setIsFinish, setTurn]);
+  }, [_reset, update]);
 
   return {
     board,

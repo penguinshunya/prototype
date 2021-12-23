@@ -1,15 +1,16 @@
 import { Box, Button, Typography } from "@mui/material";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useOthello } from "./hooks";
+import { useOthello, useOthelloByLocalStorage } from "./othello-hooks";
 
 interface Props {}
 
 export const Othello: React.VFC<Props> = memo(() => {
-  const { board, isFinish, next, reset, takeRandom, turn } = useOthello();
+  const { ajax, data, update } = useOthelloByLocalStorage();
+  const { board, isFinish, next, reset, takeRandom, turn } = useOthello(data, update);
   const [auto, setAuto] = useState(false);
 
   useEffect(() => {
-    if (!auto || isFinish) return;
+    if (ajax || !auto || isFinish) return;
     function tick() {
       const pos = takeRandom();
       if (pos === null) return;
@@ -19,7 +20,7 @@ export const Othello: React.VFC<Props> = memo(() => {
     return () => {
       window.clearTimeout(id);
     };
-  }, [auto, isFinish, next, takeRandom]);
+  }, [ajax, auto, isFinish, next, takeRandom]);
 
   const handleClick = useCallback(
     (x: number, y: number) => {
@@ -65,15 +66,15 @@ export const Othello: React.VFC<Props> = memo(() => {
       >
         <Typography>{message}</Typography>
         {isFinish ? (
-          <Button size="small" color="inherit" disableRipple onClick={handleReset}>
+          <Button disabled={ajax} size="small" color="inherit" disableRipple onClick={handleReset}>
             Reset
           </Button>
         ) : !auto ? (
-          <Button size="small" color="inherit" disableRipple onClick={() => setAuto(true)}>
+          <Button disabled={ajax} size="small" color="inherit" disableRipple onClick={() => setAuto(true)}>
             Auto
           </Button>
         ) : (
-          <Button size="small" color="inherit" disableRipple onClick={() => setAuto(false)}>
+          <Button disabled={ajax} size="small" color="inherit" disableRipple onClick={() => setAuto(false)}>
             Stop
           </Button>
         )}
