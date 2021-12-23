@@ -11,7 +11,7 @@ export const Article20210216: React.VFC<Props> = memo(() => {
       <P>Google App Engineが好き。</P>
       <Divider />
       <P>
-        GAEを使えば、自分で認証機能を実装することなく堅牢で信頼できる認証システムを無料で使うことができる。この認証システムをIdentity-Aware
+        GAEを使えば、自分で認証機能を実装することなく信頼できる認証システムを無料で使うことができる。この認証システムをIdentity-Aware
         Proxy（IAP）と呼ぶ。
       </P>
       <P>
