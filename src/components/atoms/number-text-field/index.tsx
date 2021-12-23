@@ -6,9 +6,10 @@ import { useState } from "react";
 type Props = Omit<TextFieldProps, "value" | "onBlur" | "onChange"> & {
   value: number | null;
   onChange: (value: number | null) => void;
+  isFloat?: boolean;
 };
 
-export const NumberTextField: React.VFC<Props> = ({ value, onChange, ...props }) => {
+export const NumberTextField: React.VFC<Props> = ({ value, onChange, isFloat, ...props }) => {
   const [rawValue, setRawValue] = useState("");
 
   useEffect(() => {
@@ -16,9 +17,9 @@ export const NumberTextField: React.VFC<Props> = ({ value, onChange, ...props })
   }, [value]);
 
   const handleBlur = useCallback(() => {
-    const v = parseInt(rawValue, 10);
+    const v = isFloat ? parseFloat(rawValue) : parseInt(rawValue, 10);
     onChange(isNaN(v) ? null : v);
-  }, [onChange, rawValue]);
+  }, [onChange, rawValue, isFloat]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setRawValue(e.target.value);

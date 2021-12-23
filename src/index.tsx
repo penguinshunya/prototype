@@ -20,6 +20,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiFormHelperText: {
+      defaultProps: {
+        sx: {
+          mt: 0,
+        },
+      },
+    },
     MuiTextField: {
       defaultProps: {
         size: "small",
