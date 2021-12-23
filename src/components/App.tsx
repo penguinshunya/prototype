@@ -60,12 +60,6 @@ export const App: React.VFC<Props> = () => {
             <Link href="https://github.com/penguinshunya/prototype" target="_blank">
               GitHub
             </Link>
-            <Link href="https://qiita.com/penguinshunya" target="_blank">
-              Qiita
-            </Link>
-            <Link href="https://twitter.com/penguinshunya" target="_blank">
-              Twitter
-            </Link>
           </Box>
         </Box>
       </Box>
