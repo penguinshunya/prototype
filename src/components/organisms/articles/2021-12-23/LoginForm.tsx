@@ -25,20 +25,23 @@ export const LoginForm: React.VFC<Props> = memo(() => {
   const [ajax, setAjax] = useState(false);
   const [input, setInput] = useState(initInput());
 
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      setAjax(true);
-      const auth = getAuth();
-      await signInWithEmailAndPassword(auth, input.email, input.password);
-    } catch (e: unknown) {
-      return error(e);
-    } finally {
-      if (isMounted()) {
-        setAjax(false);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        setAjax(true);
+        const auth = getAuth();
+        await signInWithEmailAndPassword(auth, input.email, input.password);
+      } catch (e: unknown) {
+        return error(e);
+      } finally {
+        if (isMounted()) {
+          setAjax(false);
+        }
       }
-    }
-  }, [error, input, isMounted]);
+    },
+    [error, input, isMounted]
+  );
 
   return (
     <Box>

@@ -19,7 +19,7 @@ const firebaseConfig = {
   storageBucket: "prototype-penguinshunya-com.appspot.com",
   messagingSenderId: "515717172132",
   appId: "1:515717172132:web:aea26257fc6942f36b0f31",
-  measurementId: "G-15229L2FNS"
+  measurementId: "G-15229L2FNS",
 };
 
 initializeApp(firebaseConfig);
