@@ -113,7 +113,7 @@ export function useOthelloByFirestore() {
 
   useEffect(() => {
     const db = getFirestore();
-    onSnapshot(doc(db, FIRESTORE_COLID, FIRESTORE_DOCID).withConverter(OthelloConverter), (doc) => {
+    return onSnapshot(doc(db, FIRESTORE_COLID, FIRESTORE_DOCID).withConverter(OthelloConverter), (doc) => {
       const data = doc.data();
       if (data === undefined) return;
       setAjax(false);
