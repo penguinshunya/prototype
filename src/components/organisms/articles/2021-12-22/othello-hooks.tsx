@@ -1,8 +1,6 @@
 import _ from "lodash";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useLocalStorage } from "react-use";
-
-const KEY_BOARD = "b5438e65-cda0-5703-a956-7ce284c69326";
 
 const dx = [1, 0, -1, 0, 1, 1, -1, -1];
 const dy = [0, 1, 0, -1, 1, -1, 1, -1];
@@ -22,6 +20,97 @@ interface OthelloType {
   isFinish: boolean;
   turn: "black" | "white";
 }
+
+export function initOthelloType(): OthelloType {
+  return {
+    board: initBoard(),
+    isFinish: false,
+    turn: "black",
+  };
+}
+
+function canPut(board: Board, x: number, y: number, color: "black" | "white") {
+  const enemy = color === "black" ? "white" : "black";
+  if (board[x]![y] !== "none") return false;
+  let count = 0;
+  for (let k = 0; k < 8; k++) {
+    let nx = x + dx[k]!,
+      ny = y + dy[k]!;
+    if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) continue;
+    if (board[nx]![ny] !== enemy) continue;
+    let c = 1;
+    let ok = false;
+    while (true) {
+      nx += dx[k]!;
+      ny += dy[k]!;
+      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
+      if (board[nx]![ny] === "none") {
+        break;
+      } else if (board[nx]![ny] === color) {
+        ok = true;
+        break;
+      } else {
+        c += 1;
+      }
+    }
+    if (ok) {
+      count += c;
+    }
+  }
+  return count > 0;
+}
+
+function canPutAny(board: Board, color: "black" | "white") {
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if (canPut(board, i, j, color)) return true;
+    }
+  }
+  return false;
+}
+
+function put(_board: Board, x: number, y: number, color: "black" | "white"): Board | null {
+  const board = _.cloneDeep(_board);
+  const enemy = color === "black" ? "white" : "black";
+  if (!canPut(board, x, y, color)) return null;
+  board[x]![y] = color;
+  for (let k = 0; k < 8; k++) {
+    let nx = x + dx[k]!,
+      ny = y + dy[k]!;
+    if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) continue;
+    if (board[nx]![ny] !== enemy) continue;
+    let ok = false;
+    while (true) {
+      nx += dx[k]!;
+      ny += dy[k]!;
+      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
+      if (board[nx]![ny] === "none") {
+        break;
+      } else if (board[nx]![ny] === color) {
+        ok = true;
+        break;
+      }
+    }
+    if (!ok) continue;
+    nx = x;
+    ny = y;
+    while (true) {
+      nx += dx[k]!;
+      ny += dy[k]!;
+      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
+      if (board[nx]![ny] === enemy) {
+        board[nx]![ny] = color;
+      } else {
+        break;
+      }
+    }
+  }
+  return board;
+}
+
+const KEY_BOARD = "b5438e65-cda0-5703-a956-7ce284c69326";
+const KEY_TURN = "366ce105-4581-8d4b-a317-e6181f32ecdf";
+const KEY_IS_FINISH = "a8a57336-f5a0-328c-face-4d4c92230b9f";
 
 export function useOthelloByLocalStorage() {
   const [ajax, setAjax] = useState(false);
@@ -60,150 +149,53 @@ export function useOthelloByLocalStorage() {
   };
 }
 
-export function useOthelloBoard(data: OthelloType | null, update: (data: Partial<OthelloType>) => Promise<unknown>) {
-  const board = useMemo(() => data?.board ?? initBoard(), [data?.board]);
-  const rawBoard = useRef<Board>(board ?? initBoard());
-
-  const can = useCallback((x: number, y: number, color: Omit<Cell, "none">) => {
-    const board = rawBoard.current;
-    const enemy = color === "black" ? "white" : "black";
-    if (board[x]![y] !== "none") return false;
-    let count = 0;
-    for (let k = 0; k < 8; k++) {
-      let nx = x + dx[k]!,
-        ny = y + dy[k]!;
-      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) continue;
-      if (board[nx]![ny] !== enemy) continue;
-      let c = 1;
-      let ok = false;
-      while (true) {
-        nx += dx[k]!;
-        ny += dy[k]!;
-        if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
-        if (board[nx]![ny] === "none") {
-          break;
-        } else if (board[nx]![ny] === color) {
-          ok = true;
-          break;
-        } else {
-          c += 1;
-        }
-      }
-      if (ok) {
-        count += c;
-      }
-    }
-    return count > 0;
-  }, []);
-
-  const canAny = useCallback(
-    (color: Omit<Cell, "none">) => {
-      for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
-          if (can(i, j, color)) return true;
-        }
-      }
-      return false;
-    },
-    [can]
-  );
-
-  const put = useCallback(
-    (x: number, y: number, color: Cell) => {
-      const board = _.cloneDeep(rawBoard.current);
-      const enemy = color === "black" ? "white" : "black";
-      if (!can(x, y, color)) return false;
-      board[x]![y] = color;
-      for (let k = 0; k < 8; k++) {
-        let nx = x + dx[k]!,
-          ny = y + dy[k]!;
-        if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) continue;
-        if (board[nx]![ny] !== enemy) continue;
-        let ok = false;
-        while (true) {
-          nx += dx[k]!;
-          ny += dy[k]!;
-          if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
-          if (board[nx]![ny] === "none") {
-            break;
-          } else if (board[nx]![ny] === color) {
-            ok = true;
-            break;
-          }
-        }
-        if (!ok) continue;
-        nx = x;
-        ny = y;
-        while (true) {
-          nx += dx[k]!;
-          ny += dy[k]!;
-          if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
-          if (board[nx]![ny] === enemy) {
-            board[nx]![ny] = color;
-          } else {
-            break;
-          }
-        }
-      }
-      rawBoard.current = board;
-      update({ board });
-    },
-    [can, update]
-  );
-
-  const reset = useCallback(() => {
-    rawBoard.current = initBoard();
-    update({ board: rawBoard.current });
-  }, [update]);
-
-  return { board, can, canAny, put, reset };
-}
-
-const KEY_TURN = "366ce105-4581-8d4b-a317-e6181f32ecdf";
-const KEY_IS_FINISH = "a8a57336-f5a0-328c-face-4d4c92230b9f";
-
 export function useOthello(data: OthelloType | null, update: (data: Partial<OthelloType>) => Promise<unknown>) {
-  const { board, can, canAny, put, reset: _reset } = useOthelloBoard(data, update);
-  const turn = useMemo(() => data?.turn ?? "black", [data?.turn]);
-  const isFinish = useMemo(() => data?.isFinish ?? false, [data?.isFinish]);
-
   const next = useCallback(
     (x: number, y: number) => {
-      if (isFinish) return;
-      if (!can(x, y, turn)) return;
-      put(x, y, turn);
-      let t: "black" | "white" = turn === "black" ? "white" : "black";
-      update({ turn: t });
-      if (canAny(t)) return;
-      t = t === "black" ? "white" : "black";
-      update({ turn: t });
-      if (canAny(t)) return;
-      update({ isFinish: true });
+      const d = _.cloneDeep(data);
+      if (d === null) return;
+      if (d.isFinish) return;
+      const newBoard = put(d.board, x, y, d.turn);
+      if (newBoard === null) {
+        return;
+      }
+      d.board = newBoard;
+      d.turn = d.turn === "black" ? "white" : "black";
+      if (canPutAny(d.board, d.turn)) {
+        return update(d);
+      }
+      d.turn = d.turn === "black" ? "white" : "black";
+      if (canPutAny(d.board, d.turn)) {
+        return update(d);
+      }
+      d.isFinish = true;
+      return update(d);
     },
-    [can, canAny, isFinish, put, update, turn]
+    [data, update]
   );
 
   const takeRandom = useCallback(() => {
+    if (data?.board === undefined) {
+      return null;
+    }
     const ps: { x: number; y: number }[] = [];
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
-        if (can(i, j, turn)) ps.push({ x: i, y: j });
+        if (canPut(data.board, i, j, data.turn)) {
+          ps.push({ x: i, y: j });
+        }
       }
     }
     return ps.length === 0 ? null : ps[~~(Math.random() * ps.length)]!;
-  }, [can, turn]);
+  }, [data]);
 
   const reset = useCallback(() => {
-    update({ turn: "black", isFinish: false });
-    _reset();
-  }, [_reset, update]);
+    update(initOthelloType());
+  }, [update]);
 
   return {
-    board,
-    isFinish,
     next,
     reset,
     takeRandom,
-    turn,
   };
 }
