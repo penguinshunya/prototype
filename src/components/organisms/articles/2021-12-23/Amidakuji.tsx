@@ -127,7 +127,7 @@ export const Amidakuji: React.VFC<Props> = memo(() => {
           sx={{
             display: "grid",
             gridTemplateColumns: `repeat(${boardInfo.width}, ${Math.min(64, width / boardInfo.width)}px)`,
-            gridTemplateRows: `repeat(${boardInfo.height + 1}, 24px)`,
+            gridTemplateRows: `repeat(${boardInfo.height + 1}, ${Math.min(24, width / boardInfo.width)}px)`,
             [nthChild]: {
               borderLeft: `1px solid ${BORDER_COLOR}`,
             },
