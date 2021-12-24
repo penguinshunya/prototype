@@ -1,5 +1,6 @@
-import { Divider, Link } from "@mui/material";
+import { Divider } from "@mui/material";
 import { memo } from "react";
+import GlobalLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -13,23 +14,17 @@ export const Article20210807: React.VFC<Props> = memo(() => {
       <P>
         可愛らしいフォント
         <br />
-        <Link href="https://fonts.google.com/specimen/M+PLUS+Rounded+1c" target="_blank">
-          https://fonts.google.com/specimen/M+PLUS+Rounded+1c
-        </Link>
+        <GlobalLink href="https://fonts.google.com/specimen/M+PLUS+Rounded+1c">https://fonts.google.com/specimen/M+PLUS+Rounded+1c</GlobalLink>
       </P>
       <P>
         可愛らしい英語フォント
         <br />
-        <Link href="https://fonts.google.com/specimen/Kanit?query=Kanit" target="_blank">
-          https://fonts.google.com/specimen/Kanit?query=Kanit
-        </Link>
+        <GlobalLink href="https://fonts.google.com/specimen/Kanit?query=Kanit">https://fonts.google.com/specimen/Kanit?query=Kanit</GlobalLink>
       </P>
       <P>
         日本語の記号を半角にするフォント
         <br />
-        <Link href="https://yakuhanjp.qranoko.jp/" target="_blank">
-          https://yakuhanjp.qranoko.jp/
-        </Link>
+        <GlobalLink href="https://yakuhanjp.qranoko.jp/">https://yakuhanjp.qranoko.jp/</GlobalLink>
       </P>
     </ArticleContent>
   );

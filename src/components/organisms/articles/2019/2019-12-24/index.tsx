@@ -58,13 +58,9 @@ export const Article20191224: React.VFC<Props> = memo(() => {
       <P>夕食後なので少し眠気がある。</P>
       <P>
         今の僕は、物体の影を床に投影する方法がわからない。そして、そのときにキーとなる用語が何であるかもわからない。今は16:28。まずはキーとなる用語が何かを調べる。
-        <Link href="https://wgld.org/" target="_blank">
-          wgld.org
-        </Link>
+        <GlobalLink href="https://wgld.org/">wgld.org</GlobalLink>
         に書かれていた気がするのでそこから探す。見つかった。今は16:30。およそ2分でキーとなる用語を見つけることができた。用語は「シャドウマッピング」だった。次はこの道具の使い方を知るために、実際に使ってみる。
-        <Link href="https://wgld.org/" target="_blank">
-          wgld.org
-        </Link>
+        <GlobalLink href="https://wgld.org/">wgld.org</GlobalLink>
         のコードを写経すれば良さそうだ。今は16:31。では開始。
       </P>
       <P>
@@ -76,9 +72,7 @@ export const Article20191224: React.VFC<Props> = memo(() => {
       </P>
       <P>
         今は17:05。少しDiscordに気が逸れた。そのあとで
-        <Link href="https://wgld.org/" target="_blank">
-          wgld.org
-        </Link>
+        <GlobalLink href="https://wgld.org/">wgld.org</GlobalLink>
         のページを読んだけど、驚愕の予測が生まれた。もしかすると、一度に実行する頂点シェーダが2つ以上あるかもしれない。最初に実行するプログラムはフレームバッファの状態を更新し、最後に実行するプログラムはダイレクトにcanvasを更新する。もしかするとそういうことなのかも。そうであれば非常に面白い。
       </P>
       <P>今は17:09。上の予測が正しい根拠が得られた。</P>
@@ -87,9 +81,7 @@ export const Article20191224: React.VFC<Props> = memo(() => {
         がフレームバッファに深度値を描き込むためのシェーダです。
         <br />
         <br />
-        <Link href="https://wgld.org/d/webgl/w051.html" target="_blank">
-          wgld.org | WebGL: シャドウマッピング |
-        </Link>
+        <GlobalLink href="https://wgld.org/d/webgl/w051.html">wgld.org | WebGL: シャドウマッピング |</GlobalLink>
       </blockquote>
       <P>
         書き込み先をスクリーンからフレームバッファに切り替えるために何をすればいいか。おそらく、

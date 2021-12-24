@@ -1,9 +1,10 @@
+import { Box, Divider } from "@mui/material";
 import { memo } from "react";
-import ArticleContent from "../../../../molecules/article-content";
-import P from "../../../../atoms/p";
-import { Box, Divider, Link } from "@mui/material";
-import Latex from "../../../../atoms/latex";
+import GlobalLink from "../../../../atoms/global-link";
 import Image from "../../../../atoms/image";
+import Latex from "../../../../atoms/latex";
+import P from "../../../../atoms/p";
+import ArticleContent from "../../../../molecules/article-content";
 import holotree from "./images/holotree.jpg";
 import wataten from "./images/wataten.jpg";
 
@@ -66,9 +67,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       <Divider />
       <P>
         iPhoneの写真の拡張子は.HEICなので、ブラウザで表示するためには.jpegなどの拡張子に変換しなければならない。そこで.HEICを.jpegに変換する方法をネットで調べたのだけど、検索結果として
-        <Link href="https://www.tku.ac.jp/iss/guide/classroom/soft/heicjpg.html" target="_blank">
-          こちらのサイト
-        </Link>
+        <GlobalLink href="https://www.tku.ac.jp/iss/guide/classroom/soft/heicjpg.html">こちらのサイト</GlobalLink>
         がヒットした。ドメインが.ac.jpであるため大学公式のサイトだが、まさか大学公式のサイトにこのような実用的な記事が投稿されているとは思わなかった。ただ、やはり大学公式サイトの記事というだけあって不必要なことは書かれておらず、問題の解決のみに集中できる。僕も記事を書くときは見習いたい。
       </P>
       <Divider />
@@ -86,9 +85,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       </P>
       <P>
         いくつかのショップに立ち寄っていると、偶然にも
-        <Link href="http://watatentv.com/" target="_blank">
-          わたてん
-        </Link>
+        <GlobalLink href="http://watatentv.com/">わたてん</GlobalLink>
         のイベントブースを見つけた。
       </P>
       <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
@@ -96,9 +93,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       </Box>
       <P>どうやら2022年に劇場版映画が公開されるようだ。それに先駆けて1ヶ月間ほど専用のショップが開かれる。</P>
       <P>
-        <Link href="http://watatentv.com/news_movie/article009.html" target="_blank">
-          ニュース | アニメ「私に天使が舞い降りた！プレシャス・フレンズ」公式サイト
-        </Link>
+        <GlobalLink href="http://watatentv.com/news_movie/article009.html">ニュース | アニメ「私に天使が舞い降りた！プレシャス・フレンズ」公式サイト</GlobalLink>
       </P>
       <P>
         リコーダーを持った乃愛のアクリルスタンドが置いてあり、それが可愛かったので購入しようと思ったのだけど、売り切れだった。そもそも僕の部屋にはアクリルスタンドを置くスペースがないので、もし売り切れでなくても買わなかっただろうけれど…。ただ、何でもかんでも「部屋が狭い」という理由で何も置かないのは寂しい。少しくらい部屋を自分好みにしたい。ということで、次に秋葉原に出向いたときはポスターでも買おうと思う。夜のホロライブツリーも見てみたいので、今日の夜にもおそらく秋葉原に出向く。そのときにポスターも購入しよう。
