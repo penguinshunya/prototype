@@ -11,7 +11,7 @@ export const Article: React.VFC<ArticleProps> = memo(({ isTitleLink, ...a }) => 
   const date = useMemo(() => a.date.locale("ja").format("YYYY年MM月DD日 dddd"), [a]);
 
   return (
-    <Box component="article" sx={{ pb: 10 }}>
+    <Box component="article">
       <Typography
         variant={"h2"}
         component={isTitleLink ? Link : "h2"}

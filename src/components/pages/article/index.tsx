@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { memo, useMemo } from "react";
 import { useParams } from "react-router";
 import { useTitle } from "react-use";
@@ -22,7 +23,11 @@ export const ArticlePage: React.VFC<Props> = memo(() => {
     return null;
   }
 
-  return <Article {...article} id={id} />;
+  return (
+    <Box sx={{ pb: 10 }}>
+      <Article {...article} id={id} />
+    </Box>
+  );
 });
 
 export default ArticlePage;

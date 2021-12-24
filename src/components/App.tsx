@@ -1,25 +1,14 @@
 import { Box, Container, Link } from "@mui/material";
-import { Link as RrdLink, Route, Routes } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
 import Div100vh from "react-div-100vh";
-import ArticlesPage from "./pages/articles";
+import { Link as RrdLink, Route, Routes } from "react-router-dom";
+import { useMeasure } from "react-use";
 import { ArticlePage } from "./pages/article";
+import ArticlesPage from "./pages/articles";
 
 interface Props {}
 
 export const App: React.VFC<Props> = () => {
-  const containerRef = useRef<HTMLDivElement>(null!);
-  const [containerRect, setContainerRect] = useState<DOMRectReadOnly | null>(null);
-  useEffect(() => {
-    const div = containerRef.current;
-    const observer = new ResizeObserver((entries) => {
-      for (const e of entries) setContainerRect(e.contentRect);
-    });
-    observer.observe(div);
-    return () => {
-      observer.unobserve(div);
-    };
-  }, []);
+  const [ref, { width }] = useMeasure<HTMLDivElement>();
 
   return (
     <Div100vh
@@ -45,7 +34,7 @@ export const App: React.VFC<Props> = () => {
             justifyContent: "space-between",
             mx: "auto",
             py: 1,
-            width: containerRect?.width ?? "initial",
+            width: width ?? "initial",
           }}
         >
           <Box sx={{ columnGap: 2, display: "flex" }}>
@@ -63,7 +52,7 @@ export const App: React.VFC<Props> = () => {
           </Box>
         </Box>
       </Box>
-      <Container maxWidth="md" ref={containerRef} sx={{ bgcolor: "white", pt: 2 }}>
+      <Container maxWidth="md" ref={ref} sx={{ bgcolor: "white", pt: 2 }}>
         <Routes>
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/" element={<ArticlesPage />} />
