@@ -1,7 +1,8 @@
 import { Box, Container, Link } from "@mui/material";
 import Div100vh from "react-div-100vh";
-import { Link as RrdLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useMeasure } from "react-use";
+import LocalLink from "./atoms/local-link";
 import { ArticlePage } from "./pages/article";
 import ArticlesPage from "./pages/articles";
 
@@ -38,9 +39,7 @@ export const App: React.VFC<Props> = () => {
           }}
         >
           <Box sx={{ columnGap: 2, display: "flex" }}>
-            <Link component={RrdLink} to="/">
-              Top
-            </Link>
+            <LocalLink to="/">Top</LocalLink>
           </Box>
           <Box sx={{ columnGap: 2, display: "flex" }}>
             <Link href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview" target="_blank">

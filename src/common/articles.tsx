@@ -18,6 +18,7 @@ import Article20211221 from "../components/organisms/articles/2021/2021-12-21";
 import Article20211222 from "../components/organisms/articles/2021/2021-12-22";
 import Article20211223 from "../components/organisms/articles/2021/2021-12-23";
 import Article20211224 from "../components/organisms/articles/2021/2021-12-24";
+import Article20211225 from "../components/organisms/articles/2021/2021-12-25";
 
 export interface ArticleType {
   id: string;
@@ -148,6 +149,12 @@ export const articles: ArticleType[] = [
     id: "dd548262-5b19-467e-841d-2f79f96e66df",
     Content: Article20211224,
     date: dayjs("2021-12-24"),
+    tags: new Set(["プログラミング"]),
+  },
+  {
+    id: "4f133adf-2f7b-4742-b7a8-a7dc26a312bb",
+    Content: Article20211225,
+    date: dayjs("2021-12-25"),
     tags: new Set(["プログラミング"]),
   },
 ];

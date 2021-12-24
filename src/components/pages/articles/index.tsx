@@ -1,10 +1,10 @@
-import { Box, Link, Typography } from "@mui/material";
-import { Link as RrdLink } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 import _ from "lodash";
 import { memo, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTitle } from "react-use";
 import { articles as ARTICLES } from "../../../common/articles";
+import LocalLink from "../../atoms/local-link";
 import { Article } from "../../organisms/article";
 
 const PAGE_COUNT = 10;
@@ -43,20 +43,8 @@ export const ArticlesPage: React.VFC<Props> = memo(() => {
       ) : (
         <>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-            <div>
-              {hasPrev && (
-                <Link component={RrdLink} to={`/?page=${pageNumber - 1}`}>
-                  前の{PAGE_COUNT}件
-                </Link>
-              )}
-            </div>
-            <div>
-              {hasNext && (
-                <Link component={RrdLink} to={`/?page=${pageNumber + 1}`}>
-                  次の{PAGE_COUNT}件
-                </Link>
-              )}
-            </div>
+            <div>{hasPrev && <LocalLink to={`/?page=${pageNumber - 1}`}>前の{PAGE_COUNT}件</LocalLink>}</div>
+            <div>{hasNext && <LocalLink to={`/?page=${pageNumber + 1}`}>次の{PAGE_COUNT}件</LocalLink>}</div>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 10, pb: 10 }}>
             {articles.map((a) => (
