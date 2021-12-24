@@ -14,12 +14,16 @@ export const Article20210807: React.VFC<Props> = memo(() => {
       <P>
         可愛らしいフォント
         <br />
-        <GlobalLink href="https://fonts.google.com/specimen/M+PLUS+Rounded+1c">https://fonts.google.com/specimen/M+PLUS+Rounded+1c</GlobalLink>
+        <GlobalLink href="https://fonts.google.com/specimen/M+PLUS+Rounded+1c">
+          https://fonts.google.com/specimen/M+PLUS+Rounded+1c
+        </GlobalLink>
       </P>
       <P>
         可愛らしい英語フォント
         <br />
-        <GlobalLink href="https://fonts.google.com/specimen/Kanit?query=Kanit">https://fonts.google.com/specimen/Kanit?query=Kanit</GlobalLink>
+        <GlobalLink href="https://fonts.google.com/specimen/Kanit?query=Kanit">
+          https://fonts.google.com/specimen/Kanit?query=Kanit
+        </GlobalLink>
       </P>
       <P>
         日本語の記号を半角にするフォント

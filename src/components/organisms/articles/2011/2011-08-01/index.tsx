@@ -16,9 +16,7 @@ export const Article20110801: React.VFC<Props> = memo(() => {
         今回は僕の最も好きなコース、DeepInfernoでした。
         <br />
         詳細はこちら→
-        <GlobalLink href="http://www.newx2.com/pangya/">
-          http://www.newx2.com/pangya/
-        </GlobalLink>
+        <GlobalLink href="http://www.newx2.com/pangya/">http://www.newx2.com/pangya/</GlobalLink>
       </P>
       <P sx={{ mb: 0.5 }}>1回戦目</P>
       <Box>

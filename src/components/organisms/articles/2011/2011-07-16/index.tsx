@@ -14,9 +14,7 @@ export const Article20110716: React.VFC<Props> = memo(() => {
         コースはPinkWindです。
       </P>
       <P>
-        <GlobalLink href="http://zoome.jp/penguinshunya/diary/16">
-          http://zoome.jp/penguinshunya/diary/16
-        </GlobalLink>
+        <GlobalLink href="http://zoome.jp/penguinshunya/diary/16">http://zoome.jp/penguinshunya/diary/16</GlobalLink>
       </P>
       <P>宣伝おしまい。</P>
       <P>

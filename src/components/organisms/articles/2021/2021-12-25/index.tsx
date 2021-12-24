@@ -41,7 +41,11 @@ export const Article20211225: React.VFC<Props> = memo(() => {
       <P>これからは、1日1変を意識して行動しようと思う。</P>
       <Divider />
       <P>
-        FirebaseでのGoogle Analyticsの使い方を調べているのだけど、その途中で、Google公式が<GlobalLink href="https://support.google.com/firebase/answer/9267735">どのようなイベントを収集すれば良いか</GlobalLink>についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
+        FirebaseでのGoogle Analyticsの使い方を調べているのだけど、その途中で、Google公式が
+        <GlobalLink href="https://support.google.com/firebase/answer/9267735">
+          どのようなイベントを収集すれば良いか
+        </GlobalLink>
+        についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
       </P>
     </ArticleContent>
   );

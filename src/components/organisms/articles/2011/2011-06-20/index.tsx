@@ -95,9 +95,7 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         <br />
         zoomeに上げた僕の動画を参考にしてみてください。
         <br />
-        <GlobalLink href="http://zoome.jp/penguinshunya/">
-          http://zoome.jp/penguinshunya/
-        </GlobalLink>
+        <GlobalLink href="http://zoome.jp/penguinshunya/">http://zoome.jp/penguinshunya/</GlobalLink>
         <br />
         ご要望ありがとうございました。
       </P>

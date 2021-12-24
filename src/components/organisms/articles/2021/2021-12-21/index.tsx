@@ -68,8 +68,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
       </P>
       <P>
         ということで、LaTeXが使えるようになった。NPMに<code>katex</code>というライブラリがあり、こちらを使用している。
-        <code>katex</code>の
-        <GlobalLink href="https://github.com/KaTeX/KaTeX">GitHubリポジトリ</GlobalLink>
+        <code>katex</code>の<GlobalLink href="https://github.com/KaTeX/KaTeX">GitHubリポジトリ</GlobalLink>
         のスター数は14,600を超えているため信頼できる。<code>katex</code>
         単体ではReactに対応していないため、30行程度の小さなラッパーを作成した。
         <code>

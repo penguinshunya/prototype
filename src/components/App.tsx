@@ -43,12 +43,8 @@ export const App: React.VFC<Props> = () => {
             <LocalLink to="/">Top</LocalLink>
           </Box>
           <Box sx={{ columnGap: 2, display: "flex" }}>
-            <GlobalLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">
-              Netlify
-            </GlobalLink>
-            <GlobalLink href="https://github.com/penguinshunya/prototype">
-              GitHub
-            </GlobalLink>
+            <GlobalLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">Netlify</GlobalLink>
+            <GlobalLink href="https://github.com/penguinshunya/prototype">GitHub</GlobalLink>
           </Box>
         </Box>
       </Box>
