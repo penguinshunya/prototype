@@ -1,4 +1,4 @@
-import { Divider, Link } from "@mui/material";
+import { Divider } from "@mui/material";
 import { memo } from "react";
 import GlobalLink from "../../../../atoms/global-link";
 import LocalLink from "../../../../atoms/local-link";
@@ -11,9 +11,9 @@ export const Article20211225: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
       <P>
-        <Link href="https://jumpaku.hatenablog.com/entry/2019/09/17/Jumpaku_Othello" target="_blank">
+        <GlobalLink href="https://jumpaku.hatenablog.com/entry/2019/09/17/Jumpaku_Othello">
           Jumpakuさんが公開されているオセロAPI
-        </Link>
+        </GlobalLink>
         を、<LocalLink to="/article/982c9eaf-3b32-8f7b-3962-5283437e4048">この記事</LocalLink>
         で使わせていただいた。「Firestore」の白番でだけオセロAIが有効になる。現時点でログインできるのは僕だけなので、僕しかオセロAIの動きを確認できない。
       </P>

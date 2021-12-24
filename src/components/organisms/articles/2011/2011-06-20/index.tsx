@@ -1,12 +1,13 @@
-import { Box, Link } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import GlobalLink from "../../../../atoms/global-link";
+import { Image } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
-import q1 from "./images/q1.png";
-import q2 from "./images/q2.png";
 import q3 from "./images/3bai.png";
 import abcd from "./images/abcd.png";
-import { Image } from "../../../../atoms/image";
+import q1 from "./images/q1.png";
+import q2 from "./images/q2.png";
 
 interface Props {}
 
@@ -94,9 +95,9 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         <br />
         zoomeに上げた僕の動画を参考にしてみてください。
         <br />
-        <Link href="http://zoome.jp/penguinshunya/" target="_blank">
+        <GlobalLink href="http://zoome.jp/penguinshunya/">
           http://zoome.jp/penguinshunya/
-        </Link>
+        </GlobalLink>
         <br />
         ご要望ありがとうございました。
       </P>

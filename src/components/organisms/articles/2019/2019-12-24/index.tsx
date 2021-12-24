@@ -1,6 +1,7 @@
 import { Link } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
+import GlobalLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -23,9 +24,7 @@ export const Article20191224: React.VFC<Props> = memo(() => {
       <P>ということでWebGLについて書いていきたいのだけど、眠たすぎるので寝る。</P>
       <P>
         起きた。今は
-        <Link href="https://wgld.org/" target="_blank">
-          wgld.org
-        </Link>
+        <GlobalLink href="https://wgld.org/">wgld.org</GlobalLink>
         のチュートリアルを進めている。その過程で、<code>gl.viewport()</code>
         の使い方をはっきりと理解した。これを使うことにより、canvasを複数作ることなく画面上に異なる世界のオブジェクトを配置できるかもしれない。
       </P>

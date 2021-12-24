@@ -1,7 +1,8 @@
-import { Box, Container, Link } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Div100vh from "react-div-100vh";
 import { Route, Routes } from "react-router-dom";
 import { useMeasure } from "react-use";
+import GlobalLink from "./atoms/global-link";
 import LocalLink from "./atoms/local-link";
 import { ArticlePage } from "./pages/article";
 import ArticlesPage from "./pages/articles";
@@ -42,12 +43,12 @@ export const App: React.VFC<Props> = () => {
             <LocalLink to="/">Top</LocalLink>
           </Box>
           <Box sx={{ columnGap: 2, display: "flex" }}>
-            <Link href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview" target="_blank">
+            <GlobalLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">
               Netlify
-            </Link>
-            <Link href="https://github.com/penguinshunya/prototype" target="_blank">
+            </GlobalLink>
+            <GlobalLink href="https://github.com/penguinshunya/prototype">
               GitHub
-            </Link>
+            </GlobalLink>
           </Box>
         </Box>
       </Box>
