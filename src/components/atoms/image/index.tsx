@@ -22,9 +22,15 @@ export const Image: React.VFC<Props> = memo(({ width, ...props }) => {
           // onClick={() => setOpen(true)}
         />
       </a>
-      <Dialog open={open} onClose={() => setOpen(false)} transitionDuration={0} maxWidth="xl" PaperProps={{
-        sx: { borderRadius: 0 },
-      }}>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        transitionDuration={0}
+        maxWidth="xl"
+        PaperProps={{
+          sx: { borderRadius: 0 },
+        }}
+      >
         <img
           alt=""
           {...props}

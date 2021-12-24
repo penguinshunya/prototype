@@ -112,7 +112,9 @@ export const Article20211224: React.VFC<Props> = memo(() => {
         <code>useSearchParam</code>が使えそうだ。
       </P>
       <P>
-        react-useの<code>useSearchParam</code>はReact Routerのページ遷移に対応しておらず、ページ遷移したにもかかわらずフックが再更新されないという問題がある。ということで、代わりにReact Routerの<code>useSearchParams</code>を使うことにした。
+        react-useの<code>useSearchParam</code>はReact
+        Routerのページ遷移に対応しておらず、ページ遷移したにもかかわらずフックが再更新されないという問題がある。ということで、代わりにReact
+        Routerの<code>useSearchParams</code>を使うことにした。
       </P>
     </ArticleContent>
   );

@@ -106,13 +106,7 @@ export const Amidakuji: React.VFC<Props> = memo(() => {
           value={input?.height ?? 0}
           onChange={(v) => setInput(input === undefined ? undefined : { ...input, height: v })}
         />
-        <NumberTextField
-          label="出現頻度"
-          isFloat
-          value={frequency ?? 0}
-          onChange={setFrequency}
-          helperText="0.0〜1.0"
-        />
+        <NumberTextField label="出現頻度" isFloat value={frequency ?? 0} onChange={setFrequency} helperText="0.0〜1.0" />
       </Box>
       <Box sx={{ display: "flex", gap: 1 }}>
         <Button size="small" variant="contained" sx={{ mb: 1 }} onClick={handleClick}>
