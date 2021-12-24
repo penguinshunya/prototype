@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { initOthelloType, useOthello, useOthelloByState } from "./hooks";
+import { initOthelloType } from "./functions";
+import { useOthello, useOthelloByState } from "./hooks";
 
 interface Props {}
 
@@ -12,8 +13,8 @@ export const SampleOthelloByState: React.VFC<Props> = memo(() => {
 
   useEffect(() => {
     if (ajax || !auto || isFinish) return;
-    function tick() {
-      const pos = takeRandom();
+    async function tick() {
+      const pos = await takeRandom();
       if (pos === null) return;
       next(pos.x, pos.y);
     }

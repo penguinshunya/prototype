@@ -11,33 +11,9 @@ import {
   SnapshotOptions,
   WithFieldValue,
 } from "firebase/firestore";
-
-const dx = [1, 0, -1, 0, 1, 1, -1, -1];
-const dy = [0, 1, 0, -1, 1, -1, 1, -1];
-
-type Cell = "white" | "black" | "none";
-type Board = Cell[][];
-
-function initBoard(): Board {
-  const board: Board = _.range(8).map(() => _.range(8).map(() => "none"));
-  board[3]![3] = board[4]![4] = "white";
-  board[3]![4] = board[4]![3] = "black";
-  return board;
-}
-
-interface OthelloType {
-  board: Board;
-  isFinish: boolean;
-  turn: "black" | "white";
-}
-
-export function initOthelloType(): OthelloType {
-  return {
-    board: initBoard(),
-    isFinish: false,
-    turn: "black",
-  };
-}
+import { canPut, canPutAny, initBoard, initOthelloType, put } from "./functions";
+import { OthelloType } from "./types";
+import { ai } from "./ai";
 
 export function useOthelloByState() {
   const [data, setData] = useState(initOthelloType());
@@ -138,85 +114,6 @@ export function useOthelloByFirestore() {
   };
 }
 
-function canPut(board: Board, x: number, y: number, color: "black" | "white") {
-  const enemy = color === "black" ? "white" : "black";
-  if (board[x]![y] !== "none") return false;
-  let count = 0;
-  for (let k = 0; k < 8; k++) {
-    let nx = x + dx[k]!,
-      ny = y + dy[k]!;
-    if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) continue;
-    if (board[nx]![ny] !== enemy) continue;
-    let c = 1;
-    let ok = false;
-    while (true) {
-      nx += dx[k]!;
-      ny += dy[k]!;
-      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
-      if (board[nx]![ny] === "none") {
-        break;
-      } else if (board[nx]![ny] === color) {
-        ok = true;
-        break;
-      } else {
-        c += 1;
-      }
-    }
-    if (ok) {
-      count += c;
-    }
-  }
-  return count > 0;
-}
-
-function canPutAny(board: Board, color: "black" | "white") {
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
-      if (canPut(board, i, j, color)) return true;
-    }
-  }
-  return false;
-}
-
-function put(_board: Board, x: number, y: number, color: "black" | "white"): Board | null {
-  const board = _.cloneDeep(_board);
-  const enemy = color === "black" ? "white" : "black";
-  if (!canPut(board, x, y, color)) return null;
-  board[x]![y] = color;
-  for (let k = 0; k < 8; k++) {
-    let nx = x + dx[k]!,
-      ny = y + dy[k]!;
-    if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) continue;
-    if (board[nx]![ny] !== enemy) continue;
-    let ok = false;
-    while (true) {
-      nx += dx[k]!;
-      ny += dy[k]!;
-      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
-      if (board[nx]![ny] === "none") {
-        break;
-      } else if (board[nx]![ny] === color) {
-        ok = true;
-        break;
-      }
-    }
-    if (!ok) continue;
-    nx = x;
-    ny = y;
-    while (true) {
-      nx += dx[k]!;
-      ny += dy[k]!;
-      if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8) break;
-      if (board[nx]![ny] === enemy) {
-        board[nx]![ny] = color;
-      } else {
-        break;
-      }
-    }
-  }
-  return board;
-}
-
 export function useOthello(data: OthelloType | null, update: (data: Partial<OthelloType>) => Promise<unknown>) {
   const next = useCallback(
     (x: number, y: number) => {
@@ -242,20 +139,26 @@ export function useOthello(data: OthelloType | null, update: (data: Partial<Othe
     [data, update]
   );
 
-  const takeRandom = useCallback(() => {
-    if (data?.board === undefined) {
-      return null;
-    }
-    const ps: { x: number; y: number }[] = [];
-    for (let i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) {
-        if (canPut(data.board, i, j, data.turn)) {
-          ps.push({ x: i, y: j });
+  const takeRandom = useCallback(
+    async (useAI: boolean = true) => {
+      if (data?.board === undefined) {
+        return null;
+      }
+      if (useAI && data.turn === "white") {
+        return await ai(data.board, data.turn);
+      }
+      const ps: { x: number; y: number }[] = [];
+      for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+          if (canPut(data.board, i, j, data.turn)) {
+            ps.push({ x: i, y: j });
+          }
         }
       }
-    }
-    return ps.length === 0 ? null : ps[~~(Math.random() * ps.length)]!;
-  }, [data]);
+      return ps.length === 0 ? null : ps[~~(Math.random() * ps.length)]!;
+    },
+    [data]
+  );
 
   const reset = useCallback(() => {
     update(initOthelloType());
