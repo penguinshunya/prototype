@@ -14,7 +14,7 @@ export const SampleOthelloByFirestore: React.VFC<Props> = memo(() => {
   useEffect(() => {
     if (ajax || !auto || isFinish) return;
     async function tick() {
-      const pos = await takeRandom();
+      const pos = await takeRandom(true);
       if (pos === null) {
         const p = await takeRandom(false);
         if (p !== null) {

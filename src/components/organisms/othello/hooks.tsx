@@ -140,7 +140,7 @@ export function useOthello(data: OthelloType | null, update: (data: Partial<Othe
   );
 
   const takeRandom = useCallback(
-    async (useAI: boolean = true) => {
+    async (useAI: boolean = false) => {
       if (data?.board === undefined) {
         return null;
       }
