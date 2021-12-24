@@ -11,6 +11,7 @@ import Article20191225 from "../components/organisms/articles/2019/2019-12-25";
 import Article20191227 from "../components/organisms/articles/2019/2019-12-27";
 import Article20210216 from "../components/organisms/articles/2021/2021-02-16";
 import Article20210416 from "../components/organisms/articles/2021/2021-04-16";
+import Article20210521 from "../components/organisms/articles/2021/2021-05-21";
 import Article20210807 from "../components/organisms/articles/2021/2021-08-07";
 import Article20211220 from "../components/organisms/articles/2021/2021-12-20";
 import Article20211221 from "../components/organisms/articles/2021/2021-12-21";
@@ -104,6 +105,12 @@ export const articles: ArticleType[] = [
     id: "174a6cd6-b2b1-4fd3-87d4-f9b7c0e0799f",
     Content: Article20210416,
     date: dayjs("2021-04-16"),
+    tags: new Set(["プログラミング"]),
+  },
+  {
+    id: "016a60c2-8344-49b5-802b-681086a1f081",
+    Content: Article20210521,
+    date: dayjs("2021-05-21"),
     tags: new Set(["プログラミング"]),
   },
   {
