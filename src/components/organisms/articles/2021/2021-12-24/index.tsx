@@ -2,6 +2,7 @@ import { memo } from "react";
 import ArticleContent from "../../../../molecules/article-content";
 import P from "../../../../atoms/p";
 import { Divider } from "@mui/material";
+import Latex from "../../../../atoms/latex";
 
 interface Props {}
 
@@ -39,6 +40,22 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       <Divider />
       <P>
         今日は秋葉原に行きたい。ホロライブのクリスマスツリーが飾ってあるので、一度見ておきたい。
+      </P>
+      <Divider />
+      <P>
+        <strong>依存するものによって将来は大きく変わる。よって、依存するものを適切に選ぶ必要がある。</strong>
+      </P>
+      <P>
+        身近な例としては住む場所などがある。先程のブログサービスも同じである。依存先をWordPressにすると、それに付随するプラグインシステムにも同時に依存することになる。
+      </P>
+      <P>
+        依存するもの<Latex text="X" />が<Latex text="Y" />に依存するとき、<Latex text="Y" />が信用できないものであれば<Latex text="X" />に依存しないほうが良い。
+      </P>
+      <P>
+        これに則れば、WordPressはプラグインシステムに依存し、プラグインシステムは信用できないため、WordPressは使わないほうが良いという結論になる。
+      </P>
+      <P>
+        Create React AppはNPMとwebpackとTypeScriptとFacebookに依存する。これらはどれも信用できるため、Create React Appも信用できる可能性は高く、依存の障壁は低い。
       </P>
     </ArticleContent>
   );

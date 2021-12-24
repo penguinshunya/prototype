@@ -66,7 +66,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
       </P>
       <P>
         三平方の定理は
-        <Latex content={`c = \\pm\\sqrt{a^2 + b^2}`} />
+        <Latex text={`c = \\pm\\sqrt{a^2 + b^2}`} />
         である。
       </P>
       <P>
