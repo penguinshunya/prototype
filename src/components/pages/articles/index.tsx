@@ -44,10 +44,10 @@ export const ArticlesPage: React.VFC<Props> = memo(() => {
         <>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
             <div>
-              {hasPrev && <Link component={RrdLink} to={`/?page=${pageNumber - 1}`}>前の投稿</Link>}
+              {hasPrev && <Link component={RrdLink} to={`/?page=${pageNumber - 1}`}>前の{PAGE_COUNT}件</Link>}
             </div>
             <div>
-              {hasNext && <Link component={RrdLink} to={`/?page=${pageNumber + 1}`}>次の投稿</Link>}
+              {hasNext && <Link component={RrdLink} to={`/?page=${pageNumber + 1}`}>次の{PAGE_COUNT}件</Link>}
             </div>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 10, pb: 10 }}>

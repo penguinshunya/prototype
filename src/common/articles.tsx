@@ -111,6 +111,7 @@ export const articles: ArticleType[] = [
     id: "016a60c2-8344-49b5-802b-681086a1f081",
     Content: Article20210521,
     date: dayjs("2021-05-21"),
+    title: "ここ数年の振り返りと雑談 その1",
     tags: new Set(["プログラミング"]),
   },
   {
