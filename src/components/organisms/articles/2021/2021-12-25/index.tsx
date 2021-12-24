@@ -1,5 +1,6 @@
 import { Divider, Link } from "@mui/material";
 import { memo } from "react";
+import GlobalLink from "../../../../atoms/global-link";
 import LocalLink from "../../../../atoms/local-link";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -38,6 +39,10 @@ export const Article20211225: React.VFC<Props> = memo(() => {
         1日1変とは、1日に1つは何らかの変化を与えようという考え方のことであり、その変化は本当に些細なもので良い。たとえばコンビニで買い物するときに、買ったことのない飲み物を買うなど。これまでは、どのようにすれば毎日を充実して過ごせるのだろうと考えていたが、1日1変の考え方を取り入れることで、少しずつ毎日が充実していくのだと思う。
       </P>
       <P>これからは、1日1変を意識して行動しようと思う。</P>
+      <Divider />
+      <P>
+        FirebaseでのGoogle Analyticsの使い方を調べているのだけど、その途中で、Google公式が<GlobalLink href="https://support.google.com/firebase/answer/9267735">どのようなイベントを収集すれば良いか</GlobalLink>についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
+      </P>
     </ArticleContent>
   );
 });

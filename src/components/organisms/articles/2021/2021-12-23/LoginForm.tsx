@@ -1,5 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, TextField } from "@mui/material";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { memo, useCallback, useContext, useState } from "react";
 import { useMountedState } from "react-use";
@@ -32,6 +33,8 @@ export const LoginForm: React.VFC<Props> = memo(() => {
         setAjax(true);
         const auth = getAuth();
         await signInWithEmailAndPassword(auth, input.email, input.password);
+        const analytics = getAnalytics();
+        logEvent(analytics, "login");
       } catch (e: unknown) {
         return error(e);
       } finally {
