@@ -1,9 +1,10 @@
-import { Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import GlobalLink from "../../../../atoms/global-link";
 import LocalLink from "../../../../atoms/local-link";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
+import ConwaysGameOfLife from "./LifeGame";
 
 interface Props {}
 
@@ -47,6 +48,10 @@ export const Article20211225: React.VFC<Props> = memo(() => {
         </GlobalLink>
         についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
       </P>
+      <Divider />
+      <Box sx={{ my: 2 }}>
+        <ConwaysGameOfLife />
+      </Box>
     </ArticleContent>
   );
 });
