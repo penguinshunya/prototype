@@ -1,12 +1,14 @@
-import { Box, Button, IconButton } from "@mui/material";
-import _ from "lodash";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useMeasure } from "react-use";
-import NumberTextField from "../../../../atoms/number-text-field";
-import { clear, make, next, resize } from "./functions";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
+import { Box, Button, IconButton, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import dayjs from "dayjs";
+import _ from "lodash";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useMeasure } from "react-use";
+import { v4 as uuidv4 } from "uuid";
+import NumberTextField from "../../../../atoms/number-text-field";
+import { clear, GameBoard, make, next, resize } from "./functions";
 
 const GAP = 1;
 
@@ -40,12 +42,19 @@ function initSetting(): Setting {
 
 interface Props {}
 
+type ExGameBoard = GameBoard & {
+  id: string;
+  created: number;
+};
+
 export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
   const [ref, { width }] = useMeasure();
   const [status, setStatus] = useState<"play" | "pause">("pause");
   const [input, setInput] = useState<Input>(initInput());
   const [setting, setSetting] = useState<Setting>(initSetting());
-  const [board, setBoard] = useState<boolean[][]>(make(input.h, input.w, 0));
+  const [board, setBoard] = useState(make(input.h, input.w, 0));
+  const [boards, setBoards] = useState<ExGameBoard[]>([]);
+  const [selectedID, setSelectedID] = useState<string>("-");
 
   const cellWidth = useMemo(() => {
     return (width - (setting.w - 1) * GAP) / setting.w;
@@ -73,7 +82,7 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
   const handleClickCell = useCallback(
     (x: number, y: number) => {
       const b = _.cloneDeep(board);
-      b[x]![y] = !b[x]![y];
+      b.s[x]![y] = !b.s[x]![y];
       setBoard(b);
     },
     [board]
@@ -82,6 +91,29 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
   const handleNext = useCallback(() => {
     setBoard(next(board));
   }, [board]);
+
+  const handleClickSave = useCallback(() => {
+    const id = uuidv4();
+    const nb: ExGameBoard = { ...board, id, created: dayjs().unix() };
+    setBoards((boards) => [...boards, nb]);
+    setSelectedID(id);
+  }, [board]);
+
+  const handleChangeBoard = useCallback((e: SelectChangeEvent<string>) => {
+    const v = e.target.value;
+    setSelectedID(v);
+  }, []);
+
+  const handleClickRestore = useCallback(() => {
+    const b = boards.filter((b) => b.id === selectedID)[0];
+    if (b === undefined) return;
+    setBoard(b);
+  }, [boards, selectedID]);
+
+  const handleClickDelete = useCallback(() => {
+    setSelectedID("-");
+    setBoards((boards) => boards.filter((b) => b.id !== selectedID));
+  }, [selectedID]);
 
   return (
     <Box ref={ref}>
@@ -111,16 +143,37 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
           </div>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
-        <Button size="small" variant="contained" onClick={handleClick}>
-          リサイズ
-        </Button>
-        <Button size="small" variant="outlined" onClick={() => setBoard(clear(setting.h, setting.w))}>
-          クリア
-        </Button>
+      <Box sx={{ alignItems: "center", display: "flex", justifyContent: "space-between", mb: 1 }}>
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <Button size="small" variant="contained" onClick={handleClick}>
+            リサイズ
+          </Button>
+          <Button size="small" variant="outlined" onClick={() => setBoard(clear(setting.h, setting.w))}>
+            クリア
+          </Button>
+        </Box>
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <Select size="small" value={selectedID} onChange={handleChangeBoard} sx={{ width: 216 }}>
+            <MenuItem value="-">（未選択）</MenuItem>
+            {boards.map((b, i) => (
+              <MenuItem key={b.id} value={b.id}>
+                {dayjs.unix(b.created).format("YYYY/MM/DD HH:mm:ss")}
+              </MenuItem>
+            ))}
+          </Select>
+          <Button variant="outlined" onClick={handleClickSave}>
+            保存
+          </Button>
+          <Button disabled={selectedID === "-"} variant="outlined" onClick={handleClickRestore}>
+            復元
+          </Button>
+          <Button color="error" disabled={selectedID === "-"} variant="outlined" onClick={handleClickDelete}>
+            削除
+          </Button>
+        </Box>
       </Box>
       <Box sx={{ display: "grid", gridTemplateRows: `repeat(${setting.h}, ${cellWidth}px)`, gap: `${GAP}px` }}>
-        {board.map((row, i) => {
+        {board.s.map((row, i) => {
           return (
             <Box
               key={i}
@@ -132,6 +185,7 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
                   sx={{
                     bgcolor: cell ? "black" : "white",
                     border: "1px solid rgb(123, 123, 123)",
+                    cursor: "pointer",
                     ":hover": {
                       bgcolor: "rgb(200, 200, 200)",
                     },
