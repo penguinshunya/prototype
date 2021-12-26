@@ -119,7 +119,9 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
           </div>
         </Box>
       </Box>
-      <Box sx={{ alignItems: "center", display: "flex", justifyContent: "space-between", mb: 1 }}>
+      <Box
+        sx={{ alignItems: "center", display: "flex", flexWrap: "wrap", gap: 1, justifyContent: "space-between", mb: 1 }}
+      >
         <Box sx={{ display: "flex", gap: 1 }}>
           <Button size="small" variant="contained" onClick={handleClick}>
             リサイズ
@@ -129,13 +131,13 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
             variant="outlined"
             onClick={() => dispatch({ type: "board", value: clear(state.setting.h, state.setting.w) })}
           >
-            クリア
+            設定のクリア
           </Button>
           <Button size="small" variant="outlined" onClick={handleClickSave}>
             現在の状態の保存
           </Button>
         </Box>
-        <Box sx={{ display: "flex", gap: 1 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
           <div>
             <Select size="small" value={state.selectedID} onChange={handleChangeBoard}>
               <MenuItem value="-">（未選択）</MenuItem>
