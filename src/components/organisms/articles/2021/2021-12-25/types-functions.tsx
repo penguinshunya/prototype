@@ -6,6 +6,11 @@ export interface GameBoard {
   s: boolean[][];
 }
 
+export type ExGameBoard = GameBoard & {
+  id: string;
+  created: number;
+};
+
 const dx = [1, 0, -1, 0, 1, 1, -1, -1];
 const dy = [0, 1, 0, -1, 1, -1, 1, -1];
 

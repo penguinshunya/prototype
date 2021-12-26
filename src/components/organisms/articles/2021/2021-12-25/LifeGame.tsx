@@ -8,120 +8,96 @@ import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useMeasure } from "react-use";
 import { v4 as uuidv4 } from "uuid";
 import NumberTextField from "../../../../atoms/number-text-field";
-import { clear, GameBoard, make, next, resize } from "./functions";
+import { useLifeGameByLocalStorage } from "./hooks";
+import { clear, ExGameBoard, next, resize } from "./types-functions";
 
 const GAP = 1;
 
-interface Input {
-  h: number;
-  w: number;
-  density: number; // 0.0 - 1.0
-}
-
-interface Setting {
-  h: number;
-  w: number;
-  density: number;
-}
-
-function initInput(): Input {
-  return {
-    h: 12,
-    w: 36,
-    density: 0.1,
-  };
-}
-
-function initSetting(): Setting {
-  return {
-    h: 12,
-    w: 36,
-    density: 0.1,
-  };
-}
-
 interface Props {}
-
-type ExGameBoard = GameBoard & {
-  id: string;
-  created: number;
-};
 
 export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
   const [ref, { width }] = useMeasure();
   const [status, setStatus] = useState<"play" | "pause">("pause");
-  const [input, setInput] = useState<Input>(initInput());
-  const [setting, setSetting] = useState<Setting>(initSetting());
-  const [board, setBoard] = useState(make(input.h, input.w, 0));
-  const [boards, setBoards] = useState<ExGameBoard[]>([]);
-  const [selectedID, setSelectedID] = useState<string>("-");
+
+  const { state, dispatch } = useLifeGameByLocalStorage();
 
   const cellWidth = useMemo(() => {
-    return (width - (setting.w - 1) * GAP) / setting.w;
-  }, [setting, width]);
+    return (width - (state.board.w - 1) * GAP) / state.board.w;
+  }, [state.board, width]);
 
   useEffect(() => {
     if (status !== "play") {
       return;
     }
     function tick() {
-      const b = next(board);
-      setBoard(b);
+      const b = next(state.board);
+      dispatch({ type: "board", value: b });
     }
     const id = window.setTimeout(tick, 100);
     return () => {
       window.clearTimeout(id);
     };
-  }, [board, status]);
+  }, [dispatch, state.board, status]);
 
   const handleClick = useCallback(() => {
-    setSetting(input);
-    setBoard(resize(board, input.h, input.w));
-  }, [board, input]);
+    dispatch({ type: "setting", value: state.input });
+    dispatch({ type: "board", value: resize(state.board, state.input.h, state.input.w) });
+  }, [dispatch, state.board, state.input]);
 
   const handleClickCell = useCallback(
     (x: number, y: number) => {
-      const b = _.cloneDeep(board);
+      const b = _.cloneDeep(state.board);
       b.s[x]![y] = !b.s[x]![y];
-      setBoard(b);
+      dispatch({ type: "board", value: b });
     },
-    [board]
+    [dispatch, state.board]
   );
 
   const handleNext = useCallback(() => {
-    setBoard(next(board));
-  }, [board]);
+    dispatch({ type: "board", value: next(state.board) });
+  }, [dispatch, state.board]);
 
   const handleClickSave = useCallback(() => {
     const id = uuidv4();
-    const nb: ExGameBoard = { ...board, id, created: dayjs().unix() };
-    setBoards((boards) => [...boards, nb]);
-    setSelectedID(id);
-  }, [board]);
+    const nb: ExGameBoard = { ...state.board, id, created: dayjs().unix() };
+    dispatch({ type: "boards", value: [...state.boards, nb] });
+    dispatch({ type: "selectedID", value: id });
+  }, [state.board, dispatch, state.boards]);
 
-  const handleChangeBoard = useCallback((e: SelectChangeEvent<string>) => {
-    const v = e.target.value;
-    setSelectedID(v);
-  }, []);
+  const handleChangeBoard = useCallback(
+    (e: SelectChangeEvent<string>) => {
+      const v = e.target.value;
+      dispatch({ type: "selectedID", value: v });
+    },
+    [dispatch]
+  );
 
   const handleClickRestore = useCallback(() => {
-    const b = boards.filter((b) => b.id === selectedID)[0];
+    const b = state.boards.filter((b) => b.id === state.selectedID)[0];
     if (b === undefined) return;
-    setBoard(b);
-  }, [boards, selectedID]);
+    dispatch({ type: "board", value: b });
+  }, [dispatch, state]);
 
   const handleClickDelete = useCallback(() => {
-    setSelectedID("-");
-    setBoards((boards) => boards.filter((b) => b.id !== selectedID));
-  }, [selectedID]);
+    dispatch({ type: "selectedID", value: "-" });
+    dispatch({ type: "boards", value: state.boards.filter((b) => b.id !== state.selectedID) });
+  }, [dispatch, state]);
 
   return (
     <Box ref={ref}>
       <Box sx={{ alignItems: "flex-start", display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
         <Box sx={{ mb: 1 }}>
           <Box sx={{ display: "flex", gap: 1 }}>
-            <NumberTextField label="横幅" value={input.w} onChange={(w) => setInput({ ...input, w: w ?? 0 })} />
-            <NumberTextField label="縦幅" value={input.h} onChange={(h) => setInput({ ...input, h: h ?? 0 })} />
+            <NumberTextField
+              label="横幅"
+              value={state.input.w}
+              onChange={(w) => dispatch({ type: "input", value: { ...state.input, w: w ?? 0 } })}
+            />
+            <NumberTextField
+              label="縦幅"
+              value={state.input.h}
+              onChange={(h) => dispatch({ type: "input", value: { ...state.input, h: h ?? 0 } })}
+            />
           </Box>
         </Box>
         <Box sx={{ display: "flex" }}>
@@ -148,52 +124,68 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
           <Button size="small" variant="contained" onClick={handleClick}>
             リサイズ
           </Button>
-          <Button size="small" variant="outlined" onClick={() => setBoard(clear(setting.h, setting.w))}>
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={() => dispatch({ type: "board", value: clear(state.setting.h, state.setting.w) })}
+          >
             クリア
+          </Button>
+          <Button size="small" variant="outlined" onClick={handleClickSave}>
+            現在の状態の保存
           </Button>
         </Box>
         <Box sx={{ display: "flex", gap: 1 }}>
-          <Select size="small" value={selectedID} onChange={handleChangeBoard} sx={{ width: 216 }}>
-            <MenuItem value="-">（未選択）</MenuItem>
-            {boards.map((b, i) => (
-              <MenuItem key={b.id} value={b.id}>
-                {dayjs.unix(b.created).format("YYYY/MM/DD HH:mm:ss")}
-              </MenuItem>
-            ))}
-          </Select>
-          <Button variant="outlined" onClick={handleClickSave}>
-            保存
-          </Button>
-          <Button disabled={selectedID === "-"} variant="outlined" onClick={handleClickRestore}>
+          <div>
+            <Select size="small" value={state.selectedID} onChange={handleChangeBoard}>
+              <MenuItem value="-">（未選択）</MenuItem>
+              {state.boards.map((b, i) => (
+                <MenuItem key={b.id} value={b.id}>
+                  {dayjs.unix(b.created).format("YYYY/MM/DD HH:mm:ss")}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <Button disabled={state.selectedID === "-"} variant="outlined" onClick={handleClickRestore}>
             復元
           </Button>
-          <Button color="error" disabled={selectedID === "-"} variant="outlined" onClick={handleClickDelete}>
+          <Button color="error" disabled={state.selectedID === "-"} variant="outlined" onClick={handleClickDelete}>
             削除
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: "grid", gridTemplateRows: `repeat(${setting.h}, ${cellWidth}px)`, gap: `${GAP}px` }}>
-        {board.s.map((row, i) => {
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateRows: `repeat(${state.board.h}, ${cellWidth}px)`,
+          gap: `${GAP}px`,
+          "> div": {
+            display: "grid",
+            gridTemplateColumns: `repeat(${state.board.w}, ${cellWidth}px)`,
+            gap: `${GAP}px`,
+          },
+          "> div > div": {
+            border: "1px solid rgb(123, 123, 123)",
+            cursor: "pointer",
+            ":hover": {
+              bgcolor: "rgb(200, 200, 200)",
+            },
+          },
+        }}
+      >
+        {state.board.s.map((row, i) => {
           return (
-            <Box
-              key={i}
-              sx={{ display: "grid", gridTemplateColumns: `repeat(${setting.w}, ${cellWidth}px)`, gap: `${GAP}px` }}
-            >
+            <div key={i}>
               {row.map((cell, j) => (
-                <Box
+                <div
                   key={j}
-                  sx={{
-                    bgcolor: cell ? "black" : "white",
-                    border: "1px solid rgb(123, 123, 123)",
-                    cursor: "pointer",
-                    ":hover": {
-                      bgcolor: "rgb(200, 200, 200)",
-                    },
+                  style={{
+                    backgroundColor: cell ? "black" : "white",
                   }}
                   onClick={() => handleClickCell(i, j)}
                 />
               ))}
-            </Box>
+            </div>
           );
         })}
       </Box>
