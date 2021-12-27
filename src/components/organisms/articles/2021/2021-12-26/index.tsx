@@ -45,7 +45,9 @@ export const Article20211226: React.VFC<Props> = memo(() => {
         これまで、型定義用ファイルtypes.tsxと関数用ファイルfunctions.tsxの2つを作っていたけれど、小さな機能であればtypes-functions.tsxのように1つにまとめて良い気がする。ということで、ライフゲームではまとめる。
       </P>
       <P>
-        ライフゲームのほぼすべての状態をLocalStorageに移行した。<code>useState</code>をひとつずつ独自フックに移動し、<code>useState</code>が3つくらいになったときに<code>useReducer</code>を導入した。<code>useReducer</code>を使うと、<code>useState</code>が縦にいくつも並ぶことがないため少しだけ見通しが良くなる。
+        ライフゲームのほぼすべての状態をLocalStorageに移行した。<code>useState</code>をひとつずつ独自フックに移動し、
+        <code>useState</code>が3つくらいになったときに<code>useReducer</code>を導入した。<code>useReducer</code>
+        を使うと、<code>useState</code>が縦にいくつも並ぶことがないため少しだけ見通しが良くなる。
       </P>
       <Divider />
       <P>
@@ -54,9 +56,7 @@ export const Article20211226: React.VFC<Props> = memo(() => {
       <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
         <Image src={tree} width={320} />
       </Box>
-      <P>
-        このようなイベントがあればまた参加したい。あと、絵描きになってこのコミュニティに参加したいと思った。
-      </P>
+      <P>このようなイベントがあればまた参加したい。あと、絵描きになってこのコミュニティに参加したいと思った。</P>
     </ArticleContent>
   );
 });

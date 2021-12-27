@@ -1,16 +1,26 @@
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
+import { useCallback, useContext } from "react";
 import Div100vh from "react-div-100vh";
 import { Route, Routes } from "react-router-dom";
 import { useMeasure } from "react-use";
+import { v4 as uuidv4 } from "uuid";
 import GlobalLink from "./atoms/global-link";
 import LocalLink from "./atoms/local-link";
 import { ArticlePage } from "./pages/article";
 import ArticlesPage from "./pages/articles";
+import { BaseContext } from "./templates/Provider";
 
 interface Props {}
 
 export const App: React.VFC<Props> = () => {
+  const { success } = useContext(BaseContext);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
+
+  const handleClickUUID = useCallback(async () => {
+    const uuid = uuidv4();
+    await navigator.clipboard.writeText(uuid);
+    success(`生成した UUID をクリップボードにコピーしました`);
+  }, [success]);
 
   return (
     <Div100vh
@@ -32,6 +42,7 @@ export const App: React.VFC<Props> = () => {
       >
         <Box
           sx={{
+            alignItems: "center",
             display: "flex",
             justifyContent: "space-between",
             mx: "auto",
@@ -42,9 +53,12 @@ export const App: React.VFC<Props> = () => {
           <Box sx={{ columnGap: 2, display: "flex" }}>
             <LocalLink to="/">Top</LocalLink>
           </Box>
-          <Box sx={{ columnGap: 2, display: "flex" }}>
+          <Box sx={{ alignItems: "center", columnGap: 2, display: "flex" }}>
             <GlobalLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">Netlify</GlobalLink>
             <GlobalLink href="https://github.com/penguinshunya/prototype">GitHub</GlobalLink>
+            <Button size="small" variant="outlined" onClick={handleClickUUID}>
+              UUID生成
+            </Button>
           </Box>
         </Box>
       </Box>

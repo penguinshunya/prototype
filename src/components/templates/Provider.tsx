@@ -1,16 +1,39 @@
+import { IconButton, Snackbar } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { createContext, useCallback } from "react";
+import React, { createContext, useCallback, useMemo, useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const BaseContext = createContext({
-  error: (e: unknown) => {
-    console.log(true);
-  },
+  error: (e: unknown) => {},
+  success: (message: string) => {},
 });
 
 interface Props {}
 
 export const BaseProvider: React.FC<Props> = ({ children }) => {
   const snack = useSnackbar();
+  const [message, setMessage] = useState<string | null>(null);
+  const [messageOpen, setMessageOpen] = useState(false);
+
+  const success = useCallback((message: string) => {
+    setMessage(message);
+    setMessageOpen(true);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setMessageOpen(false);
+  }, []);
+
+  const action = useMemo(
+    () => (
+      <React.Fragment>
+        <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </React.Fragment>
+    ),
+    [handleClose]
+  );
 
   const error = useCallback(
     (e: unknown) => {
@@ -28,9 +51,21 @@ export const BaseProvider: React.FC<Props> = ({ children }) => {
     <BaseContext.Provider
       value={{
         error,
+        success,
       }}
     >
       {children}
+      <Snackbar
+        action={action}
+        anchorOrigin={{
+          horizontal: "center",
+          vertical: "bottom",
+        }}
+        autoHideDuration={6000}
+        open={messageOpen}
+        message={message}
+        onClose={handleClose}
+      />
     </BaseContext.Provider>
   );
 };

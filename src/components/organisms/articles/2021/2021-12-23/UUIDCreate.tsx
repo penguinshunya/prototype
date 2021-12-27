@@ -1,15 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
 import _ from "lodash";
-import { useSnackbar } from "notistack";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { BaseContext } from "../../../../templates/Provider";
 
 const COUNT = 5;
 
 interface Props {}
 
 export const UUIDCreate: React.VFC<Props> = memo(() => {
-  const snack = useSnackbar();
+  const { success } = useContext(BaseContext);
   const [values, setValues] = useState<string[]>(_.range(COUNT).map(() => uuidv4()));
 
   const handleClick = useCallback(() => {
@@ -19,9 +19,9 @@ export const UUIDCreate: React.VFC<Props> = memo(() => {
   const handleClickLi = useCallback(
     async (uuid: string) => {
       await navigator.clipboard.writeText(uuid);
-      snack.enqueueSnackbar("クリップボードにコピーしました");
+      success("クリップボードにコピーしました");
     },
-    [snack]
+    [success]
   );
 
   return (

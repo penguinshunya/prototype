@@ -76,7 +76,7 @@ export const ConwaysGameOfLife: React.VFC<Props> = memo(() => {
     const b = state.boards.filter((b) => b.id === state.selectedID)[0];
     if (b === undefined) return;
     dispatch({ type: "board", value: b });
-    dispatch({ type: "input", value: { ...b, density: 0 }});
+    dispatch({ type: "input", value: { ...b, density: 0 } });
   }, [dispatch, state]);
 
   const handleClickDelete = useCallback(() => {
