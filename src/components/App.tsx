@@ -19,7 +19,7 @@ export const App: React.VFC<Props> = () => {
   const handleClickUUID = useCallback(async () => {
     const uuid = uuidv4();
     await navigator.clipboard.writeText(uuid);
-    success(`生成した UUID をクリップボードにコピーしました`);
+    success(`生成した UUID をコピーしました`);
   }, [success]);
 
   return (
