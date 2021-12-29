@@ -1,3 +1,4 @@
+import { Divider } from "@mui/material";
 import { memo } from "react";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -21,6 +22,10 @@ export const Article20211229: React.VFC<Props> = memo(() => {
         更に、ギルザレンⅢ世自身は配信を年に数回しかしておらず、それがマリカ大会でのいじりのネタにされていた。もし僕がギルザレンⅢ世なら、全く触れられることはないだろう。どうすればこんなに弄ってもらうことができるのか。
       </P>
       <P>ギルザレンⅢ世のような人が本当に羨ましい。</P>
+      <Divider />
+      <P>
+        今日はイラストを作る気力が湧かないのでお休み。
+      </P>
     </ArticleContent>
   );
 });
