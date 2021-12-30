@@ -221,7 +221,8 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
               >
                 {dayjs.unix(img.created).format("YYYY/MM/DD HH:mm:ss")}
               </MenuItem>
-              <Button size="small" variant="outlined" color="error" onClick={(e) => handleClickDelete(e, img.id)}>
+
+              <Button size="small" color="error" onClick={(e) => handleClickDelete(e, img.id)}>
                 削除
               </Button>
             </Box>
