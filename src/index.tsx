@@ -19,7 +19,7 @@ const firebaseConfig = {
   storageBucket: "upbeat-glow-336702.appspot.com",
   messagingSenderId: "893593003535",
   appId: "1:893593003535:web:cc564a3c72102595c8257a",
-  measurementId: "G-G1K94HS52R"
+  measurementId: "G-G1K94HS52R",
 };
 
 initializeApp(firebaseConfig);

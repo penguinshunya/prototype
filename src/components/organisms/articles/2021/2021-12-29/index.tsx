@@ -23,9 +23,7 @@ export const Article20211229: React.VFC<Props> = memo(() => {
       </P>
       <P>ギルザレンⅢ世のような人が本当に羨ましい。</P>
       <Divider />
-      <P>
-        今日はイラストを作る気力が湧かないのでお休み。
-      </P>
+      <P>今日はイラストを作る気力が湧かないのでお休み。</P>
     </ArticleContent>
   );
 });

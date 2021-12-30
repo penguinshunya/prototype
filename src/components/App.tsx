@@ -13,14 +13,14 @@ import { BaseContext } from "./templates/Provider";
 interface Props {}
 
 export const App: React.VFC<Props> = () => {
-  const { success } = useContext(BaseContext);
+  const { showMessage } = useContext(BaseContext);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
 
   const handleClickUUID = useCallback(async () => {
     const uuid = uuidv4();
     await navigator.clipboard.writeText(uuid);
-    success(`生成した UUID をコピーしました`);
-  }, [success]);
+    showMessage(`生成した UUID をコピーしました`);
+  }, [showMessage]);
 
   return (
     <Div100vh

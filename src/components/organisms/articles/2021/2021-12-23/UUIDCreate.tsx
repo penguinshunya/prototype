@@ -9,7 +9,7 @@ const COUNT = 5;
 interface Props {}
 
 export const UUIDCreate: React.VFC<Props> = memo(() => {
-  const { success } = useContext(BaseContext);
+  const { showMessage } = useContext(BaseContext);
   const [values, setValues] = useState<string[]>(_.range(COUNT).map(() => uuidv4()));
 
   const handleClick = useCallback(() => {
@@ -19,9 +19,9 @@ export const UUIDCreate: React.VFC<Props> = memo(() => {
   const handleClickLi = useCallback(
     async (uuid: string) => {
       await navigator.clipboard.writeText(uuid);
-      success("クリップボードにコピーしました");
+      showMessage("クリップボードにコピーしました");
     },
-    [success]
+    [showMessage]
   );
 
   return (
