@@ -13,6 +13,7 @@ type ColorType = {
   r: number;
   g: number;
   b: number;
+  a?: number;
 };
 
 function toHex(val: number) {
@@ -103,6 +104,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       r: data.data[0]!,
       g: data.data[1]!,
       b: data.data[2]!,
+      a: data.data[3]! / 255,
     });
   }, [elX, elY, setColor]);
 
@@ -117,6 +119,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       r: data.data[0]!,
       g: data.data[1]!,
       b: data.data[2]!,
+      a: data.data[3]! / 255,
     });
   }, [elX, elY, isMouseDown, setColor]);
 
@@ -129,14 +132,16 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
   const colors = useMemo(() => {
     if (color === null) return null;
     const hex = `#${toHex(color.r)}${toHex(color.g)}${toHex(color.b)}`;
+    const alpha = color.a ?? 1;
     const hsl = (() => {
-      const t = Color.rgb(color.r, color.g, color.b).hsl();
+      const t = Color.rgb(color.r, color.g, color.b, alpha).hsl();
       const h = Math.round(t.hue() * 10) / 10;
       const s = Math.round(t.saturationl());
       const l = Math.round(t.lightness());
-      return `hsl(${h},${s}%,${l}%)`;
+      const a = Math.round(t.alpha() * 100) / 100;
+      return `hsla(${h}, ${s}%, ${l}%, ${a})`;
     })();
-    const rgb = `rgb(${color.r},${color.g},${color.b})`;
+    const rgb = `rgb(${color.r}, ${color.g}, ${color.b}, ${Math.round(alpha * 100) / 100})`;
     return { hex, hsl, rgb };
   }, [color]);
 
