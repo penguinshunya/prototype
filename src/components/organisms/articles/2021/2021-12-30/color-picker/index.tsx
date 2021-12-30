@@ -153,7 +153,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       const a = Math.round(t.alpha() * 100) / 100;
       return `hsla(${h}, ${s}%, ${l}%, ${a})`;
     })();
-    const rgb = `rgb(${color.r}, ${color.g}, ${color.b}, ${Math.round(alpha * 100) / 100})`;
+    const rgb = `rgba(${color.r}, ${color.g}, ${color.b}, ${Math.round(alpha * 100) / 100})`;
     return { hex, hsl, rgb };
   }, [color]);
 
@@ -192,7 +192,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
   );
 
   return (
-    <>
+    <Box {...bond}>
       <Box sx={{ display: "grid", gridTemplateColumns: isSM ? "1fr" : "repeat(3, 1fr)", gap: 1, mb: 1 }}>
         <ReadOnlyColorBox color={colors?.hex} />
         <ReadOnlyColorBox color={colors?.rgb} />
@@ -200,7 +200,6 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       </Box>
       <Box sx={{ display: "grid", gap: 1, gridTemplateColumns: isSM ? "1fr" : "1fr 256px" }}>
         <Box
-          {...bond}
           sx={{
             alignItems: "center",
             bgcolor: "rgb(240, 240, 240)",
@@ -212,7 +211,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
             width: "100%",
           }}
         >
-          <Box sx={{ display: "block", opacity: loading ? 0.3 : 1.0 }}>
+          <Box sx={{ display: "block", opacity: loading ? 0.3 : 1.0, maxWidth: "100%" }}>
             {selectedImage === null && <Typography>ここに画像ファイルをドラッグ</Typography>}
             <canvas
               ref={canvasRef}
@@ -244,7 +243,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
           ))}
         </Box>
       </Box>
-    </>
+    </Box>
   );
 });
 
