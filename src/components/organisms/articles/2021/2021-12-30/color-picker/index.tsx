@@ -1,8 +1,8 @@
-import { Box, Button, MenuItem, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Divider, MenuItem, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Color from "color";
 import dayjs from "dayjs";
-import { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useDropArea, useLocalStorage, useMouseHovered } from "react-use";
 import { v4 } from "uuid";
 import { BaseContext } from "../../../../../templates/Provider";
@@ -222,22 +222,25 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
           </Box>
         </Box>
         <Box sx={{ border: "1px solid rgba(0, 0, 0, 0.2)", borderRadius: 1, maxHeight: 512, overflow: "auto" }}>
-          {images?.map((img) => (
-            <Box key={img.id} sx={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
-              <MenuItem
-                selected={img.id === selectedImageID}
-                onClick={() => handleClickMenuItem(img.id)}
-                sx={{
-                  overflow: "hidden",
-                }}
-              >
-                {dayjs.unix(img.created).format("YYYY/MM/DD HH:mm:ss")}
-              </MenuItem>
+          {images?.map((img, i) => (
+            <Fragment key={img.id}>
+              {i !== 0 && <Divider />}
+              <Box sx={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
+                <MenuItem
+                  selected={img.id === selectedImageID}
+                  onClick={() => handleClickMenuItem(img.id)}
+                  sx={{
+                    overflow: "hidden",
+                  }}
+                >
+                  {dayjs.unix(img.created).format("YYYY/MM/DD HH:mm:ss")}
+                </MenuItem>
 
-              <Button size="small" color="error" onClick={(e) => handleClickDelete(e, img.id)}>
-                削除
-              </Button>
-            </Box>
+                <Button size="small" color="error" onClick={(e) => handleClickDelete(e, img.id)}>
+                  削除
+                </Button>
+              </Box>
+            </Fragment>
           ))}
         </Box>
       </Box>
