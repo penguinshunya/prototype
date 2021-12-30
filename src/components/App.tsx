@@ -15,6 +15,7 @@ interface Props {}
 export const App: React.VFC<Props> = () => {
   const { showMessage } = useContext(BaseContext);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
+  const [headerRef, { height }] = useMeasure<HTMLDivElement>();
 
   const handleClickUUID = useCallback(async () => {
     const uuid = uuidv4();
@@ -31,12 +32,12 @@ export const App: React.VFC<Props> = () => {
       }}
     >
       <Box
+        ref={headerRef}
         sx={{
           backgroundColor: "white",
           borderBottom: "1px solid rgba(0, 0, 0, 0.2)",
           position: "sticky",
           top: 0,
-          // https://mui.com/customization/default-theme/
           zIndex: "appBar",
         }}
       >
@@ -62,10 +63,10 @@ export const App: React.VFC<Props> = () => {
           </Box>
         </Box>
       </Box>
-      <Container maxWidth="md" ref={ref} sx={{ bgcolor: "white", pt: 2 }}>
+      <Container maxWidth="md" ref={ref} sx={{ bgcolor: "white" }}>
         <Routes>
           <Route path="/article/:id" element={<ArticlePage />} />
-          <Route path="/" element={<ArticlesPage />} />
+          <Route path="/" element={<ArticlesPage headerHeight={height + 1} />} />
         </Routes>
       </Container>
     </Div100vh>

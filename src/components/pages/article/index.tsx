@@ -24,7 +24,7 @@ export const ArticlePage: React.VFC<Props> = memo(() => {
   }
 
   return (
-    <Box sx={{ pb: 10 }}>
+    <Box sx={{ pb: 10, pt: 2 }}>
       <Article {...article} id={id} />
     </Box>
   );
