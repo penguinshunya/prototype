@@ -2,7 +2,7 @@ import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
-import ColorPicker from "./ColorPicker";
+import ColorPicker from "./color-picker";
 
 interface Props {}
 
