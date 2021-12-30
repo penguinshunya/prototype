@@ -46,6 +46,18 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
   const [selectedImageID, setSelectedImageID] = useLocalStorage<string | null>(KEY_SELECTED_ID, null);
   const [loading, setLoading] = useState(false);
 
+  const addAndRemoveImages = useCallback(
+    (image: RawCanvasInfo) => {
+      if (images === undefined) {
+        return;
+      }
+      const imgs = [image, ...images];
+      if (imgs.length > 32) imgs.length = 32;
+      setImages(imgs);
+    },
+    [images, setImages]
+  );
+
   const loadImage = useCallback(async (url: string) => {
     setLoading(true);
     const image = await new Promise<HTMLImageElement>((resolve) => {
@@ -67,7 +79,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       if (files.length !== 1) return;
       const file = files[0]!;
       if (!file.type.startsWith("image/")) {
-        return showMessage("ドロップされたファイルが画像ではありません", "error");
+        return showMessage("画像ファイルではありません", "error");
       }
       setLoading(true);
       const result = await new Promise<string>((resolve, reject) => {
@@ -83,10 +95,10 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       });
       setLoading(false);
       const id = v4();
-      setImages(images === undefined ? undefined : [{ id, imageURL: result, created: dayjs().unix() }, ...images]);
+      addAndRemoveImages({ id, imageURL: result, created: dayjs().unix() });
       setSelectedImageID(id);
     },
-    [images, setImages, setSelectedImageID, showMessage]
+    [addAndRemoveImages, setSelectedImageID, showMessage]
   );
 
   const [bond] = useDropArea({
@@ -209,7 +221,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
             />
           </Box>
         </Box>
-        <Box sx={{ border: "1px solid rgba(0, 0, 0, 0.2)", borderRadius: 1 }}>
+        <Box sx={{ border: "1px solid rgba(0, 0, 0, 0.2)", borderRadius: 1, maxHeight: 512, overflow: "auto" }}>
           {images?.map((img) => (
             <Box key={img.id} sx={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
               <MenuItem
