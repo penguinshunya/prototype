@@ -147,9 +147,13 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
 
   const handleClickMenuItem = useCallback(
     async (id: string) => {
-      setSelectedImageID(id);
+      if (selectedImageID === id) {
+        setSelectedImageID(null);
+      } else {
+        setSelectedImageID(id);
+      }
     },
-    [setSelectedImageID]
+    [selectedImageID, setSelectedImageID]
   );
 
   const selectedImage = useMemo(() => {
