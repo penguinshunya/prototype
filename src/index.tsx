@@ -13,13 +13,13 @@ import BaseProvider from "./components/templates/Provider";
 import "./index.css";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA73vYC2x0h4imL3qO-6kwFYsQi2gDyuw4",
-  authDomain: "prototype-penguinshunya-com.firebaseapp.com",
-  projectId: "prototype-penguinshunya-com",
-  storageBucket: "prototype-penguinshunya-com.appspot.com",
-  messagingSenderId: "515717172132",
-  appId: "1:515717172132:web:aea26257fc6942f36b0f31",
-  measurementId: "G-15229L2FNS",
+  apiKey: "AIzaSyBB1o2TsoQSWHWUTTzcZW6DfnuLqD1ItSw",
+  authDomain: "upbeat-glow-336702.firebaseapp.com",
+  projectId: "upbeat-glow-336702",
+  storageBucket: "upbeat-glow-336702.appspot.com",
+  messagingSenderId: "893593003535",
+  appId: "1:893593003535:web:cc564a3c72102595c8257a",
+  measurementId: "G-G1K94HS52R"
 };
 
 initializeApp(firebaseConfig);
