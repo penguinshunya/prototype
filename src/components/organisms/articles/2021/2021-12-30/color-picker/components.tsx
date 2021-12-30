@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, Tooltip } from "@mui/material";
 import Color from "color";
 import { useCallback, useContext } from "react";
 import { BaseContext } from "../../../../../templates/Provider";
@@ -31,21 +31,23 @@ export const ReadOnlyColorBox: React.VFC<Props> = ({ color }) => {
           },
         }}
       />
-      <Box
-        onClick={handleClick}
-        sx={{
-          bgcolor: color === undefined ? "white" : color,
-          border: "1px solid rgba(0, 0, 0, 0.2)",
-          borderRadius: 1,
-          cursor: "pointer",
-          transition: "background-color 0.1s",
-          ":hover": {
-            bgcolor: Color(color === undefined ? "white" : color)
-              .darken(0.2)
-              .string(),
-          },
-        }}
-      />
+      <Tooltip title="クリップボードにコピーする">
+        <Box
+          onClick={handleClick}
+          sx={{
+            bgcolor: color === undefined ? "white" : color,
+            border: "1px solid rgba(0, 0, 0, 0.2)",
+            borderRadius: 1,
+            cursor: "pointer",
+            transition: "background-color 0.1s",
+            ":hover": {
+              bgcolor: Color(color === undefined ? "white" : color)
+                .darken(0.2)
+                .string(),
+            },
+          }}
+        />
+      </Tooltip>
     </Box>
   );
 };
