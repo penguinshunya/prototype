@@ -134,9 +134,9 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
       const h = Math.round(t.hue() * 10) / 10;
       const s = Math.round(t.saturationl());
       const l = Math.round(t.lightness());
-      return `hsl(${h}, ${s}%, ${l}%)`;
+      return `hsl(${h},${s}%,${l}%)`;
     })();
-    const rgb = `rgb(${color.r}, ${color.g}, ${color.b})`;
+    const rgb = `rgb(${color.r},${color.g},${color.b})`;
     return { hex, hsl, rgb };
   }, [color]);
 

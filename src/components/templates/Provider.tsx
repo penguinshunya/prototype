@@ -16,7 +16,7 @@ export const BaseProvider: React.FC<Props> = ({ children }) => {
   const [messageOpen, setMessageOpen] = useState(false);
   const [severity, setSeverity] = useState<AlertColor | undefined>();
 
-  const showMessage = useCallback((message: string, severity: AlertColor = "success") => {
+  const showMessage = useCallback((message: string, severity?: AlertColor) => {
     setMessage(message);
     setMessageOpen(true);
     setSeverity(severity);
