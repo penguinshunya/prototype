@@ -14,7 +14,7 @@ import { BaseContext } from "./templates/Provider";
 interface Props {}
 
 export const App: React.VFC<Props> = () => {
-  const { showMessage } = useContext(BaseContext);
+  const { error, showMessage } = useContext(BaseContext);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [headerRef, { height }] = useMeasure<HTMLDivElement>();
 
@@ -25,8 +25,12 @@ export const App: React.VFC<Props> = () => {
   }, [showMessage]);
 
   const handleClickButton = useCallback(async () => {
-    await axios.post("http://localhost:4242/create-checkout-session");
-  }, []);
+    try {
+      await axios.post("http://localhost:4242/create-checkout-session");
+    } catch (e: unknown) {
+      return error(e);
+    }
+  }, [error]);
 
   return (
     <Div100vh
@@ -36,7 +40,7 @@ export const App: React.VFC<Props> = () => {
         width: "100%",
       }}
     >
-      <Button onClick={handleClickButton}>Stripeのお支払ページのURLをサーバー側のログに出力</Button>
+      <Button onClick={handleClickButton}>Stripeのお支払ページのURLをサーバー側のログに出力（localhost限定）</Button>
       <Box
         ref={headerRef}
         sx={{
