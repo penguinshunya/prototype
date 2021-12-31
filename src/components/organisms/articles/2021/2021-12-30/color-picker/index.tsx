@@ -170,6 +170,10 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
 
   const selectedImage = useMemo(() => {
     if (selectedImageID === null) {
+      if (canvasRef.current != null) {
+        canvasRef.current.width = 0;
+        canvasRef.current.height = 0;
+      }
       return null;
     }
     const img = images?.filter((i) => i.id === selectedImageID)[0];
@@ -211,7 +215,7 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
             width: "100%",
           }}
         >
-          <Box sx={{ display: "block", opacity: loading ? 0.3 : 1.0, maxWidth: "100%" }}>
+          <Box sx={{ opacity: loading ? 0.3 : 1.0, maxWidth: "100%" }}>
             {selectedImage === null && <Typography>ここに画像ファイルをドラッグ</Typography>}
             <canvas
               ref={canvasRef}
@@ -224,18 +228,35 @@ export const ColorPicker: React.VFC<Props> = memo(() => {
           {images?.map((img, i) => (
             <Fragment key={img.id}>
               {i !== 0 && <Divider />}
-              <Box sx={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
+              <Box sx={{ display: "grid", gridTemplateColumns: "auto 1fr auto" }}>
+                <img
+                  alt=""
+                  src={img.imageURL}
+                  height={32}
+                  width={32}
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
                 <MenuItem
                   selected={img.id === selectedImageID}
                   onClick={() => handleClickMenuItem(img.id)}
                   sx={{
+                    fontSize: 12,
                     overflow: "hidden",
                   }}
                 >
                   {dayjs.unix(img.created).format("YYYY/MM/DD HH:mm:ss")}
                 </MenuItem>
-
-                <Button size="small" color="error" onClick={(e) => handleClickDelete(e, img.id)}>
+                <Button
+                  size="small"
+                  color="error"
+                  onClick={(e) => handleClickDelete(e, img.id)}
+                  sx={{
+                    minWidth: "initial",
+                    p: "4px 12px",
+                  }}
+                >
                   削除
                 </Button>
               </Box>
