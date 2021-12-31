@@ -44,24 +44,24 @@ export const ArticlesPage: React.VFC<Props> = memo(({ headerHeight }) => {
         <Typography sx={{ pb: 10 }}>検索条件に一致する記事がありません</Typography>
       ) : (
         <>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 10, pb: 8, pt: 2 }}>
+            {articles.map((a) => (
+              <Article key={a.id} isTitleLink {...a} />
+            ))}
+          </Box>
           <Box
             sx={{
               bgcolor: "white",
+              bottom: 0,
               display: "flex",
               justifyContent: "space-between",
               py: 2,
               position: "sticky",
-              top: headerHeight,
               zIndex: (theme) => theme.zIndex.appBar - 1,
             }}
           >
             <div>{hasPrev && <LocalLink to={`/?page=${pageNumber - 1}`}>前の{PAGE_COUNT}件</LocalLink>}</div>
             <div>{hasNext && <LocalLink to={`/?page=${pageNumber + 1}`}>次の{PAGE_COUNT}件</LocalLink>}</div>
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 10, pb: 8, pt: 2 }}>
-            {articles.map((a) => (
-              <Article key={a.id} isTitleLink {...a} />
-            ))}
           </Box>
         </>
       )}

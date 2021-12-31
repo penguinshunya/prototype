@@ -1,4 +1,4 @@
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, Tooltip } from "@mui/material";
 import axios from "axios";
 import { useCallback, useContext } from "react";
 import Div100vh from "react-div-100vh";
@@ -67,9 +67,13 @@ export const App: React.VFC<Props> = () => {
           <Box sx={{ alignItems: "center", columnGap: 2, display: "flex" }}>
             <GlobalLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">Netlify</GlobalLink>
             <GlobalLink href="https://github.com/penguinshunya/prototype">GitHub</GlobalLink>
-            <Button size="small" variant="outlined" onClick={handleClickUUID}>
-              UUID生成
-            </Button>
+            <Tooltip title="UUIDを生成してクリップボードにコピー">
+              <span>
+                <Button size="small" variant="outlined" onClick={handleClickUUID}>
+                  UUID生成
+                </Button>
+              </span>
+            </Tooltip>
           </Box>
         </Box>
       </Box>

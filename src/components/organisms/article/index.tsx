@@ -20,7 +20,7 @@ export const Article: React.VFC<ArticleProps> = memo(({ isTitleLink, ...a }) => 
           color: "black",
           display: "inline-block",
           fontSize: 24,
-          mb: 2,
+          mb: 1,
           textDecoration: "none",
           ":hover": {
             textDecoration: isTitleLink ? "underline" : "none",
@@ -34,7 +34,7 @@ export const Article: React.VFC<ArticleProps> = memo(({ isTitleLink, ...a }) => 
           {[...a.tags].map((t) => (
             <Typography
               key={t}
-              sx={{ bgcolor: "rgba(232, 232, 232)", borderRadius: 1, fontSize: 12, padding: "2px 8px" }}
+              sx={{ bgcolor: "rgba(232, 232, 232)", borderRadius: 1, fontSize: 12, lineHeight: 1, padding: "4px 8px" }}
             >
               {t}
             </Typography>
