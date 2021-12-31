@@ -1,4 +1,5 @@
 import { Box, Button, Container } from "@mui/material";
+import axios from "axios";
 import { useCallback, useContext } from "react";
 import Div100vh from "react-div-100vh";
 import { Route, Routes } from "react-router-dom";
@@ -23,6 +24,10 @@ export const App: React.VFC<Props> = () => {
     showMessage(`生成した UUID をコピーしました`);
   }, [showMessage]);
 
+  const handleClickButton = useCallback(async () => {
+    await axios.post("http://localhost:4242/create-checkout-session");
+  }, []);
+
   return (
     <Div100vh
       style={{
@@ -31,6 +36,7 @@ export const App: React.VFC<Props> = () => {
         width: "100%",
       }}
     >
+      <Button onClick={handleClickButton}>Stripeのお支払ページのURLをサーバー側のログに出力</Button>
       <Box
         ref={headerRef}
         sx={{
