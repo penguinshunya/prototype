@@ -26,6 +26,7 @@ import Article20211229 from "../components/organisms/articles/2021/2021-12-29";
 import Article20211230 from "../components/organisms/articles/2021/2021-12-30";
 import Article20211231 from "../components/organisms/articles/2021/2021-12-31";
 import Article20220101 from "../components/organisms/articles/2022/2022-01-01";
+import Article20220102 from "../components/organisms/articles/2022/2022-01-02";
 
 export interface ArticleType {
   id: string;
@@ -207,6 +208,13 @@ export const articles: ArticleType[] = [
     id: "7d5c22b1-3fa7-491e-82e5-fa2548fe482f",
     Content: Article20220101,
     date: dayjs("2022-01-01"),
+    tags: new Set(["日記"]),
+    isPrivate: true,
+  },
+  {
+    id: "3b9adae4-75cb-4a6f-bfaa-a6f5a4d7fe9b",
+    Content: Article20220102,
+    date: dayjs("2022-01-02"),
     tags: new Set(["日記"]),
     isPrivate: true,
   },
