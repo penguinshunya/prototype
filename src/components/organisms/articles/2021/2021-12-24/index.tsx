@@ -5,7 +5,7 @@ import Image from "../../../../atoms/image";
 import Latex from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
-import holotree from "./images/holotree.jpg";
+import holotree from "./images/holotree2.jpg";
 import wataten from "./images/wataten.jpg";
 
 interface Props {}
