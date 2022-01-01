@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { Fragment, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useDropArea, useLocalStorage, useMouseHovered } from "react-use";
 import { v4 } from "uuid";
-import { BaseContext } from "../../../../../templates/Provider";
+import { BaseContext } from "../../templates/Provider";
 import { ReadOnlyColorBox } from "./components";
 import { useEffectMouseDown } from "./hooks";
 

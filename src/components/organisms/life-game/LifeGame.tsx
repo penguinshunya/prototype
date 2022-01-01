@@ -7,7 +7,7 @@ import _ from "lodash";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { useMeasure } from "react-use";
 import { v4 as uuidv4 } from "uuid";
-import NumberTextField from "../../../../atoms/number-text-field";
+import NumberTextField from "../../atoms/number-text-field";
 import { useLifeGameByLocalStorage } from "./hooks";
 import { clear, ExGameBoard, next, resize } from "./types-functions";
 

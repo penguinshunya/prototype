@@ -1,7 +1,7 @@
 import { Box, TextField, Tooltip } from "@mui/material";
 import Color from "color";
 import { useCallback, useContext } from "react";
-import { BaseContext } from "../../../../../templates/Provider";
+import { BaseContext } from "../../templates/Provider";
 
 interface Props {
   color: string | undefined;

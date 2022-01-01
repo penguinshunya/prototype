@@ -9,6 +9,8 @@ import GlobalLink from "./atoms/global-link";
 import LocalLink from "./atoms/local-link";
 import { ArticlePage } from "./pages/article";
 import ArticlesPage from "./pages/articles";
+import IndexPage from "./pages/index";
+import PrototypesPage from "./pages/prototypes";
 import { BaseContext } from "./templates/Provider";
 
 interface Props {}
@@ -80,7 +82,9 @@ export const App: React.VFC<Props> = () => {
       <Container maxWidth="md" ref={ref} sx={{ bgcolor: "white" }}>
         <Routes>
           <Route path="/article/:id" element={<ArticlePage />} />
-          <Route path="/" element={<ArticlesPage headerHeight={height + 1} />} />
+          <Route path="/articles" element={<ArticlesPage headerHeight={height + 1} />} />
+          <Route path="/prototypes" element={<PrototypesPage />} />
+          <Route path="/" element={<IndexPage />} />
         </Routes>
       </Container>
     </Div100vh>

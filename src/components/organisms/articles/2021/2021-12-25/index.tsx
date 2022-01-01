@@ -4,7 +4,7 @@ import GlobalLink from "../../../../atoms/global-link";
 import LocalLink from "../../../../atoms/local-link";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
-import ConwaysGameOfLife from "./LifeGame";
+import ConwaysGameOfLife from "../../../life-game/LifeGame";
 
 interface Props {}
 
