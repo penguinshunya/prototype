@@ -1,5 +1,5 @@
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -24,7 +24,7 @@ export const Article20211220: React.VFC<Props> = memo(() => {
       </P>
       <P>
         まずはじめに、
-        <GlobalLink href="https://www.youtube.com/watch?v=szhJik4HIXQ">ヨビノリたくみさんの力学の連続講義</GlobalLink>
+        <GLink href="https://www.youtube.com/watch?v=szhJik4HIXQ">ヨビノリたくみさんの力学の連続講義</GLink>
         を最後まで視聴した。すると、物体にかかる力さえしっかりと把握すれば、それを運動方程式に代入して解くことで物体の位置を求められることを知った。運動方程式を解くことは基本的には難しいが、物理演算を実装するだけであれば運動方程式を解く必要はない。
       </P>
       <P>

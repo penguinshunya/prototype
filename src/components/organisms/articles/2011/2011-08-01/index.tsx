@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { Image } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -16,7 +16,7 @@ export const Article20110801: React.VFC<Props> = memo(() => {
         今回は僕の最も好きなコース、DeepInfernoでした。
         <br />
         詳細はこちら→
-        <GlobalLink href="http://www.newx2.com/pangya/">http://www.newx2.com/pangya/</GlobalLink>
+        <GLink href="http://www.newx2.com/pangya/">http://www.newx2.com/pangya/</GLink>
       </P>
       <P sx={{ mb: 0.5 }}>1回戦目</P>
       <Box>

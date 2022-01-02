@@ -1,5 +1,5 @@
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -12,7 +12,7 @@ export const Article20191225: React.VFC<Props> = memo(() => {
         今日はクリスマスだけど、悲しいことに僕には関係がない。ということで、昨日に引き続きシャドウマッピングの勉強をしている。
       </P>
       <P>
-        <GlobalLink href="https://wgld.org/s/sample_038/">wgld.orgのコード</GlobalLink>
+        <GLink href="https://wgld.org/s/sample_038/">wgld.orgのコード</GLink>
         を写経してみて実際に動かしたけど、まだよくわからない。なぜ影が付くのか。その仕組みを理解するために、ここにアウトプットしながら考えていく。
       </P>
       <P>

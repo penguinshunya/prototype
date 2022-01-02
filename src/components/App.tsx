@@ -5,7 +5,7 @@ import Div100vh from "react-div-100vh";
 import { Route, Routes } from "react-router-dom";
 import { useMeasure } from "react-use";
 import { v4 as uuidv4 } from "uuid";
-import GlobalLink from "./atoms/global-link";
+import GLink from "./atoms/global-link";
 import LocalLink from "./atoms/local-link";
 import { ArticlePage } from "./pages/article";
 import ArticlesPage from "./pages/articles";
@@ -67,8 +67,8 @@ export const App: React.VFC<Props> = () => {
             <LocalLink to="/">Top</LocalLink>
           </Box>
           <Box sx={{ alignItems: "center", columnGap: 2, display: "flex" }}>
-            <GlobalLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">Netlify</GlobalLink>
-            <GlobalLink href="https://github.com/penguinshunya/prototype">GitHub</GlobalLink>
+            <GLink href="https://app.netlify.com/sites/vigorous-jones-3867b6/overview">Netlify</GLink>
+            <GLink href="https://github.com/penguinshunya/prototype">GitHub</GLink>
             <Tooltip title="UUIDを生成してクリップボードにコピー">
               <span>
                 <Button size="small" variant="outlined" onClick={handleClickUUID}>

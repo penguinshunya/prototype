@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import SampleOthelloByLocalStorage from "../../../othello/SampleOthelloByLocalStorage";
@@ -31,7 +31,7 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         <SampleUseMouse />
       </Box>
       <P>
-        <GlobalLink href="https://github.com/streamich/react-use">react-use</GlobalLink>
+        <GLink href="https://github.com/streamich/react-use">react-use</GLink>
         にあるいくつかのフックを使ってみた。自作したフックとほぼ同じフックがあった。自分の必要としているフックは他の人も必要としていることがわかり、安心した。
       </P>
       <Divider />
@@ -48,7 +48,7 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         自作した当時は<code>ref</code>
         を渡す方式しか思いつかなかったためにそちらの方式を選んだが、知名度のあるライブラリが<code>ref</code>
         を返す方式を選択しているため、自作のフックもその方式に合わせたほうが良いのではと思った。けれど、
-        <GlobalLink href="https://zenn.dev/anozon/articles/react-multiple-ref-to-one-component">こちらの記事</GlobalLink>
+        <GLink href="https://zenn.dev/anozon/articles/react-multiple-ref-to-one-component">こちらの記事</GLink>
         を読むと渡す方式も悪くない良い気がしてきた。<code>ref</code>
         を返す方式だと、そのままではひとつの要素に対してひとつのフックしか紐付けられない。しかし、渡す方式であれば、特に考えることなくひとつの要素に複数のフックを紐付けられる。
       </P>

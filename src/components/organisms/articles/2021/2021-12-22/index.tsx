@@ -1,7 +1,7 @@
 import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import { SampleOthelloByLocalStorage } from "../../../othello/SampleOthelloByLocalStorage";
@@ -46,7 +46,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
       <InnerBox>
         <P>
           Haskellについて。Haskellは純粋関数型言語である。パーサーを書くための
-          <GlobalLink href="https://hackage.haskell.org/package/parsec">Parsec</GlobalLink>
+          <GLink href="https://hackage.haskell.org/package/parsec">Parsec</GLink>
           というライブラリが非常に優れている。パーサーを実装する際の雑多な処理を書くことなく、本質部分の実装だけに集中できる。
         </P>
         <P>
@@ -139,7 +139,7 @@ export const Article20211222: React.VFC<Props> = memo(() => {
       <Divider />
       <P>
         自分で開発せずとも、既に
-        <GlobalLink href="https://github.com/juliencrn/usehooks-ts">usehooks-ts</GlobalLink>
+        <GLink href="https://github.com/juliencrn/usehooks-ts">usehooks-ts</GLink>
         というライブラリに<code>useLocalStorage</code>
         というフックがあった。このフックは想像以上の出来で、別の場所で書き換えられた値の変更も検知できるようだ。
       </P>

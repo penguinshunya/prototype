@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import Latex from "../../../../atoms/latex";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -14,7 +14,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
       <P>
-        <GlobalLink href="https://mui.com/getting-started/installation/">MUI</GlobalLink>
+        <GLink href="https://mui.com/getting-started/installation/">MUI</GLink>
         を試している。バージョンがv4からv5に上がり、より使いやすくなっている。
       </P>
       <P>
@@ -47,7 +47,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
         <SampleUseAsyncRetry />
       </Box>
       <Box sx={{ my: 2 }}>
-        <GlobalLink href="https://qiita.com/api/v2/docs">Qiita API v2ドキュメント - Qiita:Developer</GlobalLink>
+        <GLink href="https://qiita.com/api/v2/docs">Qiita API v2ドキュメント - Qiita:Developer</GLink>
       </Box>
       <P>
         ふと非同期処理を実装したくなったので、QiitaのAPIサーバーからユーザー情報を取得するボタンを作った。Reactをベースに日記を書くと、ふと実装したくなった機能をTypeScriptで気軽に実装できるのが嬉しい。
@@ -68,7 +68,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
       </P>
       <P>
         ということで、LaTeXが使えるようになった。NPMに<code>katex</code>というライブラリがあり、こちらを使用している。
-        <code>katex</code>の<GlobalLink href="https://github.com/KaTeX/KaTeX">GitHubリポジトリ</GlobalLink>
+        <code>katex</code>の<GLink href="https://github.com/KaTeX/KaTeX">GitHubリポジトリ</GLink>
         のスター数は14,600を超えているため信頼できる。<code>katex</code>
         単体ではReactに対応していないため、30行程度の小さなラッパーを作成した。
         <code>

@@ -3,8 +3,8 @@ import { memo } from "react";
 
 type Props = LinkProps;
 
-export const GlobalLink: React.VFC<Props> = memo(({ ...props }) => {
+export const GLink: React.VFC<Props> = memo(({ ...props }) => {
   return <Link target="_blank" {...props} />;
 });
 
-export default GlobalLink;
+export default GLink;

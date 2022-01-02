@@ -1,5 +1,5 @@
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -14,7 +14,7 @@ export const Article20110716: React.VFC<Props> = memo(() => {
         コースはPinkWindです。
       </P>
       <P>
-        <GlobalLink href="http://zoome.jp/penguinshunya/diary/16">http://zoome.jp/penguinshunya/diary/16</GlobalLink>
+        <GLink href="http://zoome.jp/penguinshunya/diary/16">http://zoome.jp/penguinshunya/diary/16</GLink>
       </P>
       <P>宣伝おしまい。</P>
       <P>

@@ -1,6 +1,6 @@
 import { Box, Divider } from "@mui/material";
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import LocalLink from "../../../../atoms/local-link";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -12,9 +12,9 @@ export const Article20211225: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
       <P>
-        <GlobalLink href="https://jumpaku.hatenablog.com/entry/2019/09/17/Jumpaku_Othello">
+        <GLink href="https://jumpaku.hatenablog.com/entry/2019/09/17/Jumpaku_Othello">
           Jumpakuさんが公開されているオセロAPI
-        </GlobalLink>
+        </GLink>
         を、<LocalLink to="/article/982c9eaf-3b32-8f7b-3962-5283437e4048">この記事</LocalLink>
         で使わせていただいた。「Firestore」の白番でだけオセロAIが有効になる。現時点でログインできるのは僕だけなので、僕しかオセロAIの動きを確認できない。
       </P>
@@ -43,9 +43,9 @@ export const Article20211225: React.VFC<Props> = memo(() => {
       <Divider />
       <P>
         FirebaseでのGoogle Analyticsの使い方を調べているのだけど、その途中で、Google公式が
-        <GlobalLink href="https://support.google.com/firebase/answer/9267735">
+        <GLink href="https://support.google.com/firebase/answer/9267735">
           どのようなイベントを収集すれば良いか
-        </GlobalLink>
+        </GLink>
         についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
       </P>
       <Divider />

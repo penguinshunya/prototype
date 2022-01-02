@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
-import GlobalLink from "../../../../atoms/global-link";
+import GLink from "../../../../atoms/global-link";
 import { Image } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -95,7 +95,7 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         <br />
         zoomeに上げた僕の動画を参考にしてみてください。
         <br />
-        <GlobalLink href="http://zoome.jp/penguinshunya/">http://zoome.jp/penguinshunya/</GlobalLink>
+        <GLink href="http://zoome.jp/penguinshunya/">http://zoome.jp/penguinshunya/</GLink>
         <br />
         ご要望ありがとうございました。
       </P>
