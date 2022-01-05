@@ -52,6 +52,11 @@ from google.colab import drive
 drive.mount('/content/drive')
 `;
 
+const COMMANDS = `
+!unzip XXX.zip
+!7z e YYY.7z
+`;
+
 interface Props {}
 
 export const Article20220102: React.VFC<Props> = memo(() => {
@@ -117,6 +122,13 @@ export const Article20220102: React.VFC<Props> = memo(() => {
       <CodeBlock>!df -h drive</CodeBlock>
       <P>
         マウントしたdriveディレクトリの空き容量を確認するときは、上記コマンドを実行する。
+      </P>
+      <P>
+        ファイルを解凍するときは次のコマンドを実行する。
+      </P>
+      <CodeBlock>{COMMANDS.trim()}</CodeBlock>
+      <P>
+        <code>DataFrame</code>の<code>.describe()</code>メソッドを使ってデータの統計を表示。型を知りたいときは<code>.dtyles</code>プロパティを参照する。
       </P>
     </ArticleContent>
   );
