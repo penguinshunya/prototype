@@ -2,7 +2,7 @@ import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
 import Image from "../../../../atoms/image";
-import Latex from "../../../../atoms/latex";
+import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import image1 from "./images/1638514964487.png";
@@ -54,7 +54,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         </li>
         <li>
           GBDTの分類には<code>XGBClassifier</code>を使う。目的変数は
-          <Latex text="0" />か<Latex text="1" />
+          <L c="0" />か<L c="1" />
           の値をとる
         </li>
         <li>
@@ -81,7 +81,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <li>MAE: Mean Absolute Error</li>
         <li>これらは損失関数として利用しても問題なさそう</li>
         <li>分類の評価指標にはF1-score、logloss、AUCなどが使われる</li>
-        <li>loglossの計算式は<Latex text="-(y\log p + (1 - y) \log (1 - p))" />（<Latex text="y" />は実際の値、<Latex text="p" />は予測値）。実際に<Latex text="y" />に<Latex text="0, 1" />を代入するとわかる</li>
+        <li>loglossの計算式は<L c="-(y\log p + (1 - y) \log (1 - p))" />（<L c="y" />は実際の値、<L c="p" />は予測値）。実際に<L c="y" />に<L c="0, 1" />を代入するとわかる</li>
         <li>AUCは楽に理解できそうではなさそう</li>
         <li>マルチラベル分類は、二値分類をクラスの数だけ繰り返すのが一般的</li>
         <li>テーブルデータと画像と自然言語の3つを同時に扱うコンペがある</li>

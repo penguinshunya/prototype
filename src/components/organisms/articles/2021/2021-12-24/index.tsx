@@ -2,7 +2,7 @@ import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
 import Image from "../../../../atoms/image";
-import Latex from "../../../../atoms/latex";
+import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import holotree from "./images/holotree2.jpg";
@@ -50,11 +50,11 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       </P>
       <P>
         依存するもの
-        <Latex text="X" />が<Latex text="Y" />
+        <L c="X" />が<L c="Y" />
         に依存するとき、
-        <Latex text="Y" />
+        <L c="Y" />
         が信用できないものであれば
-        <Latex text="X" />
+        <L c="X" />
         に依存しないほうが良い。
       </P>
       <P>

@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
-import Latex from "../../../../atoms/latex";
+import L from "../../../../atoms/latex";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import SampleLoadingButton from "./SampleLoadingButton";
@@ -63,7 +63,7 @@ export const Article20211221: React.VFC<Props> = memo(() => {
       </P>
       <P>
         三平方の定理は
-        <Latex text={`c = \\pm\\sqrt{a^2 + b^2}`} />
+        <L c={`c = \\pm\\sqrt{a^2 + b^2}`} />
         である。
       </P>
       <P>

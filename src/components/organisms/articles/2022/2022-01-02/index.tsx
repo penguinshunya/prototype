@@ -1,7 +1,7 @@
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
 import GLink from "../../../../atoms/global-link";
-import Latex from "../../../../atoms/latex";
+import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -107,7 +107,7 @@ export const Article20220102: React.VFC<Props> = memo(() => {
       <CodeBlock>{SUMMARY.trim()}</CodeBlock>
       <P>
         <code>x_train</code>の各次元ごとの要素数は
-        <Latex text="2, 8, 8" />
+        <L c="2, 8, 8" />
         である。その順序を入れ替えるために<code>Permute</code>を使用している。これを次元の入れ替えと呼ぶ。次元の入れ替えと、記事内で出てくるchannel last、channel
         firstは何らかの関連性があるようだ。なぜチャンネルというものがあるんだろう？盤面を表すだけであれば、3種類の数を使えば2次元配列で表現できる。これを、わざわざ2つのチャンネルに分解して3次元で表す理由はなんだろう？
       </P>
