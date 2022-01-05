@@ -1,9 +1,11 @@
-import { Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
+import Image from "../../../../atoms/image";
 import Latex from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
+import image1 from "./images/1638514964487.png";
 
 interface Props {}
 
@@ -84,6 +86,35 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <li>マルチラベル分類は、二値分類をクラスの数だけ繰り返すのが一般的</li>
         <li>テーブルデータと画像と自然言語の3つを同時に扱うコンペがある</li>
         <li>外れ値かどうかの判定が難しそう</li>
+        <li>混合行列は4つの要素TP、TN、FP、FNからなる</li>
+        <li>loglossはcross entropyとも呼ばれる</li>
+        <li><GLink href="https://yaakublog.com/crossentropy_binarycrossentropy">Cross Entropy と Binary Cross Entropy の違い</GLink></li>
+        <li>目的関数と評価指標の違い。目的関数は微分可能でなければならないが、評価指標はそうではない（たぶん）</li>
+        <li>たとえば回帰タスクではRMSEが使えるが、MAEは使えないなど</li>
+        <li>loglossは目的関数として使用可能</li>
+        <li>評価指標に制限はほとんどない</li>
+        <li>評価指標を目的関数として使用できるケースは少ない</li>
+      </ul>
+      <P></P>
+      <Divider />
+      <P />
+      <ul>
+        <li>機械学習アルゴリズムは、教師あり学習と教師なし学習に分けられる</li>
+        <li>強化学習とレコメンドシステムは、機械学習アルゴリズムに含まれない</li>
+        <li>機械学習アルゴリズムは学習前のデータ収集や前処理が必要とされるが、強化学習はそれらを必要としない</li>
+        <li>強化学習の使用例は、オセロや将棋のAIである</li>
+      </ul>
+      <P>
+        <Box sx={{ mb: 1 }}>
+          <Image src={image1} width={456} />
+        </Box>
+        引用 : <GLink href="https://jp.mathworks.com/discovery/reinforcement-learning.html">強化学習 – これだけは知っておきたい3つのこと - MATLAB</GLink>
+      </P>
+      <ul>
+        <li>強化学習の複雑な問題は、ディープラーニングネットワークに依存している</li>
+        <li>強化学習は、一般的にサンプル効率が低いと考えられている。並列化により高速化できる</li>
+        <li>機械学習アルゴリズムの選択を正しく行えることが重要</li>
+        <li>教師あり学習で解く問題は、「回帰」と「分類」に分けられる</li>
       </ul>
     </ArticleContent>
   );
