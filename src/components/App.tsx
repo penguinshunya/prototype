@@ -1,5 +1,4 @@
 import { Box, Button, Container, Tooltip } from "@mui/material";
-import axios from "axios";
 import { useCallback, useContext } from "react";
 import Div100vh from "react-div-100vh";
 import { Route, Routes } from "react-router-dom";
@@ -16,7 +15,7 @@ import { BaseContext } from "./templates/Provider";
 interface Props {}
 
 export const App: React.VFC<Props> = () => {
-  const { error, showMessage } = useContext(BaseContext);
+  const { showMessage } = useContext(BaseContext);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [headerRef, { height }] = useMeasure<HTMLDivElement>();
 
@@ -26,14 +25,6 @@ export const App: React.VFC<Props> = () => {
     showMessage(`生成した UUID をコピーしました`);
   }, [showMessage]);
 
-  const handleClickButton = useCallback(async () => {
-    try {
-      await axios.post("http://localhost:4242/create-checkout-session");
-    } catch (e: unknown) {
-      return error(e);
-    }
-  }, [error]);
-
   return (
     <Div100vh
       style={{
@@ -42,7 +33,6 @@ export const App: React.VFC<Props> = () => {
         width: "100%",
       }}
     >
-      <Button onClick={handleClickButton}>Stripeのお支払ページのURLをサーバー側のログに出力（localhost限定）</Button>
       <Box
         ref={headerRef}
         sx={{

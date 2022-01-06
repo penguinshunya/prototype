@@ -46,12 +46,9 @@ export const ArticlesPage: React.VFC<Props> = memo(({ headerHeight }) => {
         <>
           <Box
             sx={{
-              bgcolor: "white",
               display: "flex",
               justifyContent: "space-between",
-              position: "sticky",
               py: 2,
-              top: headerHeight,
               zIndex: (theme) => theme.zIndex.appBar - 1,
             }}
           >

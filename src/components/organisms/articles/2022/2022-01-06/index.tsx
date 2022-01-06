@@ -98,11 +98,15 @@ export const Article20220106: React.VFC<Props> = memo(() => {
         />
       </Box>
       <ul>
-        <li>相関係数は次の式で求めることができる</li>
+        <li>
+          相関係数
+          <L c="\rho" />
+          は次の式で求めることができる
+        </li>
       </ul>
       <Box sx={{ my: 2 }}>
         <L
-          c="\mathrm{相関係数} = \frac{s_{xy}}{s_xs_y} = \frac{\frac{1}{N}\sum_{i=1}^{N}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\frac{1}{N}\sum_{i=1}^{N}{(x_i-\bar{x})^2}}\sqrt{\frac{1}{N}\sum_{i=1}^{N}{(y_i-\bar{y})^2}}}"
+          c="\rho = \frac{s_{xy}}{s_xs_y} = \frac{\frac{1}{N}\sum_{i=1}^{N}{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\frac{1}{N}\sum_{i=1}^{N}{(x_i-\bar{x})^2}}\sqrt{\frac{1}{N}\sum_{i=1}^{N}{(y_i-\bar{y})^2}}}"
           options={{ displayMode: true }}
         />
       </Box>
@@ -135,9 +139,11 @@ export const Article20220106: React.VFC<Props> = memo(() => {
         <li>マルチクラスloglossは、正解でないクラスの確率は完全に無視する</li>
         <li>
           ROC曲線とAUCについては
-          <GLink href="https://tech-blog.optim.co.jp/entry/2021/05/31/100000">こちらのページ</GLink>がわかりやすいと思う
+          <GLink href="https://tech-blog.optim.co.jp/entry/2021/05/31/100000">こちらのページ</GLink>
+          がわかりやすいと思う。まだ理解できていない
         </li>
       </ul>
+      <P>sklearnのパイプラインが気になる。</P>
     </ArticleContent>
   );
 });

@@ -23,6 +23,19 @@ export const L: React.FC<Props> = memo(({ c: content, options }) => {
     }
   }, [content, options]);
 
+  if (options?.displayMode) {
+    return (
+      <div
+        style={{
+          maxWidth: "100%",
+          overflow: "auto",
+        }}
+      >
+        <span dangerouslySetInnerHTML={{ __html }} />
+      </div>
+    );
+  }
+
   return <span dangerouslySetInnerHTML={{ __html }} />;
 });
 
