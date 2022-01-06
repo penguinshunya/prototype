@@ -8,8 +8,7 @@ import ConwaysGameOfLife from "../../organisms/life-game/LifeGame";
 import SampleOthelloByLocalStorage from "../../organisms/othello/SampleOthelloByLocalStorage";
 import SampleOthelloByState from "../../organisms/othello/SampleOthelloByState";
 
-interface Props {
-}
+interface Props {}
 
 export const PrototypesPage: React.VFC<Props> = memo(() => {
   return (

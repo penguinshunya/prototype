@@ -43,9 +43,7 @@ export const Article20211225: React.VFC<Props> = memo(() => {
       <Divider />
       <P>
         FirebaseでのGoogle Analyticsの使い方を調べているのだけど、その途中で、Google公式が
-        <GLink href="https://support.google.com/firebase/answer/9267735">
-          どのようなイベントを収集すれば良いか
-        </GLink>
+        <GLink href="https://support.google.com/firebase/answer/9267735">どのようなイベントを収集すれば良いか</GLink>
         についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
       </P>
       <Divider />

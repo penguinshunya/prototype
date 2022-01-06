@@ -84,7 +84,8 @@ export const Article20220102: React.VFC<Props> = memo(() => {
         型としか表示されず、何者かがわからない。ローカルにPythonの環境を作ってもよいが、その際に問題に遭遇した場合に手が止まってしまうので今は避けておく。
         <code>df[""]</code>は<code>Series</code>型なので、それに<code>str</code>
         メソッドまたはプロパティが存在するかどうかをネットで調べる。どうやら<code>str</code>
-        には沢山のメソッドが存在しており、これを呼び出すことにより、データを文字列として処理した新たな<code>DataFrame</code>
+        には沢山のメソッドが存在しており、これを呼び出すことにより、データを文字列として処理した新たな
+        <code>DataFrame</code>
         を生成することができるようだ。具体的には、<code>str.extractall</code>
         メソッドを呼び出すと、正規表現に一致してキャプチャされた文字列を含む新たな<code>DataFrame</code>
         を生成する。生成された<code>DataFrame</code>
@@ -108,7 +109,8 @@ export const Article20220102: React.VFC<Props> = memo(() => {
       <P>
         <code>x_train</code>の各次元ごとの要素数は
         <L c="2, 8, 8" />
-        である。その順序を入れ替えるために<code>Permute</code>を使用している。これを次元の入れ替えと呼ぶ。次元の入れ替えと、記事内で出てくるchannel last、channel
+        である。その順序を入れ替えるために<code>Permute</code>
+        を使用している。これを次元の入れ替えと呼ぶ。次元の入れ替えと、記事内で出てくるchannel last、channel
         firstは何らかの関連性があるようだ。なぜチャンネルというものがあるんだろう？盤面を表すだけであれば、3種類の数を使えば2次元配列で表現できる。これを、わざわざ2つのチャンネルに分解して3次元で表す理由はなんだろう？
       </P>
       <P>
@@ -117,18 +119,17 @@ export const Article20220102: React.VFC<Props> = memo(() => {
       </P>
       <CodeBlock>{FILE_UPLOAD.trim()}</CodeBlock>
       <P>
-        上記コードを実行すると、Google DriveをGoogle Colabにマウントできる。ノートブック上で<code>!ls "/content/drive"</code>を実行すると内容を表示できる。<code>!ls</code>のように、先頭に<code>!</code>をつけることでLinuxコマンドを実行できる。
+        上記コードを実行すると、Google DriveをGoogle Colabにマウントできる。ノートブック上で
+        <code>!ls "/content/drive"</code>を実行すると内容を表示できる。<code>!ls</code>のように、先頭に<code>!</code>
+        をつけることでLinuxコマンドを実行できる。
       </P>
       <CodeBlock>!df -h drive</CodeBlock>
-      <P>
-        マウントしたdriveディレクトリの空き容量を確認するときは、上記コマンドを実行する。
-      </P>
-      <P>
-        ファイルを解凍するときは次のコマンドを実行する。
-      </P>
+      <P>マウントしたdriveディレクトリの空き容量を確認するときは、上記コマンドを実行する。</P>
+      <P>ファイルを解凍するときは次のコマンドを実行する。</P>
       <CodeBlock>{COMMANDS.trim()}</CodeBlock>
       <P>
-        <code>DataFrame</code>の<code>.describe()</code>メソッドを使ってデータの統計を表示。型を知りたいときは<code>.dtyles</code>プロパティを参照する。
+        <code>DataFrame</code>の<code>.describe()</code>メソッドを使ってデータの統計を表示。型を知りたいときは
+        <code>.dtyles</code>プロパティを参照する。
       </P>
     </ArticleContent>
   );

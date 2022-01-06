@@ -27,14 +27,15 @@ code {
   padding-left: 4px;
   padding-right: 4px;
   background-color: #e8e8e8;
+  word-break: break-all;
 }
 
 ol,
 ul {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   list-style-position: inside;
-  text-indent: -20px;
-  padding-left: 24px;
+  text-indent: -20.5px;
+  padding-left: 25px;
 }
 
 .katex {

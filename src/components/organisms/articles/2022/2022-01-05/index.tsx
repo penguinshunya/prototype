@@ -81,14 +81,26 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <li>MAE: Mean Absolute Error</li>
         <li>これらは損失関数として利用しても問題なさそう</li>
         <li>分類の評価指標にはF1-score、logloss、AUCなどが使われる</li>
-        <li>loglossの計算式は<L c="-(y\log p + (1 - y) \log (1 - p))" />（<L c="y" />は実際の値、<L c="p" />は予測値）。実際に<L c="y" />に<L c="0, 1" />を代入するとわかる</li>
+        <li>
+          loglossの計算式は
+          <L c="-(y\log p + (1 - y) \log (1 - p))" />（<L c="y" />
+          は実際の値、
+          <L c="p" />
+          は予測値）。実際に
+          <L c="y" />に<L c="0, 1" />
+          を代入するとわかる
+        </li>
         <li>AUCは楽に理解できそうではなさそう</li>
         <li>マルチラベル分類は、二値分類をクラスの数だけ繰り返すのが一般的</li>
         <li>テーブルデータと画像と自然言語の3つを同時に扱うコンペがある</li>
         <li>外れ値かどうかの判定が難しそう</li>
         <li>混合行列は4つの要素TP、TN、FP、FNからなる</li>
         <li>loglossはcross entropyとも呼ばれる</li>
-        <li><GLink href="https://yaakublog.com/crossentropy_binarycrossentropy">Cross Entropy と Binary Cross Entropy の違い</GLink></li>
+        <li>
+          <GLink href="https://yaakublog.com/crossentropy_binarycrossentropy">
+            Cross Entropy と Binary Cross Entropy の違い
+          </GLink>
+        </li>
         <li>目的関数と評価指標の違い。目的関数は微分可能でなければならないが、評価指標はそうではない（たぶん）</li>
         <li>たとえば回帰タスクではRMSEが使えるが、MAEは使えないなど</li>
         <li>loglossは目的関数として使用可能</li>
@@ -108,7 +120,10 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <Box sx={{ mb: 1 }}>
           <Image src={image1} width={456} />
         </Box>
-        引用 : <GLink href="https://jp.mathworks.com/discovery/reinforcement-learning.html">強化学習 – これだけは知っておきたい3つのこと - MATLAB</GLink>
+        引用 :{" "}
+        <GLink href="https://jp.mathworks.com/discovery/reinforcement-learning.html">
+          強化学習 – これだけは知っておきたい3つのこと - MATLAB
+        </GLink>
       </P>
       <ul>
         <li>強化学習の複雑な問題は、ディープラーニングネットワークに依存している</li>
