@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
 import GLink from "../../../../atoms/global-link";
@@ -60,9 +60,21 @@ export const Article20220107: React.VFC<Props> = memo(() => {
       <ul>
         <li>次の自作関数を作成したが、学習が進まなかった。eval-maeがずっと同じ値になる</li>
       </ul>
-      <Box sx={{ my: 1 }}>
+      <Box sx={{ mb: 2, mt: 1 }}>
         <CodeBlock>{PSEUDO_HUBER.trim()}</CodeBlock>
       </Box>
+      <Divider />
+      <P>最近は箇条書きの日記ばかり書いていた、久しぶりに文章の日記を書く。</P>
+      <P>
+        機械学習には様々なアルゴリズムが存在するため、問題に対して適切なアルゴリズムを選択する能力が必要である。ここ数日間は機械学習の勉強に没頭したため、テーブルデータの回帰であればほとんど何も見ずに行えるようになった。分類問題はあまり行っていないので自信がない。
+      </P>
+      <P>
+        回帰には<code>xgboost</code>
+        というライブラリを使用している。このライブラリの行っていることは良くわかっていない。これまで試してきた回帰の中では
+        <code>xgb.train()</code>
+        が一番良いスコアが出るという理由だ。あと、Kaggleで人気というのも大きい。他にもLightGBMというライブラリがあるらしい。また使ってみようと思う。
+      </P>
+      <P>機械学習の知識を使って何か面白いことはできないだろうか。今は深夜の1:30。眠気がやってきたので寝る。</P>
     </ArticleContent>
   );
 });
