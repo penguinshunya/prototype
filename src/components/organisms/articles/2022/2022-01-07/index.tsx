@@ -1,6 +1,7 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
@@ -69,7 +70,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
       </Box>
       <ul>
         <li>戻り値の1つ目は微分した値を、2つ目は二階微分した値を返しているらしい</li>
-        <li>上記のような自作の目的関数は次のように使用する</li>
+        <li>上記の目的関数は次のように使用する</li>
       </ul>
       <Box sx={{ my: 1 }}>
         <CodeBlock>{USE_CUSTOM_OBJECTIVE_FUNCTION.trim()}</CodeBlock>
@@ -80,7 +81,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
       <Box sx={{ mb: 2, mt: 1 }}>
         <CodeBlock>{PSEUDO_HUBER.trim()}</CodeBlock>
       </Box>
-      <Divider />
+      <MyDivider />
       <P>最近は箇条書きの日記ばかり書いていた、久しぶりに文章の日記を書く。</P>
       <P>
         機械学習には様々なアルゴリズムが存在するため、問題に対して適切なアルゴリズムを選択する能力が必要である。ここ数日間は機械学習の勉強に没頭したため、テーブルデータの回帰であればほとんど何も見ずに行えるようになった。分類問題はあまり行っていないので自信がない。
@@ -92,7 +93,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         が一番良いスコアが出る。あと、Kaggleで人気というのも大きい。他にもLightGBMというライブラリがあるらしい。また使ってみようと思う。
       </P>
       <P>機械学習の知識を使って何か面白いことはできないだろうか。今は深夜の1:30。眠気がやってきたので寝る。</P>
-      <Divider />
+      <MyDivider />
       <P>呟きながらでないとチュートリアルコードを読み終える自信がないため、こちらに呟きながら読んでいく。</P>
       <ul>
         <li>
@@ -130,7 +131,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         2つ目の画像は、<code>.kde()</code>に<code>xlim=(-4, 4)</code>
         という引数を渡したときの結果である。確かに正規分布の形をしているようだ。思っていたよりも途中の傾きが真っ直ぐである。
       </P>
-      <Divider />
+      <MyDivider />
       <P>引き続きチュートリアルコードを読む。</P>
       <ul>
         <li>
@@ -184,7 +185,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         </li>
         <li>
           <strong>
-            <code>df.apply(row, axis=1)</code>を使うことで、各行の情報を使って新たな<code>Series, DataFrame</code>
+            <code>df.apply(func, axis=1)</code>を使うことで、各行の情報を使って新たな<code>Series, DataFrame</code>
             を作れる
           </strong>
         </li>
@@ -205,8 +206,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
           特徴量生成で、「各市町村の最寄り駅からの距離の個数、平均、最小値、最大値」を作っている。これらのデータを各行に持たせることでどういった効果を狙っているかがわからない
         </li>
       </ul>
-      <P></P>
-      <Divider />
+      <MyDivider />
       <P>特徴量生成はここまで。ここからはモデル構築。</P>
       <ul>
         <li>
@@ -227,9 +227,8 @@ export const Article20220107: React.VFC<Props> = memo(() => {
           Importanceというのは、機械学習において重要な数値らしい
         </li>
       </ul>
-      <P></P>
-      <Divider />
-      <P>チュートリアルコードを読み終えた。以下箇条書きのまとめ。</P>
+      <MyDivider />
+      <P>チュートリアルコードを読み終えた。これまで書いた箇条書きをまとめる。</P>
       <P>
         <code>lightgbm</code>では、<code>lgb.train()</code>に<code>categorical_feature</code>
         引数を渡すことでカテゴリ変数をLightGBMに認識させられる。カテゴリ変数はint型またはstring型でなければならないが、
@@ -246,7 +245,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         の存在を知れたのは大きかった。このメソッドを使うことで、行情報を使って簡単に、新たな列を作ることができる。
         <code>.map()</code>よりも使いやすそうなので、これからは<code>.apply()</code>を頻繁に使うことになるだろう。
       </P>
-      <Divider />
+      <MyDivider />
       <P>疑問点もいくつか出てきた。</P>
       <P>
         各行に「自分の属する市区町村の数値データの個数、平均、最小値、最大値」を持たせている。なぜこれらのデータを持たせているのだろう。
@@ -256,7 +255,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         Importanceの値を出力している。LightGBMにも<code>lightgbm.plot_importance()</code>
         という関数が用意されている。この情報を得ることが重要な理由は何か。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         チュートリアルコードをしっかりと読むことで、様々な知識が得られた。次は何をするのが良いだろう。色々と選択肢がある。CNNを試す、RNNを試す、Kaggleを使う、courseraの続きを見る、Nishikaのスコアを上げる努力をする。今は喫茶店にいる。これらのことは、外で歩きながら考えることにする。
       </P>

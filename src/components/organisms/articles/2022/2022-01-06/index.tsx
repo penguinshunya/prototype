@@ -1,5 +1,6 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
@@ -42,8 +43,7 @@ export const Article20220106: React.VFC<Props> = memo(() => {
           <code>np.clip(np.linspace(-1, 2, 7), 0, 1)</code>は<code>[0, 0, 0, 0.5, 1, 1, 1]</code>である
         </li>
       </ul>
-      <P></P>
-      <Divider />
+      <MyDivider />
       <P>
         Google Colabで<code>df.plot.</code>と入力すると候補が表示される。候補は次の11個存在する。
       </P>
@@ -84,8 +84,7 @@ export const Article20220106: React.VFC<Props> = memo(() => {
           <code>scatter</code> : 散布図
         </li>
       </ul>
-      <P></P>
-      <Divider />
+      <MyDivider />
       <P>『Kaggleで勝つデータ分析の技術』を引き続き読んでいく。</P>
       <ul>
         <li>裾の重い分布を持つ目的変数の評価指標には、極端な値の影響を抑えるためにRMSEではなくRMSLEが用いられる</li>

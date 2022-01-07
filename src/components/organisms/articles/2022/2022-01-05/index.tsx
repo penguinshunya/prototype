@@ -1,5 +1,6 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
@@ -37,7 +38,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
       <P>
         ただ、このテキトーさでも、ニューラルネットワークであればある程度のスコアが出ることがわかった。とりあえずはこのままでも良いかもしれない。今は画像認識と自然言語に興味があるので、CNNとRNNの使い方を勉強してみる。
       </P>
-      <Divider />
+      <MyDivider />
       <P>『Kaggleで勝つデータ分析の技術』を読んだときのメモ</P>
       <ul>
         <li>予測対象は何かを理解せずにコードを書き始めるのは流石にまずい</li>
@@ -72,9 +73,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         </li>
         <li>レコード間に相関がある場合は、リークと呼ばれる適切なバリデーションを行えない事象を引き起こす</li>
       </ul>
-      <P></P>
-      <Divider />
-      <P></P>
+      <MyDivider />
       <ul>
         <li>RMSEやMAEは回帰の評価指標の一種</li>
         <li>RMSEはMSEのルートを取ったもので、誤差の単位が元の値と等しい（RMSE: Root Mean Squared Error）</li>
@@ -107,9 +106,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <li>評価指標に制限はほとんどない</li>
         <li>評価指標を目的関数として使用できるケースは少ない</li>
       </ul>
-      <P></P>
-      <Divider />
-      <P />
+      <MyDivider />
       <ul>
         <li>機械学習アルゴリズムは、教師あり学習と教師なし学習に分けられる</li>
         <li>強化学習とレコメンドシステムは、機械学習アルゴリズムに含まれない</li>

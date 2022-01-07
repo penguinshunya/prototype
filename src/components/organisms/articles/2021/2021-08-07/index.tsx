@@ -1,5 +1,5 @@
-import { Divider } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -10,7 +10,7 @@ export const Article20210807: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
       <P>小林さんちのメイドラゴン</P>
-      <Divider />
+      <MyDivider />
       <P>
         可愛らしいフォント
         <br />

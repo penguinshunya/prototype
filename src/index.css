@@ -13,7 +13,7 @@ html {
 }
 
 blockquote {
-  background-color: #e8e8e8;
+  background-color: hsl(44, 24%, 96%);
   padding: 0.5em;
 }
 
@@ -26,7 +26,8 @@ pre {
 code {
   padding-left: 4px;
   padding-right: 4px;
-  background-color: #e8e8e8;
+  /* background-color: #e8e8e8; */
+  background-color: hsl(222, 24%, 96%);
   word-break: break-all;
 }
 
@@ -39,7 +40,7 @@ ul {
 }
 
 li {
-  line-height: 1.72;
+  line-height: 1.69;
 }
 
 .katex {

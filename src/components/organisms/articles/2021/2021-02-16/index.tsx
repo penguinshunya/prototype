@@ -1,5 +1,5 @@
-import { Divider } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
@@ -9,7 +9,7 @@ export const Article20210216: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
       <P>Google App Engineが好き。</P>
-      <Divider />
+      <MyDivider />
       <P>
         GAEを使えば、自分で認証機能を実装することなく信頼できる認証システムを無料で使うことができる。この認証システムをIdentity-Aware
         Proxy（IAP）と呼ぶ。
@@ -23,7 +23,7 @@ export const Article20210216: React.VFC<Props> = memo(() => {
       <P>
         Googleアカウントは一個人ではなく、グループやサービスが所持することがある。このようなGoogleアカウントのIDは、見た目はメールアドレスの形式だがメールボックスは存在しない。そして、グループが所持するGoogleアカウントに個人の所持するGoogleアカウントを複数紐付けることができる。こうすることで、集団に対してのロールの割り当て回数が、グループの所持するGoogleアカウントへのロールの割り当て1回で済ませることができる。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         リクエストの形式などが正しくない場合は、その旨をクライアントに伝える必要がある。それに対してサーバー側が原因のエラーはクライアントに知らせる必要はない。サーバーのログとして残すのが適切である。
       </P>

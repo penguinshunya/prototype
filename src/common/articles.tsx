@@ -240,14 +240,14 @@ export const articles: ArticleType[] = [
     id: "3942be12-79e6-4658-a697-9fd5d43aef6e",
     Content: Article20220106,
     date: dayjs("2022-01-06"),
-    tags: new Set([]),
+    tags: new Set(["機械学習"]),
     isPrivate: true,
   },
   {
     id: "ae5c3c71-0755-45c6-95c0-c780e92e46bc",
     Content: Article20220107,
     date: dayjs("2022-01-07"),
-    tags: new Set([]),
+    tags: new Set(["機械学習"]),
     isPrivate: true,
   },
 ];
