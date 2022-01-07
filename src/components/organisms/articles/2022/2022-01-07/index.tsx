@@ -53,6 +53,48 @@ df = pd.concat([df1, df2])
 df.reset_index(drop=True)
 `;
 
+const REINFORCEMENT_LEARNING = `
+!pip install keras-rl2 gym
+
+import numpy as np
+import gym
+
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Flatten
+from keras.optimizer_v2.adam import Adam
+
+from rl.agents.dqn import DQNAgent
+from rl.policy import BoltzmannQPolicy
+from rl.memory import SequentialMemory
+
+ENV_NAME = 'CartPole-v0'
+env = gym.make(ENV_NAME)
+np.random.seed(123)
+env.seed(123)
+nb_actions = env.action_space.n
+
+model = Sequential()
+model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
+model.add(Dense(16))
+model.add(Activation("relu"))
+model.add(Dense(16))
+model.add(Activation("relu"))
+model.add(Dense(16))
+model.add(Activation("relu"))
+model.add(Dense(nb_actions))
+model.add(Activation("linear"))
+
+memory = SequentialMemory(limit=50000, window_length=1)
+policy = BoltzmannQPolicy()
+
+dqn = DQNAgent(model=model, memory=memory, nb_actions=nb_actions, nb_steps_warmup=10, target_model_update=1e-2, policy=policy)
+dqn.compile(Adam(learning_rate=1e-3), metrics=['mae'])
+history = dqn.fit(env, nb_steps=50000, verbose=2)
+
+dqn.save_weights('dqn_{}_weights.h5f'.format(ENV_NAME), overwrite=True)
+dqn.test(env, nb_episodes=5, visualize=False)
+`;
+
 interface Props {}
 
 export const Article20220107: React.VFC<Props> = memo(() => {
@@ -129,7 +171,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
       </Box>
       <P sx={{ mt: 1 }}>
         2つ目の画像は、<code>.kde()</code>に<code>xlim=(-4, 4)</code>
-        という引数を渡したときの結果である。確かに正規分布の形をしているようだ。思っていたよりも途中の傾きが真っ直ぐである。
+        を渡したときの結果である。確かに正規分布の形をしているようだ。個人的には、思っていたよりも途中の傾きが真っ直ぐに見える。
       </P>
       <MyDivider />
       <P>引き続きチュートリアルコードを読む。</P>
@@ -259,6 +301,45 @@ export const Article20220107: React.VFC<Props> = memo(() => {
       <P>
         チュートリアルコードをしっかりと読むことで、様々な知識が得られた。次は何をするのが良いだろう。色々と選択肢がある。CNNを試す、RNNを試す、Kaggleを使う、courseraの続きを見る、Nishikaのスコアを上げる努力をする。今は喫茶店にいる。これらのことは、外で歩きながら考えることにする。
       </P>
+      <MyDivider />
+      <P>
+        Andrew
+        Ngさんのコースでは強化学習の講義は行われないため、強化学習は後回しでも良いと思っていた。しかし、どうしても強化学習の仕組みが気になるので、自分で調べることにした。僕の記憶が誤りでなければ、強化学習はディープラーニングを前提としているところがあるので、Kerasが使えるGoogle
+        Colabでも強化学習の実装は可能だと思う。まずは「Keras 強化学習」で検索してみる。
+      </P>
+      <P>
+        <GLink href="https://github.com/keras-rl/keras-rl">keras-rl</GLink>
+        を使えばサクッと強化学習を試せるようだ。Google Colab上で使ってみる。
+        <GLink href="https://www.tcom242242.net/entry/ai-2/%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92/keras-rl-sample/">
+          こちらの記事
+        </GLink>
+        を参考にする。
+      </P>
+      <P>
+        DenseとActivationはよく見るけれど、きちんと調べたことがなかった。これから調べる。Dense層は全結合層とも呼ばれる。そちらの呼び方だとすぐに理解できた。Activation層では非線形変換が行われる。Dense層で行われる線形変換をどれだけ繰り返しても結果が線形にしかならないため、それを避けるために非線形変換であるActivation層を間に挟む。Activation層で行われる変換を活性化関数と呼ぶ。活性化の英語がActivationであるためActivation層と呼ばれる。Activation層のノード数はひとつ前のノード数と等しい。ただただノードの持つ値に活性化関数を適用するだけである。
+      </P>
+      <P>
+        バージョンの違いによるエラーをいくつか解決することで、先程の記事の手順で強化学習を実装することができた。今回行った強化学習の対象はCartPole課題と呼ばれるもので、手のひらに乗った縦長の棒を落とさないようにすることに似ている。落とさないように手のひらを左右に動かすことを機械に学ばせる。自力で実装しようとすると大変そうだが、Pythonモジュールの
+        <code>gym</code>内に必要な実装のほとんどが含まれている。今回はこれを使用する。
+      </P>
+      <P>
+        無事強化学習を実装し終えたが、まだ全然自分で実装している感じがしない。ある程度自分でも実装できるように、写経したコードの意味を理解していこうと思う。
+      </P>
+      <P>notebookの内容は次のようになっている。</P>
+      <CodeBlock>{REINFORCEMENT_LEARNING.trim()}</CodeBlock>
+      <P>
+        <code>model</code>の出力層のノード数は<code>nb_actions</code>
+        になっている。この値は、エージェントが次に取れる行動の個数である。CartPole課題では左右の2通りであるため、
+        <code>nb_actions</code>も2になる。
+      </P>
+      <P>
+        keras-rlの<code>Policy</code>クラスは抽象クラスで、<code>select_action</code>
+        メソッドの実装のみを具象クラスに求める。具象クラスのひとつ<code>BoltzmannQPolicy</code>
+        は、引数としてQ値を受け取り、戻り値として<code>nb_actions</code>
+        個のランダムな値を返す（間違っているかもしれない）。
+      </P>
+      <P>集中力がなくなってきたので少し休憩する。</P>
+      <MyDivider />
     </ArticleContent>
   );
 });

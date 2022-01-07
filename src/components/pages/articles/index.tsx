@@ -55,7 +55,7 @@ export const ArticlesPage: React.VFC<Props> = memo(({ headerHeight }) => {
             <div>{hasPrev && <LocalLink to={`?page=${pageNumber - 1}`}>前の{PAGE_COUNT}件</LocalLink>}</div>
             <div>{hasNext && <LocalLink to={`?page=${pageNumber + 1}`}>次の{PAGE_COUNT}件</LocalLink>}</div>
           </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 10, pb: 8, pt: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 10, pb: 8 }}>
             {articles.map((a) => (
               <Article key={a.id} isTitleLink {...a} />
             ))}
