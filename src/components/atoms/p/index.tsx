@@ -8,7 +8,8 @@ export const P: React.VFC<Props> = memo(({ sx, ...props }) => {
     <Typography
       {...props}
       sx={{
-        my: 2,
+        lineHeight: 1.72,
+        my: 3,
         ...sx,
       }}
     />

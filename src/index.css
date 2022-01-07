@@ -38,6 +38,10 @@ ul {
   padding-left: 25px;
 }
 
+li {
+  line-height: 1.72;
+}
+
 .katex {
   padding-left: 2px;
   padding-right: 2px;

@@ -18,22 +18,22 @@ export const Article20110801: React.VFC<Props> = memo(() => {
         詳細はこちら→
         <GLink href="http://www.newx2.com/pangya/">http://www.newx2.com/pangya/</GLink>
       </P>
-      <P sx={{ mb: 0.5 }}>1回戦目</P>
+      <P sx={{ mb: 1 }}>1回戦目</P>
       <Box>
         <Img src={image1} />
       </Box>
-      <P sx={{ mt: 0.5 }}>
+      <P sx={{ mt: 1 }}>
         8Hは、7mの素BIを外しました。
         <br />
         ワイド画面・フルスクリーンモードでのモカズラシは、旗の輪郭の濃さを見分けるのが難しいです。
         <br />
         これからは、そういう状況でも正確にモカズラシができるようにしないといけないです。
       </P>
-      <P sx={{ mb: 0.5 }}>2回戦目</P>
+      <P sx={{ mb: 1 }}>2回戦目</P>
       <Box>
         <Img src={image2} />
       </Box>
-      <P sx={{ mt: 0.5 }}>
+      <P sx={{ mt: 1 }}>
         7Hはパンミでした。
         <br />
         風がとても良かったので、29分11秒で回り切ることができました。

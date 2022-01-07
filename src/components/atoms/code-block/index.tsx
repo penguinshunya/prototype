@@ -9,6 +9,7 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
       component="pre"
       sx={{
         backgroundColor: "#e8e8e8",
+        lineHeight: 1.72,
         maxWidth: "100%",
         overflow: "auto",
         p: 1,

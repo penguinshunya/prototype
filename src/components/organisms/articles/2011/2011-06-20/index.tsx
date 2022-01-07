@@ -36,7 +36,7 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         <br />
         『風角度の読み方②』に書いた方法は、短時間で正確な風角度が読めるのでおススメです。
       </P>
-      <P sx={{ mb: 0.5 }}>
+      <P sx={{ mb: 1 }}>
         ②最大傾斜の比率を求める
         <br />
         この作業をするには、最大傾斜の形の特徴を知っておく必要があります。
@@ -45,7 +45,7 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         <Img src={q1} />
         <Img src={q2} />
       </Box>
-      <P sx={{ mt: 0.5 }}>
+      <P sx={{ mt: 1 }}>
         この2つの画像の打点は、左右方向には一切動かしていません。
         <br />
         この時、どちらが最大傾斜かというと、右の傾斜です。
@@ -54,12 +54,12 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         <br />
         打点を定規代わりにするときに注意が必要です。
       </P>
-      <P sx={{ mb: 0.5 }}>おおよその比率を求める方法を説明します。</P>
+      <P sx={{ mb: 1 }}>おおよその比率を求める方法を説明します。</P>
       <Box sx={{ gap: 1, display: "flex", flexWrap: "wrap" }}>
         <Img src={q3} />
         <Img src={abcd} />
       </Box>
-      <P sx={{ mt: 0.5 }}>
+      <P sx={{ mt: 1 }}>
         このような最大傾斜の場合、a, b, c, dの長さの合計が、最大傾斜のおおよその比率になります。
         <br />
         a = 6[pix], b = 13[pix], c = 18[pix], d = 26[pix]
