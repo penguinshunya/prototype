@@ -1,7 +1,7 @@
 import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
-import Image from "../../../../atoms/image";
+import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -118,7 +118,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
       </ul>
       <P>
         <Box sx={{ mb: 1 }}>
-          <Image src={image1} width={456} />
+          <Img src={image1} width={456} />
         </Box>
         引用 :{" "}
         <GLink href="https://jp.mathworks.com/discovery/reinforcement-learning.html">

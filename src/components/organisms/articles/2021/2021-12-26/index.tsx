@@ -1,6 +1,6 @@
 import { Box, Divider } from "@mui/material";
 import { memo } from "react";
-import Image from "../../../../atoms/image";
+import Img from "../../../../atoms/image";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import tree from "./images/tree.jpg";
@@ -54,7 +54,7 @@ export const Article20211226: React.VFC<Props> = memo(() => {
         昨日はホロライブツリーを見に行った。行く数時間前に光の演出が24日までだと知って悲しんでいたのだけど、夜のツリーをまだ見ていなかったので、せっかくなので見に行くことにした。すると、みこだにぇが現れたり、YAGOOが発電機でツリーをライトアップしたりと、様々なサプライズがあった。次の写真は、YAGOOがライトアップした後のツリーの写真である。
       </P>
       <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
-        <Image src={tree} width={320} />
+        <Img src={tree} width={320} />
       </Box>
       <P>このようなイベントがあればまた参加したい。あと、絵描きになってこのコミュニティに参加したいと思った。</P>
     </ArticleContent>

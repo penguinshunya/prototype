@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
-import { Image } from "../../../../atoms/image";
+import { Img } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import image1 from "./images/1-08064.jpeg";
@@ -20,7 +20,7 @@ export const Article20110801: React.VFC<Props> = memo(() => {
       </P>
       <P sx={{ mb: 0.5 }}>1回戦目</P>
       <Box>
-        <Image src={image1} />
+        <Img src={image1} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         8Hは、7mの素BIを外しました。
@@ -31,7 +31,7 @@ export const Article20110801: React.VFC<Props> = memo(() => {
       </P>
       <P sx={{ mb: 0.5 }}>2回戦目</P>
       <Box>
-        <Image src={image2} />
+        <Img src={image2} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         7Hはパンミでした。

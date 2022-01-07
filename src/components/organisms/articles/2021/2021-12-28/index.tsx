@@ -1,6 +1,6 @@
 import { Box, Divider } from "@mui/material";
 import { memo } from "react";
-import Image from "../../../../atoms/image";
+import Img from "../../../../atoms/image";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import star from "./images/star.png";
@@ -53,7 +53,7 @@ export const Article20211228: React.VFC<Props> = memo(() => {
         正直言うと、今はプログラミングよりもイラスト作成のほうに興味がある。ということで、毎日イラストを作成することに決めた。イラストの形はどんなものでも良い。単純な三角形でも良いし、四角形でも良い。とりあえず何かを完成させる。そしてここに公開する。単純な形であっても、キャラと組み合わせることで見栄えのするものになるかもしれない。
       </P>
       <Box sx={{ my: 2 }}>
-        <Image src={star} />
+        <Img src={star} />
       </Box>
       <P>星のアイコンを作った。たったこれだけの画像を作るだけでも様々が知識が必要なことがわかった。</P>
       <P>

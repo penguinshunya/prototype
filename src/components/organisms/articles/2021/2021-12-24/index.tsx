@@ -1,7 +1,7 @@
 import { Box, Divider } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
-import Image from "../../../../atoms/image";
+import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -72,7 +72,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       </P>
       <Divider />
       <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
-        <Image src={holotree} width={256} />
+        <Img src={holotree} width={256} />
       </Box>
       <P sx={{ my: 0 }}>秋葉原のクリスマスツリーを見てきた。</P>
       <P>
@@ -89,7 +89,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
         のイベントブースを見つけた。
       </P>
       <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
-        <Image src={wataten} width={256} />
+        <Img src={wataten} width={256} />
       </Box>
       <P>どうやら2022年に劇場版映画が公開されるようだ。それに先駆けて1ヶ月間ほど専用のショップが開かれる。</P>
       <P>

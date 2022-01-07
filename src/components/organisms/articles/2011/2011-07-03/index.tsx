@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
-import { Image } from "../../../../atoms/image";
+import { Img } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import pangya_724 from "./images/pangya_724.jpeg";
@@ -22,11 +22,11 @@ export const Article20110703: React.VFC<Props> = memo(() => {
       </P>
       <P sx={{ mb: 0.5 }}>①カップを画面中心にもってきて、最大拡大します</P>
       <Box>
-        <Image src={pangya_724} width={456} />
+        <Img src={pangya_724} width={456} />
       </Box>
       <P sx={{ mb: 0.5 }}>②その拡大率を維持したまま、カップの中心がゲージ100%の部分と重なるようにする</P>
       <Box>
-        <Image src={pangya_725} width={456} />
+        <Img src={pangya_725} width={456} />
       </Box>
       <P>
         これで正確にずらせています。
@@ -57,7 +57,7 @@ export const Article20110703: React.VFC<Props> = memo(() => {
         このずらしで左にゲージ50%分ずらして右にゲージ50%分ずらしても、画面の中心とカップの中心は重ならないからです。
       </P>
       <Box>
-        <Image src={pangya_724} width={456} />
+        <Img src={pangya_724} width={456} />
       </Box>
       <P sx={{ mt: 0.5 }}>261yピンでは、このようにずれが生じます。</P>
       <P sx={{ mt: 5 }}>

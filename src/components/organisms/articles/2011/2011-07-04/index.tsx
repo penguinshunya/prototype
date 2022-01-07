@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
-import { Image } from "../../../../atoms/image";
+import { Img } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import zurashi from "./images/zurashi.png";
@@ -13,7 +13,7 @@ export const Article20110704: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
       <Box>
-        <Image src={zurashi} />
+        <Img src={zurashi} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         直線ACを正確にずらす方法は、モカズラシです。
@@ -43,7 +43,7 @@ export const Article20110704: React.VFC<Props> = memo(() => {
         曲線を正確にずらそうとは考えないようにしましょう。
       </P>
       <Box>
-        <Image src={muri} />
+        <Img src={muri} />
       </Box>
       <P sx={{ mt: 0.5 }}>直線の連続のイメージ</P>
       <P>
@@ -81,7 +81,7 @@ export const Article20110704: React.VFC<Props> = memo(() => {
         つまり中心線はゲージ50%地点を通る縦線です。
       </P>
       <Box>
-        <Image src={center} width={456} />
+        <Img src={center} width={456} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         当たり前のようなことですが、こういう基本的なことを確認するのはとても大切なことです。

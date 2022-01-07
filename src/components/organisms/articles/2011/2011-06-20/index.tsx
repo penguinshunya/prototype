@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
 import GLink from "../../../../atoms/global-link";
-import { Image } from "../../../../atoms/image";
+import { Img } from "../../../../atoms/image";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import q3 from "./images/3bai.png";
@@ -42,8 +42,8 @@ export const Article20110620: React.VFC<Props> = memo(() => {
         この作業をするには、最大傾斜の形の特徴を知っておく必要があります。
       </P>
       <Box sx={{ gap: 1, display: "flex", flexWrap: "wrap" }}>
-        <Image src={q1} />
-        <Image src={q2} />
+        <Img src={q1} />
+        <Img src={q2} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         この2つの画像の打点は、左右方向には一切動かしていません。
@@ -56,8 +56,8 @@ export const Article20110620: React.VFC<Props> = memo(() => {
       </P>
       <P sx={{ mb: 0.5 }}>おおよその比率を求める方法を説明します。</P>
       <Box sx={{ gap: 1, display: "flex", flexWrap: "wrap" }}>
-        <Image src={q3} />
-        <Image src={abcd} />
+        <Img src={q3} />
+        <Img src={abcd} />
       </Box>
       <P sx={{ mt: 0.5 }}>
         このような最大傾斜の場合、a, b, c, dの長さの合計が、最大傾斜のおおよその比率になります。
