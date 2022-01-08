@@ -32,6 +32,7 @@ import Article20220105 from "../components/organisms/articles/2022/2022-01-05";
 import Article20220106 from "../components/organisms/articles/2022/2022-01-06";
 import Article20220107 from "../components/organisms/articles/2022/2022-01-07";
 import Article20220108 from "../components/organisms/articles/2022/2022-01-08";
+import Article20220109 from "../components/organisms/articles/2022/2022-01-09";
 
 export interface ArticleType {
   id: string;
@@ -255,7 +256,14 @@ export const articles: ArticleType[] = [
     id: "25468e27-91a5-461b-bea2-e0a23a50ddaf",
     Content: Article20220108,
     date: dayjs("2022-01-08"),
-    tags: new Set([]),
+    tags: new Set(["機械学習"]),
+    isPrivate: true,
+  },
+  {
+    id: "87e0aafb-c3ba-4256-bd8a-8cadedcb15cd",
+    Content: Article20220109,
+    date: dayjs("2022-01-09"),
+    tags: new Set(["機械学習"]),
     isPrivate: true,
   },
 ];
