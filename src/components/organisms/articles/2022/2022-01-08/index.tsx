@@ -105,6 +105,95 @@ plt.xlabel("step")
 plt.ylabel("pos")
 `;
 
+const Q_TABLE = `
+import numpy as np
+
+steps = 4
+num_episode = 10
+Q = np.zeros((2, 2))
+gamma = 0.9
+alpha = 0.5
+
+for episode in range(num_episode):
+  state = 0
+  epsilon = 1 / (episode + 1)
+  for t in range(steps):
+    reward = 0
+    # 現在の状態で最もQ値の大きい行動を取る
+    # ステップが進む毎にランダムに選ぶ割合が小さくなっていく
+    action = np.argmax(Q[state]) if epsilon <= np.random.uniform(0,1) else np.random.choice(2)
+    if state == 0:
+      next_state = 1 if action == 0 else 0
+    else:
+      next_state = 0 if action == 0 else 1
+      reward = 0 if action == 0 else 1
+    print(state, action, reward)
+    # gamma(γ)は将来に対する不確定要素を表す、0以上1未満の数
+    # Q[state, action] = (1 - alpha) * Q[state, action] + alpha * (reward + gamma * max(Q[next_state]))
+    # 上記式を変形して以下の式を得る（上の式は指数平均になっている）
+    Q[state, action] += alpha * (reward + gamma * max(Q[next_state]) - Q[state, action])
+    state = next_state
+
+print("episode: ", episode)
+print(Q)
+`;
+
+const RAY_PPO_TRAINER = `
+!pip install ray "ray[rllib]" >> /dev/null
+
+import ray
+ray.init()
+
+import gym
+from ray.rllib.agents.ppo import PPOTrainer
+
+class SimpleCorridor(gym.Env):
+  def __init__(self, config):
+    self.end_pos = config["corridor_length"]
+    self.cur_pos = 0
+    self.action_space = gym.spaces.Discrete(2)
+    self.observation_space = gym.spaces.Box(0.0, self.end_pos, shape=(1,))
+  
+  def reset(self):
+    self.cur_pos = 0
+    return [self.cur_pos]
+  
+  def step(self, action):
+    if action == 0 and self.cur_pos > 0:
+      self.cur_pos -= 1
+    elif action == 1:
+      self.cur_pos += 1
+    done = self.cur_pos >= self.end_pos
+    reward = 1.0 if done else -0.1
+    return [self.cur_pos], reward, done, {}
+
+trainer = PPOTrainer(
+    config={
+        "env": SimpleCorridor,
+        "env_config": {
+            "corridor_length": 3,
+        },
+        "num_workers": 0,
+    })
+
+for i in range(10):
+  results = trainer.train()
+  print(f"Iter: {i}; avg. reward={results['episode_reward_mean']}")
+`;
+
+const RAY_PPO_TRAINER_OUTPUT = `
+Iter: 0; avg. reward=-0.09283582089552245
+Iter: 1; avg. reward=0.39382716049382716
+Iter: 2; avg. reward=0.6535195530726258
+Iter: 3; avg. reward=0.7113592233009709
+Iter: 4; avg. reward=0.7413452914798205
+Iter: 5; avg. reward=0.7652719665271966
+Iter: 6; avg. reward=0.7763754045307443
+Iter: 7; avg. reward=0.7841232227488151
+Iter: 8; avg. reward=0.7899302865995352
+Iter: 9; avg. reward=0.7938744257274117
+`;
+
 interface Props {}
 
 export const Article20220108: React.VFC<Props> = memo(() => {
@@ -204,6 +293,80 @@ export const Article20220108: React.VFC<Props> = memo(() => {
       </P>
       <P>
         <strong>DQNでは、同じ構造のニューラルネットワークを2つ用意する。</strong>
+      </P>
+      <MyDivider />
+      <P>
+        <GLink href="https://github.com/ray-project/ray">Ray</GLink>
+        と呼ばれるライブラリが、RLライブラリの中で最も多くのGitHubスター数を獲得しているように思う。そこでRayを使ってみることにした。
+      </P>
+      <P>
+        Rayのコア部分にはRLは含まれず、サブモジュールの<code>ray[rllib]</code>
+        にRL関連のオブジェクトが含まれる。サンプルコードでは<code>PPOTrainer</code>
+        オブジェクトが使われており、このオブジェクトはDQNとはまた違うPPOというRLアルゴリズムが使われている。
+        <GLink href="https://www.slideshare.net/harmonylab/dqnppo">こちらのスライド</GLink>
+        を見ると、PPOはDQNを参考にして作られたようだ。ただしQ-Learningの延長ではなく、Actor-CriticやPolicy
+        Gradientsなどの延長である。Actor-CriticとPolicy Gradientsは聞いたことがない。
+      </P>
+      <P>
+        Policy
+        Gradientsを理解するためには、Value-BasedとPolicy-Basedを理解する必要があるようだ。断片的な知識を書いていく。
+      </P>
+      <ul>
+        <li>DQNを非同期分散処理で実装したものをGorilaと呼ぶ</li>
+        <li>
+          DQNではポリシーは<code>EpsGreedyQPolicy</code>を使用した。Policy
+          Basedな手法だとここまでシンプルではなく、もう少し最適化されている？行動確率という言葉が出てきていて、式は
+          <L c="\pi(a|s)" />
+          で表される。この式にQ値は含まれていないので、純粋に状態
+          <L c="s" />
+          から行動
+          <L c="a" />
+          が選ばれる確率を表しているようだ
+        </li>
+        <li>
+          状態価値関数は
+          <L c="V(s)" />
+          で、状態行動価値関数は
+          <L c="Q(s, a)" />
+          で表される
+        </li>
+        <li>
+          スライドでは状態価値関数を
+          <L c="V(s, a)" />
+          と表しているけれど、これは間違いだろうか？
+        </li>
+        <li>
+          <GLink href="https://www.tcom242242.net/entry/ai-2/%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92/actor-critic/">
+            Actor-Critic
+          </GLink>
+          のわかりやすい説明
+        </li>
+        <li>TD誤差のTDはTemporal Differenceの略で、TD誤差を0にするようにQ関数を更新する</li>
+      </ul>
+      <P sx={{ mb: 1 }}>
+        以下のコードは<GLink href="http://arduinopid.web.fc2.com/N82.html">こちらのページ</GLink>にあるコードで、
+        <code>numpy</code>以外のモジュールを必要としないTD学習の実装である。
+      </P>
+      <Box>
+        <CodeBlock>{Q_TABLE.trim()}</CodeBlock>
+      </Box>
+      <P sx={{ mb: 1 }}>そして次のコードは、PPOによる強化学習のコードである。</P>
+      <Box>
+        <CodeBlock>{RAY_PPO_TRAINER.trim()}</CodeBlock>
+      </Box>
+      <P sx={{ mb: 1 }}>上記コードを実行すると、次のように出力される。</P>
+      <Box>
+        <CodeBlock>{RAY_PPO_TRAINER_OUTPUT.trim()}</CodeBlock>
+      </Box>
+      <P sx={{ mt: 1 }}>
+        学習を繰り返していくうちに、報酬が最大の
+        <L c="0.8" />
+        に近付いていることがわかる。
+      </P>
+      <P>
+        Rayの<code>PPOTrainer</code>のAPIドキュメントは以下である。
+        <br />
+        <GLink href="https://docs.ray.io/en/latest/rllib-training.html">RLlib Training APIs &#8212; Ray v1.9.1</GLink>
       </P>
     </ArticleContent>
   );

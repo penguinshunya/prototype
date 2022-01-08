@@ -35,8 +35,8 @@ ol,
 ul {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   list-style-position: inside;
-  text-indent: -20.5px;
-  padding-left: 25px;
+  text-indent: -22px;
+  padding-left: 24px;
 }
 
 li {
