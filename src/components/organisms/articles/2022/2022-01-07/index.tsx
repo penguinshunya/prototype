@@ -339,7 +339,6 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         個のランダムな値を返す（間違っているかもしれない）。
       </P>
       <P>集中力がなくなってきたので少し休憩する。</P>
-      <MyDivider />
     </ArticleContent>
   );
 });
