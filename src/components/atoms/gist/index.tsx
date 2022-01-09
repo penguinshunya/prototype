@@ -46,9 +46,7 @@ export const Gist: React.VFC<Props> = memo(({ id, ...props }) => {
       style={{
         ...props.style,
       }}
-    >
-      <script src="https://gist.github.com/${id}.js"></script>
-    </IFrame>
+    />
   );
 });
 
