@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
 import MyDivider from "../../../../atoms/divider";
+import Gist from "../../../../atoms/gist";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
@@ -51,48 +52,6 @@ df1 = pd.DataFrame(np.array([1, 2, 3]))
 df2 = pd.DataFrame(np.array([4, 5, 6]))
 df = pd.concat([df1, df2])
 df.reset_index(drop=True)
-`;
-
-const REINFORCEMENT_LEARNING = `
-!pip install keras-rl2 gym
-
-import numpy as np
-import gym
-
-from keras.models import Sequential
-from keras.layers import Dense, Activation, Flatten
-from keras.optimizer_v2.adam import Adam
-
-from rl.agents.dqn import DQNAgent
-from rl.policy import BoltzmannQPolicy
-from rl.memory import SequentialMemory
-
-ENV_NAME = 'CartPole-v0'
-env = gym.make(ENV_NAME)
-np.random.seed(123)
-env.seed(123)
-nb_actions = env.action_space.n
-
-model = Sequential()
-model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
-model.add(Dense(16))
-model.add(Activation("relu"))
-model.add(Dense(16))
-model.add(Activation("relu"))
-model.add(Dense(16))
-model.add(Activation("relu"))
-model.add(Dense(nb_actions))
-model.add(Activation("linear"))
-
-memory = SequentialMemory(limit=50000, window_length=1)
-policy = BoltzmannQPolicy()
-
-dqn = DQNAgent(model=model, memory=memory, nb_actions=nb_actions, nb_steps_warmup=10, target_model_update=1e-2, policy=policy)
-dqn.compile(Adam(learning_rate=1e-3), metrics=['mae'])
-history = dqn.fit(env, nb_steps=50000, verbose=2)
-
-dqn.save_weights('dqn_{}_weights.h5f'.format(ENV_NAME), overwrite=True)
-dqn.test(env, nb_episodes=5, visualize=False)
 `;
 
 interface Props {}
@@ -326,7 +285,7 @@ export const Article20220107: React.VFC<Props> = memo(() => {
         無事強化学習を実装し終えたが、まだ全然自分で実装している感じがしない。ある程度自分でも実装できるように、写経したコードの意味を理解していこうと思う。
       </P>
       <P>notebookの内容は次のようになっている。</P>
-      <CodeBlock>{REINFORCEMENT_LEARNING.trim()}</CodeBlock>
+      <Gist id="b7d3ad3a5b13399dca1da0604d5291f9" />
       <P>
         <code>model</code>の出力層のノード数は<code>nb_actions</code>
         になっている。この値は、エージェントが次に取れる行動の個数である。CartPole課題では左右の2通りであるため、

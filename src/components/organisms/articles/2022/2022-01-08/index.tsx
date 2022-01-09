@@ -71,7 +71,7 @@ export const Article20220108: React.VFC<Props> = memo(() => {
         </GLink>
       </P>
       <Gist id="16448ae2761aad9208e3b78881babf43" />
-      <P sx={{ mt: 0 }}>上記コードを実行すると、次のようなグラフが描画される。</P>
+      <P>上記コードを実行すると、次のようなグラフが描画される。</P>
       <Box sx={{ my: 2 }}>
         <Img src={result1} width={364} />
       </Box>
@@ -177,9 +177,9 @@ export const Article20220108: React.VFC<Props> = memo(() => {
         <code>numpy</code>以外のモジュールを必要としないTD学習の実装である。
       </P>
       <Gist id="68ce0a1f4c7e755ef6fb22d71603255f" />
-      <P sx={{ mb: 1, mt: 0 }}>そして次のコードは、PPOによる強化学習のコードである。</P>
+      <P>そして次のコードは、PPOによる強化学習のコードである。</P>
       <Gist id="77820452deffc21d36258f5027ccb0f1" />
-      <P sx={{ mb: 1, mt: 0 }}>上記コードを実行すると、次のように出力される。</P>
+      <P>上記コードを実行すると、次のように出力される。</P>
       <Box>
         <CodeBlock>{RAY_PPO_TRAINER_OUTPUT.trim()}</CodeBlock>
       </Box>
