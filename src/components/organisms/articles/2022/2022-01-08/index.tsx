@@ -2,184 +2,13 @@ import { Box } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
 import MyDivider from "../../../../atoms/divider";
+import Gist from "../../../../atoms/gist";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import result1 from "./images/result.png";
-
-const POINT_ON_LINE = `
-!pip install gym keras-rl2 >> /dev/null
-
-import gym
-import gym.spaces
-import numpy as np
-
-class PointOnLine(gym.core.Env):
-  def __init__(self):
-    # 行動空間。速度を上げる、そのまま、下げるの3通り
-    self.action_space = gym.spaces.Discrete(3)
-    high = np.array([1.0, 1.0]) # 観測空間(state)の次元(位置と速度の2次元)とそれらの最大値
-    self.observation_space = gym.spaces.Box(low=-high, high=high)
-    # 行動空間と観測空間の作成
-  
-  def step(self, action):
-    dt = 0.1
-    acc = (action - 1.0) * 0.1
-    self._vel += acc * dt
-    self._vel = np.clip(self._vel, -1.0, 1.0)
-    self._pos += self._vel * dt
-    self._pos = np.clip(self._pos, -1.0, 1.0)
-
-    # episodeを終了するかどうか
-    done = abs(self._pos) < 0.1 and abs(self._vel) < 0.1
-    if done:
-      reward = 1.0  # 終了時に報酬を与える
-    else:
-      reward = -0.01 * abs(self._pos)
-    
-    # 次の状態、報酬、episodeを終了するか、追加情報
-    return np.array([self._pos, self._vel]), reward, done, {}
-
-  def reset(self):
-    self._pos = np.random.rand() * 2.0 - 1.0
-    self._vel = 0.0
-    return np.array([self._pos, self._vel])
-
-from keras.models import Sequential
-from keras.layers import Dense, Activation, Flatten
-import keras
-
-from rl.agents.dqn import DQNAgent
-from rl.policy import EpsGreedyQPolicy
-from rl.memory import SequentialMemory
-
-env = PointOnLine()
-nb_actions = env.action_space.n
-
-model = Sequential()
-model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
-model.add(Dense(16))
-model.add(Activation('relu'))
-model.add(Dense(16))
-model.add(Activation('relu'))
-model.add(Dense(16))
-model.add(Activation('relu'))
-model.add(Dense(nb_actions))
-model.add(Activation('linear'))
-
-memory = SequentialMemory(limit=50000, window_length=1)
-policy = EpsGreedyQPolicy(eps=0.1)
-dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, nb_steps_warmup=100,
-                target_model_update=1e-2, policy=policy)
-dqn.compile(keras.optimizers.adam_v2.Adam(learning_rate=1e-3), metrics=["mae"])
-
-history = dqn.fit(env, nb_steps=50000, visualize=False, verbose=2, nb_max_episode_steps=300)
-
-import rl.callbacks
-class EpisodeLogger(rl.callbacks.Callback):
-  def __init__(self):
-    self.observations = {}
-    self.rewards = {}
-    self.actions = {}
-
-  def on_episode_begin(self, episode, logs):
-    self.observations[episode] = []
-    self.rewards[episode] = []
-    self.actions[episode] = []
-  
-  def on_step_end(self, step, logs):
-    episode = logs["episode"]
-    self.observations[episode].append(logs['observation'])
-    self.rewards[episode].append(logs['reward'])
-    self.actions[episode].append(logs['action'])
-
-cb_ep = EpisodeLogger()
-dqn.test(env, nb_episodes=10, visualize=False, callbacks=[cb_ep])
-
-import matplotlib.pyplot as plt
-for obs in cb_ep.observations.values():
-  plt.plot([o[0] for o in obs])
-plt.xlabel("step")
-plt.ylabel("pos")
-`;
-
-const Q_TABLE = `
-import numpy as np
-
-steps = 4
-num_episode = 10
-Q = np.zeros((2, 2))
-gamma = 0.9
-alpha = 0.5
-
-for episode in range(num_episode):
-  state = 0
-  epsilon = 1 / (episode + 1)
-  for t in range(steps):
-    reward = 0
-    # 現在の状態で最もQ値の大きい行動を取る
-    # ステップが進む毎にランダムに選ぶ割合が小さくなっていく
-    action = np.argmax(Q[state]) if epsilon <= np.random.uniform(0,1) else np.random.choice(2)
-    if state == 0:
-      next_state = 1 if action == 0 else 0
-    else:
-      next_state = 0 if action == 0 else 1
-      reward = 0 if action == 0 else 1
-    print(state, action, reward)
-    # gamma(γ)は将来に対する不確定要素を表す、0以上1未満の数
-    # Q[state, action] = (1 - alpha) * Q[state, action] + alpha * (reward + gamma * max(Q[next_state]))
-    # 上記式を変形して以下の式を得る（上の式は指数平均になっている）
-    Q[state, action] += alpha * (reward + gamma * max(Q[next_state]) - Q[state, action])
-    state = next_state
-
-print("episode: ", episode)
-print(Q)
-`;
-
-const RAY_PPO_TRAINER = `
-!pip install ray "ray[rllib]" >> /dev/null
-
-import ray
-ray.init()
-
-import gym
-from ray.rllib.agents.ppo import PPOTrainer
-
-class SimpleCorridor(gym.Env):
-  def __init__(self, config):
-    self.end_pos = config["corridor_length"]
-    self.cur_pos = 0
-    self.action_space = gym.spaces.Discrete(2)
-    self.observation_space = gym.spaces.Box(0.0, self.end_pos, shape=(1,))
-  
-  def reset(self):
-    self.cur_pos = 0
-    return [self.cur_pos]
-  
-  def step(self, action):
-    if action == 0 and self.cur_pos > 0:
-      self.cur_pos -= 1
-    elif action == 1:
-      self.cur_pos += 1
-    done = self.cur_pos >= self.end_pos
-    reward = 1.0 if done else -0.1
-    return [self.cur_pos], reward, done, {}
-
-trainer = PPOTrainer(
-    config={
-        "env": SimpleCorridor,
-        "env_config": {
-            "corridor_length": 3,
-        },
-        "num_workers": 0,
-    })
-
-for i in range(10):
-  results = trainer.train()
-  print(f"Iter: {i}; avg. reward={results['episode_reward_mean']}")
-`;
 
 const RAY_PPO_TRAINER_OUTPUT = `
 Iter: 0; avg. reward=-0.09283582089552245
@@ -241,8 +70,8 @@ export const Article20220108: React.VFC<Props> = memo(() => {
           [Python] Keras-RLで簡単に強化学習(DQN)を試す
         </GLink>
       </P>
-      <CodeBlock>{POINT_ON_LINE.trim()}</CodeBlock>
-      <P>上記コードを実行すると、次のようなグラフが描画される。</P>
+      <Gist id="16448ae2761aad9208e3b78881babf43" />
+      <P sx={{ mt: 0 }}>上記コードを実行すると、次のようなグラフが描画される。</P>
       <Box sx={{ my: 2 }}>
         <Img src={result1} width={364} />
       </Box>
@@ -347,14 +176,10 @@ export const Article20220108: React.VFC<Props> = memo(() => {
         以下のコードは<GLink href="http://arduinopid.web.fc2.com/N82.html">こちらのページ</GLink>にあるコードで、
         <code>numpy</code>以外のモジュールを必要としないTD学習の実装である。
       </P>
-      <Box>
-        <CodeBlock>{Q_TABLE.trim()}</CodeBlock>
-      </Box>
-      <P sx={{ mb: 1 }}>そして次のコードは、PPOによる強化学習のコードである。</P>
-      <Box>
-        <CodeBlock>{RAY_PPO_TRAINER.trim()}</CodeBlock>
-      </Box>
-      <P sx={{ mb: 1 }}>上記コードを実行すると、次のように出力される。</P>
+      <Gist id="68ce0a1f4c7e755ef6fb22d71603255f" />
+      <P sx={{ mb: 1, mt: 0 }}>そして次のコードは、PPOによる強化学習のコードである。</P>
+      <Gist id="77820452deffc21d36258f5027ccb0f1" />
+      <P sx={{ mb: 1, mt: 0 }}>上記コードを実行すると、次のように出力される。</P>
       <Box>
         <CodeBlock>{RAY_PPO_TRAINER_OUTPUT.trim()}</CodeBlock>
       </Box>

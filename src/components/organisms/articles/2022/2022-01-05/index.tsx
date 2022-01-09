@@ -113,7 +113,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <li>機械学習アルゴリズムは学習前のデータ収集や前処理が必要とされるが、強化学習はそれらを必要としない</li>
         <li>強化学習の使用例は、オセロや将棋のAIである</li>
       </ul>
-      <P>
+      <Box sx={{ my: 3 }}>
         <Box sx={{ mb: 1 }}>
           <Img src={image1} width={456} />
         </Box>
@@ -121,7 +121,7 @@ export const Article20220105: React.VFC<Props> = memo(() => {
         <GLink href="https://jp.mathworks.com/discovery/reinforcement-learning.html">
           強化学習 – これだけは知っておきたい3つのこと - MATLAB
         </GLink>
-      </P>
+      </Box>
       <ul>
         <li>強化学習の複雑な問題は、ディープラーニングネットワークに依存している</li>
         <li>強化学習は、一般的にサンプル効率が低いと考えられている。並列化により高速化できる</li>
