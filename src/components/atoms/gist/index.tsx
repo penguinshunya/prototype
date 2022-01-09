@@ -24,7 +24,7 @@ export const Gist: React.VFC<Props> = memo(({ id, ...props }) => {
       const link = `https://gist.github.com/${id}.js`;
       const onResize = `onload="parent.document.getElementById('${id}').style.height=document.body.scrollHeight + 'px'"`;
       const html = `
-      <body ${onResize} style="margin: 0;">
+      <body ${onResize} style="margin-left: 0; margin-right: 0;">
         <script src="${link}"></script>
       </body>
     `;
