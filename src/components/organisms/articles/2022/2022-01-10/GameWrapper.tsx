@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
 import SampleOthelloByFirestore2 from "../../../othello/SampleOthelloByFirestore2";
 import { useFirebaseUser } from "./hooks";
@@ -13,7 +13,6 @@ export const GameWrapper: React.VFC<Props> = memo(() => {
   return (
     <>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography sx={{ color: (theme) => theme.palette.secondary.main, fontWeight: "bold" }}>Firestore</Typography>
         {user === null ? (
           <Box sx={{ mt: 4, width: 263 }}>
             <LoginForm />
