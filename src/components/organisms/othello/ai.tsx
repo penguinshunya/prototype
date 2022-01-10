@@ -30,7 +30,6 @@ export async function alphazero(board: Board) {
   const req: Request = { board: b };
   try {
     const res = await axios.post<Response>(API, req).then((r) => r.data);
-    await new Promise((r) => window.setTimeout(r, 1000));
     return res;
   } catch (e: unknown) {
     console.error(e);
