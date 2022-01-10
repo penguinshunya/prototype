@@ -6,6 +6,7 @@ import Img from "../../../../atoms/image";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 import othello1 from "./images/othello.png";
+import MyDivider from "../../../../atoms/divider";
 
 const ALPHA_ZERO = `
 from MCTS import MCTS
@@ -93,6 +94,35 @@ export const Article20220110: React.VFC<Props> = memo(() => {
       </P>
       <P>
         次は学習方法について調べる。
+      </P>
+      <MyDivider />
+      <P>
+        学習方法を調べる前に、このプログラムをCloud Run上で動かすことを考える。おそらく次の手順で動かすことができると思う。
+      </P>
+      <ol>
+        <li>PythonのDockerコンテナを用意する</li>
+        <li>そのコンテナに入り、PyTorchなどの必要なパッケージをインストールする</li>
+        <li>AIが動作することを確認後、DjangoをインストールしてWeb APIを作成する</li>
+        <li>ポートを公開し、ブラウザからアクセスできることを確認する</li>
+        <li>Cloud Runにデプロイする</li>
+      </ol>
+      <P>
+        PyTorchのインストール中に容量エラーが発生した。Dockerのリソースを10GBほど増やすとエラーは出なくなった。ただ、requirements.txt内のすべてのパッケージのインストールにかなりの時間を使っている。Cloud Runにデプロイする度にこの時間を使っていては、料金がかかってくる恐れがある。よって、PyTorchをインストール済みのDockerコンテナをDocker HubまたはGCPにアップロードして、それを使うことで対応する。もしGCPにアップロードした場合であっても、手元のPCからDockerイメージを取得することは果たして可能か？おそらく可能だと思うけれど、少しだけ面倒そう。「手元のPCでGCPへのログインを行うだけでOK」のような単純なものではないと思うがどうなんだろう。もしかするとできるかも。
+      </P>
+      <P>
+        <GLink href="https://cloud.google.com/container-registry/docs/pushing-and-pulling">イメージの push と pull &nbsp;|&nbsp; Container Registry のドキュメント &nbsp;|&nbsp; Google Cloud</GLink>
+      </P>
+      <P>
+        こちらのページを見てみると、Dockerイメージにタグ付けを行ってからGCRにプッシュすると良さそうだ。
+      </P>
+      <P>
+        オセロAIを問題なく動かすことができた。次はDjangoを動かすことを考える。軽量なWebフレームワークで良かったため、DjangoではなくFlaskを選択した。<code>docker</code>コマンドでGCRにプッシュするために特殊なコマンドを実行する必要がある。<GLink href="https://cloud.google.com/container-registry/docs/advanced-authentication">こちら</GLink>に書かれている。
+      </P>
+      <P>
+        ローカルのDockerイメージをGCRにプッシュしている。その中には3GBを超えるイメージもあり、一向に終わる気配がない。おそらく30分ほど経っているけれど、まだ500MBくらいしか進んでいない。動かすのはオセロAIだけなので、もっとスリムにしたいところ。
+      </P>
+      <P>
+        GCR自体に料金はかからず、Cloud Storageの料金がかかるとのこと。転送に10円/GBくらいかかるので、Cloud Runにデプロイする毎に30円くらいかかるということだろうか。それはできれば避けたいところ。
       </P>
     </ArticleContent>
   );
