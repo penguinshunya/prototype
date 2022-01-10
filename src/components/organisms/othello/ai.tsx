@@ -10,9 +10,12 @@ export async function alphazero(board: Board) {
     for (let j = 0; j < 8; j++) {
       const num = (() => {
         switch (board[i]![j]!) {
-          case "black": return 1;
-          case "white": return -1;
-          case "none": return 0;
+          case "black":
+            return 1;
+          case "white":
+            return -1;
+          case "none":
+            return 0;
         }
       })();
       b[i]!.push(num);
