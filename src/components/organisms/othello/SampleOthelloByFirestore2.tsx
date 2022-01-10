@@ -1,12 +1,12 @@
 import { Box, Button, Typography } from "@mui/material";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { initOthelloType } from "./functions";
-import { useOthello, useOthelloByFirestore } from "./hooks";
+import { useOthello, useOthelloByState } from "./hooks";
 
 interface Props {}
 
-export const SampleOthelloByFirestore: React.VFC<Props> = memo(() => {
-  const { ajax, data, update } = useOthelloByFirestore();
+export const SampleOthelloByFirestore2: React.VFC<Props> = memo(() => {
+  const { ajax, data, update } = useOthelloByState();
   const { board, isFinish, turn } = useMemo(() => data ?? initOthelloType(), [data]);
   const { next, reset, takeRandom } = useOthello(data, update);
   const [auto, setAuto] = useState(false);
@@ -14,7 +14,7 @@ export const SampleOthelloByFirestore: React.VFC<Props> = memo(() => {
   useEffect(() => {
     if (ajax || !auto || isFinish) return;
     async function tick() {
-      const pos = await takeRandom("jumpaku");
+      const pos = await takeRandom("alphazero");
       if (pos === null) {
         const p = await takeRandom();
         if (p !== null) {
@@ -118,4 +118,4 @@ export const SampleOthelloByFirestore: React.VFC<Props> = memo(() => {
   );
 });
 
-export default SampleOthelloByFirestore;
+export default SampleOthelloByFirestore2;

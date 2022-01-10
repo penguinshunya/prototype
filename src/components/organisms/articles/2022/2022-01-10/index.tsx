@@ -1,12 +1,13 @@
 import { Box } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
+import GameWrapper from "./GameWrapper";
 import othello1 from "./images/othello.png";
-import MyDivider from "../../../../atoms/divider";
 
 const ALPHA_ZERO = `
 from MCTS import MCTS
@@ -124,6 +125,10 @@ export const Article20220110: React.VFC<Props> = memo(() => {
       <P>
         GCR自体に料金はかからず、Cloud Storageの料金がかかるとのこと。転送に10円/GBくらいかかるので、Cloud Runにデプロイする毎に30円くらいかかるということだろうか。それはできれば避けたいところ。
       </P>
+      <P>
+        次のオセロは、黒がAlphaZeroで、白がJumpakuさんのAIである。まだ学習が少ないからか、AlphaZeroが負けることもある。
+      </P>
+      <GameWrapper />
     </ArticleContent>
   );
 });

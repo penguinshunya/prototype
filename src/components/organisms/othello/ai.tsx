@@ -1,6 +1,43 @@
 import axios from "axios";
 import { Board } from "./types";
 
+const API = "https://web-api-2mxmcg7vfq-an.a.run.app/next";
+
+export async function alphazero(board: Board) {
+  const b: number[][] = [];
+  for (let i = 0; i < 8; i++) {
+    b.push([]);
+    for (let j = 0; j < 8; j++) {
+      const num = (() => {
+        switch (board[i]![j]!) {
+          case "black": return 1;
+          case "white": return -1;
+          case "none": return 0;
+        }
+      })();
+      b[i]!.push(num);
+    }
+  }
+
+  interface Request {
+    board: number[][];
+  }
+  interface Response {
+    x: number;
+    y: number;
+  }
+
+  const req: Request = { board: b };
+  try {
+    const res = await axios.post<Response>(API, req).then((r) => r.data);
+    await new Promise((r) => window.setTimeout(r, 1000));
+    return res;
+  } catch (e: unknown) {
+    console.error(e);
+    return null;
+  }
+}
+
 export async function ai(board: Board, color: "black" | "white") {
   const darkDiscs: number[] = [];
   const lightDiscs: number[] = [];

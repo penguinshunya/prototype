@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { canPut, canPutAny, initBoard, initOthelloType, put } from "./functions";
 import { OthelloType } from "./types";
-import { ai } from "./ai";
+import { ai, alphazero } from "./ai";
 
 export function useOthelloByState() {
   const [data, setData] = useState(initOthelloType());
@@ -140,12 +140,18 @@ export function useOthello(data: OthelloType | null, update: (data: Partial<Othe
   );
 
   const takeRandom = useCallback(
-    async (useAI: boolean = false) => {
+    async (kind?: "jumpaku" | "alphazero") => {
       if (data?.board === undefined) {
         return null;
       }
-      if (useAI && data.turn === "white") {
+      if (kind === "jumpaku" && data.turn === "white") {
         return await ai(data.board, data.turn);
+      }
+      if (kind === "alphazero" && data.turn === "white") {
+        return await ai(data.board, data.turn);
+      }
+      if (kind === "alphazero" && data.turn === "black") {
+        return await alphazero(data.board);
       }
       const ps: { x: number; y: number }[] = [];
       for (let i = 0; i < 8; i++) {
