@@ -30,7 +30,7 @@ export const Article: React.VFC<ArticleProps> = memo(({ isTitleLink, ...a }) => 
         {date}
       </Typography>
       {a.tags.size > 0 && (
-        <Box sx={{ display: "flex", gap: 1 }}>
+        <Box sx={{ display: "flex", gap: 1, mb: 2.5 }}>
           {[...a.tags].map((t) => (
             <Typography
               key={t}
