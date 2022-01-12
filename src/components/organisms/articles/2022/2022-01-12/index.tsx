@@ -106,9 +106,7 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         <code>SimpleRNN</code>の使い方を理解し、<code>SimpleRNN</code>から<code>LSTM</code>
         に置き換えることが容易だとわかったので、これからは自然とこれらのアルゴリズムを選択できると思う。
       </P>
-      <P>
-        次は文章をLSTMで解析したい。
-      </P>
+      <P>次は文章をLSTMで解析したい。</P>
     </ArticleContent>
   );
 });
