@@ -26,8 +26,7 @@ pre {
 code {
   padding-left: 4px;
   padding-right: 4px;
-  /* background-color: #e8e8e8; */
-  background-color: hsl(222, 24%, 96%);
+  background-color: hsl(222, 12%, 96%);
   word-break: break-all;
 }
 

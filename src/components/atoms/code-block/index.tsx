@@ -8,8 +8,7 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
     <Box
       component="pre"
       sx={{
-        // backgroundColor: "#e8e8e8",
-        backgroundColor: "hsl(222, 24%, 96%)",
+        backgroundColor: "hsl(222, 12%, 96%)",
         lineHeight: 1.69,
         maxWidth: "100%",
         overflow: "auto",

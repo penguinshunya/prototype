@@ -1,9 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { memo } from "react";
 import CodeBlock from "../../../../atoms/code-block";
 import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
+import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
+import Q from "../../../../atoms/q";
 import ArticleContent from "../../../../molecules/article-content";
 
 const KERAS_CODE = `
@@ -40,15 +42,49 @@ df["diff"] = df.apply(lambda x: np.sqrt((x["pred"] - x["true"]) ** 2), axis=1)
 df["diff"].mean()
 `;
 
+const GRADIENT_TAPE = `
+x = tf.Variable(3.0)
+with tf.GradientTape() as tape:
+  y = 50 * (x ** 2) + 7 * x + 123
+tape.gradient(y, x) #=> 307
+`;
+
+const MY_LAYER = `
+import tensorflow as tf
+from keras.layers import Layer
+
+class MyDenseLayer(Layer):
+  def __init__(self, num_outputs):
+    super(MyDenseLayer, self).__init__()
+    self.num_outputs = num_outputs
+  def build(self, input_shape):
+    self.kernel = self.add_weight("kernel", shape=[input_shape[-1], self.num_outputs])
+  def call(self, input):
+    return tf.matmul(input, self.kernel)
+
+layer = MyDenseLayer(10)
+layer(tf.zeros([10, 5]))
+`;
+
 interface Props {}
 
 export const Article20220112: React.VFC<Props> = memo(() => {
   return (
     <ArticleContent>
+      <Q solved>
+        <Typography>
+          なぜ<code>SimpleRNN</code>は<code>input_shape</code>が2次元でなければならないか？
+        </Typography>
+        ↓
+        <Typography>
+          そう決められているため。<code>input_shape=(3, 5)</code>のとき、特徴数
+          <L c="5" />
+          の入力を
+          <L c="3" />
+          回与えることを意味する。回数を決められないときは<code>input_shape=(None, 5)</code>としても良い。
+        </Typography>
+      </Q>
       <ul>
-        <li>
-          なぜ<code>SimpleRNN</code>は<code>input_shape</code>が3次元でなければならないか？
-        </li>
         <li>
           <code>return_sequence=False</code>のときはセルの個数分だけ出力が行われ、<code>True</code>
           のときはセルの個数と入力の個数の積だけ出力が行われる
@@ -84,6 +120,21 @@ export const Article20220112: React.VFC<Props> = memo(() => {
           Pythonでは<code>print(...)</code>のように書ける
         </li>
       </ul>
+      <Q solved>
+        <Typography>Kerasのコードを読みたい。どのように環境を構築するのが最適か？</Typography>↓
+        <Typography>
+          Kerasのコードに<code>print()</code>等を埋め込み、出力を確認しながら読み進めると良い。Google
+          Colabではコードを追い辛いため、ローカルにKerasをインストールして利用する。パッケージの場所は
+          <code>pip show keras</code>で確認できる。
+        </Typography>
+        <Typography sx={{ mt: 2 }}>
+          余談だけど、<code>SimpleRNN</code>を使っているにも関わらず、<code>SimpleRNN</code>のコンストラクタ内に
+          <code>print()</code>
+          を書いても何も出力されない、という問題に数十分はまった。原因は、kerasパッケージではなくtensorflowパッケージ内の
+          <code>SimpleRNN</code>を書き換えていたため。<code>from keras.layers</code>
+          と書いているにも関わらず、頭のどこかで「tensorflowパッケージのものを利用しているに違いない」と思い込んでしまっていた…。
+        </Typography>
+      </Q>
       <MyDivider />
       <P sx={{ mb: 1 }}>以下のコードは、5つの数の合計をRNNにより求めるプログラムである。</P>
       <Box>
@@ -98,11 +149,20 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         <code>SimpleRNN</code>のRMSEは約7.0だったのに対し、<code>LSTM</code>のRMSEは約4.0だった。
       </P>
       <P>
+        【追記】<code>LSTM</code>の他にも、<code>GRU</code>、<code>CuDNNGRU</code>、<code>CuDNNLSTM</code>
+        に置き換えられる。他の部分を書き換える必要はない。
+      </P>
+      <Q>
+        <Typography>
+          <code>validation_split</code>を設定することに意味はあるか？
+        </Typography>
+      </Q>
+      <P>
         配列の長さを5から20に、エポック数を2048にして試してみる。すると、<code>SimpleRNN</code>は約95、<code>LSTM</code>
         は約75だった。SimpleRNNは学習が進んでも損失が10000未満にならず、LSTMは学習を進めると順調に損失が減っていき、最終的には1.0を下回った。しかし、新しいデータに対してはRMSEの差が20しかない。LSTMが過学習をしていたと思われる。
       </P>
       <P>
-        今回はLSTMの過学習によりスコアの差はそれほど変わらなかったが、長期記憶が正しく動くことは確認できたので良かった。
+        今回はLSTMの過学習によりスコアの差はそれほど変わらなかったが、長期記憶が正しく動くことは確認できた。
         <code>SimpleRNN</code>の使い方を理解し、<code>SimpleRNN</code>から<code>LSTM</code>
         に置き換えることが容易だとわかったので、これからは自然とこれらのアルゴリズムを選択できると思う。
       </P>
@@ -115,8 +175,123 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         日本語から英語に翻訳するとき、まず「日本語→意味」のRNNを行ってから「意味→英語」のRNNを行う。このようなモデルをEncoder-Decoderモデルと呼ぶ。このとき「意味→英語」は「固定長→可変長」の変換になるけれど、可変長といっても上限が必要そう。つまり、小説などの文章を出力することはできなさそう。
       </P>
       <P>
-        <code>Masking</code>というレイヤーがあり、これを使うことで固定長データの一部を無視することができる。SimpleRNNでマスキングを行いたいときは<code>mask_zero=True</code>として<code>Embedding</code>レイヤーを使えば良いらしい。
+        <code>Masking</code>
+        というレイヤーがあり、これを使うことで固定長データの一部を無視することができる。SimpleRNNでマスキングを行いたいときは
+        <code>mask_zero=True</code>として<code>Embedding</code>レイヤーを使えば良いらしい。
       </P>
+      <MyDivider />
+      <P>
+        日記形式だと「一度書いた文章を修正する」という作業を行わないため、どれだけ文章を書いても成長しないかも知れない。できれば昔書いた文章も気軽に修正できるような仕組みを導入できたら嬉しい。というか、現段階でも修正が可能なのでやってみようかな。
+      </P>
+      <P>
+        疑問を強調表示できるようにした。<code>&lt;Q /&gt;</code>を使うと強調表示できる。
+      </P>
+      <Q solved>
+        <Typography>
+          <code>tf.GradientTape()</code>とは何か？どんなときに使われるか？
+        </Typography>
+        ↓
+        <Typography>
+          「自動微分」を行うときに使われる。自動微分というのがどういう仕組で動いているのかわからないが、次のようなコードを書くことで、微分の結果が得られる。
+        </Typography>
+        <Box sx={{ my: 0.5 }}>
+          <CodeBlock>{GRADIENT_TAPE.trim()}</CodeBlock>
+        </Box>
+        <Typography>
+          <L c="y = 50x^2 + 7x + 123" />
+          を微分すると
+          <L c="y' = 100x + 7" />
+          であり、
+          <L c="x = 3.0" />
+          を代入すると
+          <L c="307" />
+          である。上記コードの実行結果と一致することが確認できる。
+          <br />
+          ちなみに、<code>tf.Variable</code>を<code>tf.constant</code>に書き換えると、<code>tape.gradient(y, x)</code>
+          の評価値は<code>None</code>になる。TensorFlow内部では定数と変数は区別されており、<code>tape.gradient()</code>
+          の第二引数に定数を渡すと<code>None</code>となるようだ。
+        </Typography>
+        <Typography sx={{ mt: 2 }}>
+          他にも色々と気付くことがある。
+          <ul>
+            <li>
+              <L c="y" />
+              の計算式を<code>y = tf.Variable(np.sin(x))</code>とすると<code>None</code>になる
+            </li>
+            <li>
+              <L c="y" />
+              の計算式を<code>y = tf.sin(x)</code>とすると<code>1.0</code>になる
+            </li>
+            <ul>
+              <li>どうやら、TensorFlowの関数を利用しないと正しく記録されないようだ</li>
+            </ul>
+          </ul>
+        </Typography>
+        <Typography sx={{ mt: 2 }}>
+          Pythonの何らかの仕組みを利用して実現しているんだろうけど、想像できない。なぜ微分した値を求められるのか。
+        </Typography>
+      </Q>
+      <Q>
+        <Typography>
+          DNNを構築するときに微分の知識は必要不可欠だと思う。微分について改めてしっかりと理解しておきたい。
+        </Typography>
+        ↓
+        <Typography>
+          実際にTensorFlowを利用して、勾配を利用した誤差の修正プログラムを書けば何か掴めるかも。
+          <GLink href="https://www.tensorflow.org/tutorials/customization/custom_training_walkthrough?hl=ja">
+            こちら
+          </GLink>
+          に良さそうなチュートリアルがあるので今からする。
+        </Typography>
+        <Divider sx={{ my: 1 }} />
+        <ul>
+          <li>テンソルは多次元配列</li>
+          <li>テンソルは変更不可</li>
+          <li>
+            <code>tf.Tensor</code>と<code>np.ndarray</code>の間の変換は容易
+          </li>
+          <li>
+            <code>Tensor#device</code>により、データを保持しているデバイスを確認できる
+          </li>
+          <li>
+            <code>tf.keras</code>にKeras APIのすべてが含まれている
+          </li>
+          <li>ほとんどのレイヤーでは、第一引数は出力の次元あるいはチャネル数である</li>
+          <li>
+            Kerasのレイヤーのすべては
+            <GLink href="https://www.tensorflow.org/api_docs/python/tf/keras/layers?hl=ja">こちら</GLink>から確認できる
+          </li>
+          <li>レイヤーは、関数呼び出しの形式で呼び出せる</li>
+          <li>
+            <code>layer.variables</code>ですべての変数を調べられる
+          </li>
+          <li>
+            レイヤーの自作は簡単。<code>build(self, input_shape)</code>と<code>call(self, input)</code>を実装する
+          </li>
+        </ul>
+        <Box sx={{ my: 0.5 }}>
+          <CodeBlock>{MY_LAYER.trim()}</CodeBlock>
+        </Box>
+        <ul>
+          <li>
+            KerasのFunctional APIを使うことで、Skip Connectionを含むDNNを簡単に構築できる。その際に、
+            <code>tf.keras.Model</code>を継承したクラスを作ると良い
+          </li>
+        </ul>
+      </Q>
+      <Q>
+        <Typography>
+          <code>tf.dataset.shuffle()</code>の第一引数の意味
+        </Typography>
+      </Q>
+      <Q>
+        <Typography>
+          BiLSTMを試したい。<code>Bidirectional(LSTM())</code>と書くとできそう
+        </Typography>
+      </Q>
+      <Q>
+        <Typography>自動微分はどのようにして、微分した値を算出しているか？</Typography>
+      </Q>
     </ArticleContent>
   );
 });

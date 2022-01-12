@@ -55,6 +55,11 @@ const theme = createTheme({
         },
       },
     },
+    MuiTypography: {
+      defaultProps: {
+        lineHeight: 1.69,
+      },
+    },
   },
 });
 
