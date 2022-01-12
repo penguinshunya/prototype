@@ -107,6 +107,16 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         に置き換えることが容易だとわかったので、これからは自然とこれらのアルゴリズムを選択できると思う。
       </P>
       <P>次は文章をLSTMで解析したい。</P>
+      <MyDivider />
+      <P>
+        RNNの<code>input_shape</code>を<code>(None, 1)</code>にすると、可変長の入力を与えることができる。
+      </P>
+      <P>
+        日本語から英語に翻訳するとき、まず「日本語→意味」のRNNを行ってから「意味→英語」のRNNを行う。このようなモデルをEncoder-Decoderモデルと呼ぶ。このとき「意味→英語」は「固定長→可変長」の変換になるけれど、可変長といっても上限が必要そう。つまり、小説などの文章を出力することはできなさそう。
+      </P>
+      <P>
+        <code>Masking</code>というレイヤーがあり、これを使うことで固定長データの一部を無視することができる。SimpleRNNでマスキングを行いたいときは<code>mask_zero=True</code>として<code>Embedding</code>レイヤーを使えば良いらしい。
+      </P>
     </ArticleContent>
   );
 });
