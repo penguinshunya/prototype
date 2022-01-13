@@ -53,6 +53,21 @@ for epoch in range(num_epochs):
     print(f"{epoch}, {epoch_loss_avg.result()}, {epoch_accuracy.result()}")
 `;
 
+const RESOURCE_APPLY_ADAM_COMPILE = `
+void Compile(XlaOpKernelContext* ctx) override {
+  xla::XlaOp var, m, v;
+  OP_REQUIRES_OK(ctx, ctx->ReadVariableInput(0, dtype_, &var_shape, &var));
+  OP_REQUIRES_OK(ctx, ctx->ReadVariableInput(1, dtype_, &m_shape, &m));
+  OP_REQUIRES_OK(ctx, ctx->ReadVariableInput(2, dtype_, &v_shape, &v));
+
+  // ここで様々な計算を行う
+
+  OP_REQUIRES_OK(ctx, ctx->AssignVariable(0, dtype_, var));
+  OP_REQUIRES_OK(ctx, ctx->AssignVariable(1, dtype_, m_t));
+  OP_REQUIRES_OK(ctx, ctx->AssignVariable(2, dtype_, v));
+}
+`;
+
 interface Props {}
 
 export const Article20220113: React.VFC<Props> = memo(() => {
@@ -92,7 +107,14 @@ export const Article20220113: React.VFC<Props> = memo(() => {
           </GLink>
         </li>
       </ul>
-      <Q sx={{ my: 1 }}>ロジット値とは何か？</Q>
+      <Q sx={{ my: 1 }} solved>
+        <Typography>ロジットとは何か？</Typography>↓
+        <Typography>
+          <GLink href="https://minus9d.hatenablog.com/entry/2020/10/25/193018">こちらの記事</GLink>
+          によると、ロジットとは「softmax関数に通す前のニューラルネットワークの出力」だとのこと。ロジットは確率ではないため、
+          <code>tf.nn.softmax()</code>などを使って確率に変換する必要がある。
+        </Typography>
+      </Q>
       <ul>
         <li>Pandasの代わりにTensorflowの関数を使うのも良さそう</li>
         <li>
@@ -121,6 +143,39 @@ export const Article20220113: React.VFC<Props> = memo(() => {
           <code>optimizer.apply_gradients(zip(grads, model.trainable_variables))</code>により、
           <code>model.trainable_variables</code>を書き換えられる
         </li>
+      </ul>
+      <Q sx={{ my: 1 }} solved>
+        <Typography>
+          <code>optimizer.apply_gradients(zip(grads, model.trainable_variables))</code>によって
+          <code>model.trainable_variables</code>を書き換えられる仕組みを知りたい。
+        </Typography>
+        ↓
+        <Typography sx={{ mb: 1 }}>
+          コードを読むと、<code>tf.raw_ops.ResourceApplyAdam()</code>
+          関数内で書き換えられていることがわかる（この関数の公式の説明は
+          <GLink href="https://www.tensorflow.org/api_docs/python/tf/raw_ops/ResourceApplyAdam">こちら</GLink>
+          にある）。この先はどうやらC++で書かれているようだ。おそらく
+          <GLink href="https://github.com/tensorflow/tensorflow/blob/5dcfc51118817f27fad5246812d83e5dccdc5f72/tensorflow/compiler/tf2xla/kernels/training_ops.cc#L468">
+            こちら
+          </GLink>
+          のコードが使われている。<code>ResourceApplyAdam</code>クラスの<code>Compile</code>
+          メソッドは次のような内容になっている。
+        </Typography>
+        <CodeBlock>{RESOURCE_APPLY_ADAM_COMPILE.trim()}</CodeBlock>
+        <Typography sx={{ mt: 1 }}>
+          <code>AssignVariable</code>メソッドを深く読み進めていくと、
+          <GLink href="https://github.com/tensorflow/tensorflow/blob/da23d84d69d78c24ba48ef30b1f6b725eddacc8d/tensorflow/compiler/tf2xla/xla_op_kernel.cc#L687">
+            AssignVariableTensor()
+          </GLink>
+          にたどり着く。この関数の最後の行にある<code>return variable-&gt;SetValue(handle);</code>
+          で値を設定しているのだと思う。
+        </Typography>
+        <Typography sx={{ mt: 2 }}>
+          まとめると、<code>apply_gradient()</code>
+          の深い部分はC++で書かれており、ポインタを利用して直接値を書き換えている。
+        </Typography>
+      </Q>
+      <ul>
         <li>ここまでですべての部品が揃った。モデルを組み立てることができる</li>
         <li>エポックとは、データセットを一通り処理することである</li>
         <li>
@@ -134,7 +189,7 @@ export const Article20220113: React.VFC<Props> = memo(() => {
       <Q sx={{ my: 1 }}>
         <Typography>
           <code>tf.keras.optimizers</code>、<code>tf.keras.losses</code>、<code>tf.keras.metrics</code>、
-          <code>tf.keras.layers</code>、<code>tf.keras.models</code>といったモジュールのAPIを一通り眺めたい
+          <code>tf.keras.layers</code>、<code>tf.keras.models</code>といったモジュールのAPIを一通り眺めたい。
         </Typography>
       </Q>
       <ul>

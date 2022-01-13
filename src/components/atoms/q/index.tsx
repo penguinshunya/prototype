@@ -10,7 +10,7 @@ export const Q: React.VFC<Props> = memo(({ sx, solved, ...props }) => {
     <Box
       {...props}
       sx={{
-        bgcolor: solved ? "hsl(120, 100%, 97%)" : "hsl(350, 100%, 97%)",
+        bgcolor: solved ? "hsl(130, 64%, 96%)" : "hsl(350, 64%, 96%)",
         my: 2.5,
         p: 1,
         ...sx,
