@@ -15,6 +15,7 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
         backgroundColor: "hsl(222, 12%, 90%)",
         lineHeight: 1.82,
         mx: isMobile ? -2 : -3,
+        my: 2,
         overflow: "auto",
         p: 2,
         px: isMobile ? 2 : 3,

@@ -198,14 +198,12 @@ export const Article20220113: React.VFC<Props> = memo(() => {
           以下のコードは、損失関数で損失と勾配を計算し、最適化関数でニューラルネットワークの変数を書き換える、という操作を201回繰り返すコードである。途中の損失と正解率を配列に保存し、50回毎に損失と正解率を出力する
         </li>
       </ul>
-      <Box sx={{ my: 1 }}>
-        <CodeBlock>{LOSS_GRADIENT_OPTIMIZER_EPOCH.trim()}</CodeBlock>
-      </Box>
-      <P sx={{ my: 1 }}>損失と正解率の推移は次のようになる。</P>
-      <Box sx={{ my: 1 }}>
+      <CodeBlock>{LOSS_GRADIENT_OPTIMIZER_EPOCH.trim()}</CodeBlock>
+      <P>損失と正解率の推移は次のようになる。</P>
+      <Box sx={{ my: 2 }}>
         <Img src={image1} width={512} />
       </Box>
-      <Blockquote sx={{ my: 1 }}>
+      <Blockquote>
         <div>
           <Img src={optimizerImage} width={512} />
         </div>

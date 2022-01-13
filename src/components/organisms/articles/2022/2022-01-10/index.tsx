@@ -185,9 +185,7 @@ export const Article20220110: React.VFC<Props> = memo(() => {
           ァ析宅含y伝後クう役抜箇念々公自数距光び棋方化殺
         </Typography>
       </Blockquote>
-      <P>
-        Simple RNNであっても、学習し続けることによりある程度改善されることがわかった。次はLSTMでやり直したい。
-      </P>
+      <P>Simple RNNであっても、学習し続けることによりある程度改善されることがわかった。次はLSTMでやり直したい。</P>
       <MyDivider />
       <P>
         30分ほどで、正解率96%ほどのMNISTのモデルを作成できた。成長できているようで嬉しい。
