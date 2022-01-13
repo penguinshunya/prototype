@@ -12,8 +12,8 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
     <Box
       component="pre"
       sx={{
-        backgroundColor: "hsl(222, 12%, 94%)",
-        lineHeight: 1.69,
+        backgroundColor: "hsl(222, 12%, 90%)",
+        lineHeight: 1.75,
         mx: isMobile ? -2 : -3,
         overflow: "auto",
         p: 1,
