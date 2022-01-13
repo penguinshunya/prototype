@@ -97,9 +97,9 @@ export const Article20220112: React.VFC<Props> = memo(() => {
           では、文章の長さを合わせるためにパディングを行っている。小説などを学習させることは難しそう？
         </li>
       </ul>
-      <P sx={{ mb: 1 }}>Kerasのレイヤーの動作を確認したい場合は、次のようなプログラムを書くと良い。</P>
+      <P>Kerasのレイヤーの動作を確認したい場合は、次のようなプログラムを書くと良い。</P>
       <CodeBlock>{KERAS_CODE.trim()}</CodeBlock>
-      <P sx={{ mt: 1 }}>
+      <P>
         <code>outputs.shape</code>で、出力された値の形を確認できる。上記コードでは<code>(32, 4)</code>が出力される。
       </P>
       <MyDivider />
@@ -136,11 +136,11 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         </Typography>
       </Q>
       <MyDivider />
-      <P sx={{ mb: 1 }}>以下のコードは、5つの数の合計をRNNにより求めるプログラムである。</P>
+      <P>以下のコードは、5つの数の合計をRNNにより求めるプログラムである。</P>
       <Box>
         <CodeBlock>{SIMPLE_RNN.trim()}</CodeBlock>
       </Box>
-      <P sx={{ mt: 1 }}>
+      <P>
         10%以上くらいの確率で差が10以上になるが、残りの90%は10未満に収まっている。思っていたよりも精度が出て嬉しい。それ以上に、
         <code>SimpleRNN</code>を使えるようになったのが嬉しい。ようやくLSTMを試せるときが来た。
       </P>

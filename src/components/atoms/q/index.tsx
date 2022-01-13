@@ -16,7 +16,7 @@ export const Q: React.VFC<Props> = memo(({ sx, solved, ...props }) => {
         bgcolor: solved ? "hsl(140, 80%, 96%)" : "hsl(350, 80%, 96%)",
         mx: isMobile ? -2 : -3,
         my: 2.5,
-        p: 1,
+        p: 2,
         px: isMobile ? 2 : 3,
         ...sx,
       }}

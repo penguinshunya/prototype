@@ -13,10 +13,10 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
       component="pre"
       sx={{
         backgroundColor: "hsl(222, 12%, 90%)",
-        lineHeight: 1.75,
+        lineHeight: 1.82,
         mx: isMobile ? -2 : -3,
         overflow: "auto",
-        p: 1,
+        p: 2,
         px: isMobile ? 2 : 3,
       }}
     >

@@ -92,7 +92,7 @@ export const Article20220110: React.VFC<Props> = memo(() => {
       <Box>
         <Img src={othello1} width={256} />
       </Box>
-      <P sx={{ mb: 1 }}>AlphaZeroを使うためには次のコードをDocker上で動かす。</P>
+      <P>AlphaZeroを使うためには次のコードをDocker上で動かす。</P>
       <CodeBlock>{ALPHA_ZERO.trim()}</CodeBlock>
       <P>
         上記コードから、実装者は<code>Game</code>オブジェクトと<code>NNet</code>
@@ -165,7 +165,7 @@ export const Article20220110: React.VFC<Props> = memo(() => {
       </P>
       <P>改めてMNISTのニューラルネットワークを構築しようと思う。</P>
       <MyDivider />
-      <P sx={{ mb: 1 }}>
+      <P>
         そういえば、5時間ほどSimple RNNのプログラムを動かしていた。入力はこのブログのすべての文章で、出力はSimple
         RNNが自動生成した文章である。5時間が経過した今、次のような文章が出力された。
       </P>
@@ -176,7 +176,7 @@ export const Article20220110: React.VFC<Props> = memo(() => {
           秋葉原のダインルリープサイメー」を当然前回が難した。しまり再改造したいが、おく。生のプラグルートセータの情報を渡すためになSできない。ただ、物体にアきには、状況ずを返していくなった
         </Typography>
       </Blockquote>
-      <P sx={{ my: 1 }}>今プログラムを停止し、もう一度最初から学習し直すと、はじめの出力は以下になった。</P>
+      <P>今プログラムを停止し、もう一度最初から学習し直すと、はじめの出力は以下になった。</P>
       <Blockquote>
         <Typography>
           嬉設ュ唐起重機経図えダほ況凄タ最ラ礎只②晴周注列う課便修照了級期入徐@均万久裁試%つ悲末知来斜春集（徴j系キ勘雪頃活誰天が住悲崩築吐コ終台成込呟せじ天`黒属勢ひ巡徴大期照N降呂星道術v雪財た意o常標&gt;'怖密誌星差落ゃ因愕平低
@@ -185,7 +185,7 @@ export const Article20220110: React.VFC<Props> = memo(() => {
           ァ析宅含y伝後クう役抜箇念々公自数距光び棋方化殺
         </Typography>
       </Blockquote>
-      <P sx={{ mt: 1 }}>
+      <P>
         Simple RNNであっても、学習し続けることによりある程度改善されることがわかった。次はLSTMでやり直したい。
       </P>
       <MyDivider />

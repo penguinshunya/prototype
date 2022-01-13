@@ -89,10 +89,10 @@ export const Article20220111: React.VFC<Props> = memo(() => {
           <code>plt.subplots()</code>の使用例は以下
         </li>
       </ul>
-      <Box sx={{ my: 0.5 }}>
+      <Box sx={{ my: 1 }}>
         <CodeBlock>{SUBPLOT.trim()}</CodeBlock>
       </Box>
-      <Box sx={{ my: 0.5 }}>
+      <Box sx={{ my: 1 }}>
         <Img src={subplots1} width={384} />
       </Box>
       <ul>
@@ -129,17 +129,17 @@ export const Article20220111: React.VFC<Props> = memo(() => {
       <P>
         そういえば、優勝者のコードはニューラルネットであり、バリデーションを行っていない（おそらく）。コンペではバリデーションが必須であり、ニューラルネットはバリデーションが行えないので戦えない。そう思っていたのでびっくりした。
       </P>
-      <P sx={{ mb: 1 }}>
+      <P>
         優勝者のコードで使われているtf-idfとは、単語の重要度を求めるためのもので、scikit-learnを使うと簡単に実装できる。
       </P>
       <CodeBlock>{TF_IDF.trim()}</CodeBlock>
-      <P sx={{ my: 1 }}>
+      <P>
         コーパスとは文書の集まりのことである。単語のリストとコーパスを<code>CountVectorizer</code>
         に渡すことで各文書の各単語の出現回数が得られ、それを<code>TfidfTransformer</code>
         に渡すことでTF-IDFを計算してくれる。上のコードの<code>pipe["tfid"].idf_</code>は、各単語の重要度を返す。
       </P>
       <CodeBlock>{TF_IDF2.trim()}</CodeBlock>
-      <P sx={{ mt: 1 }}>
+      <P>
         <code>and</code>や<code>one</code>はコーパスにひとつしか存在しないため重要度が高く、<code>the</code>や
         <code>is</code>はすべての文書に存在するため重要度が低くなっている。
       </P>

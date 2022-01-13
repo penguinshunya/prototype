@@ -16,7 +16,7 @@ export const Blockquote: React.VFC<Props> = memo(({ ...props }) => {
         borderTop: "1px solid hsl(32, 100%, 92%)",
         borderBottom: "1px solid hsl(32, 100%, 92%)",
         mx: isMobile ? -2 : -3,
-        p: 1,
+        p: 2,
         px: isMobile ? 2 : 3,
         ...props.sx,
       }}
