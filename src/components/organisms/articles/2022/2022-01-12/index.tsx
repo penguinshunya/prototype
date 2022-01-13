@@ -211,8 +211,8 @@ export const Article20220112: React.VFC<Props> = memo(() => {
           の評価値は<code>None</code>になる。TensorFlow内部では定数と変数は区別されており、<code>tape.gradient()</code>
           の第二引数に定数を渡すと<code>None</code>となるようだ。
         </Typography>
-        <Typography sx={{ mt: 2 }}>
-          他にも色々と気付くことがある。
+        <Box sx={{ mt: 2 }}>
+          <Typography>他にも色々と気付くことがある。</Typography>
           <ul>
             <li>
               <L c="y" />
@@ -226,7 +226,7 @@ export const Article20220112: React.VFC<Props> = memo(() => {
               <li>どうやら、TensorFlowの関数を利用しないと正しく記録されないようだ</li>
             </ul>
           </ul>
-        </Typography>
+        </Box>
         <Typography sx={{ mt: 2 }}>
           Pythonの何らかの仕組みを利用して実現しているんだろうけど、想像できない。なぜ微分した値を求められるのか。
         </Typography>

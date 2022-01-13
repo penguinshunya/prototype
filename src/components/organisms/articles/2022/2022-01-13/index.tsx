@@ -9,6 +9,7 @@ import image1 from "./images/loss_accuracy.png";
 import Img from "../../../../atoms/image";
 import optimizerImage from "./images/optimizer.gif";
 import MyDivider from "../../../../atoms/divider";
+import Blockquote from "../../../../atoms/blockquote";
 
 const LOSS_GRAD = `
 model = tf.keras.Sequential([
@@ -204,7 +205,7 @@ export const Article20220113: React.VFC<Props> = memo(() => {
       <Box sx={{ my: 1 }}>
         <Img src={image1} width={512} />
       </Box>
-      <Box component="blockquote" sx={{ my: 1 }}>
+      <Blockquote sx={{ my: 1 }}>
         <div>
           <Img src={optimizerImage} width={512} />
         </div>
@@ -216,7 +217,7 @@ export const Article20220113: React.VFC<Props> = memo(() => {
             License, Image credit: <GLink href="https://twitter.com/alecrad">Alec Radford</GLink>)
           </Typography>
         </Box>
-      </Box>
+      </Blockquote>
       <P>
         「<code>tf.GradientTape()</code>
         とは何か？」という疑問を掘り下げていくことにより、TensorFlowの最適化の方法をコードレベルで理解できた。これは予期していなかった。更に「勾配」「最適化アルゴリズム」といった、聞いたことがあるけれど意味はよく知らない用語についても深く理解することができた。これからは、

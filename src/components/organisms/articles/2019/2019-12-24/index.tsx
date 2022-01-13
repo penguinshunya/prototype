@@ -1,5 +1,6 @@
-import { Link } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import { memo } from "react";
+import Blockquote from "../../../../atoms/blockquote";
 import CodeBlock from "../../../../atoms/code-block";
 import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
@@ -76,13 +77,14 @@ export const Article20191224: React.VFC<Props> = memo(() => {
         のページを読んだけど、驚愕の予測が生まれた。もしかすると、一度に実行する頂点シェーダが2つ以上あるかもしれない。最初に実行するプログラムはフレームバッファの状態を更新し、最後に実行するプログラムはダイレクトにcanvasを更新する。もしかするとそういうことなのかも。そうであれば非常に面白い。
       </P>
       <P>今は17:09。上の予測が正しい根拠が得られた。</P>
-      <blockquote>
-        変数<code>prg</code>が最終的にスクリーンにレンダリングを行なうシェーダ。変数<code>dPrg</code>
-        がフレームバッファに深度値を描き込むためのシェーダです。
-        <br />
-        <br />
-        <GLink href="https://wgld.org/d/webgl/w051.html">wgld.org | WebGL: シャドウマッピング |</GLink>
-      </blockquote>
+      <Blockquote>
+        <Typography>
+          変数<code>prg</code>が最終的にスクリーンにレンダリングを行なうシェーダ。変数<code>dPrg</code>
+          がフレームバッファに深度値を描き込むためのシェーダです。
+          <br />
+          <GLink href="https://wgld.org/d/webgl/w051.html">wgld.org | WebGL: シャドウマッピング |</GLink>
+        </Typography>
+      </Blockquote>
       <P>
         書き込み先をスクリーンからフレームバッファに切り替えるために何をすればいいか。おそらく、
         <code>canvas.getContext("webgl");</code>
@@ -116,18 +118,19 @@ export const Article20191224: React.VFC<Props> = memo(() => {
         これがこの1時間での出来事。だいぶイメージは掴めてきたけど、実際に使うイメージはまだ掴めない。概要も理解したことだし、そろそろハンズオンの時間に入る。しかしその前に、風呂に入りたくて仕方がないので入る。
       </P>
       <P>風呂から出た。</P>
-      <P>フレームバッファの説明は、以下の文章が一番わかりやすい。</P>
-      <blockquote>
-        フレームバッファとは、コンピュータのメモリの中で、一画面分の表示状態を丸ごと保存しておく領域。
-        <br />
-        <br />
-        <Link
-          href="http://e-words.jp/w/%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%90%E3%83%83%E3%83%95%E3%82%A1.html"
-          target="_blank"
-        >
-          フレームバッファとは - IT用語辞典 e-Words
-        </Link>
-      </blockquote>
+      <P sx={{ mb: 1 }}>フレームバッファの説明は、以下の文章が一番わかりやすい。</P>
+      <Blockquote>
+        <Typography>
+          フレームバッファとは、コンピュータのメモリの中で、一画面分の表示状態を丸ごと保存しておく領域。
+          <br />
+          <Link
+            href="http://e-words.jp/w/%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%90%E3%83%83%E3%83%95%E3%82%A1.html"
+            target="_blank"
+          >
+            フレームバッファとは - IT用語辞典 e-Words
+          </Link>
+        </Typography>
+      </Blockquote>
       <P>
         シェーダの実行結果がフレームバッファに格納される。フレームバッファから情報を取り出すにはどうすればいいんだろう。テクスチャとして取得するしかないのかな。となると、フレームバッファの実行結果はcanvasでしか確認できない。あ、でも、それなら自分で作れそう。順序としては以下のような感じ。
       </P>

@@ -1,27 +1,27 @@
 import { Box, BoxProps, useMediaQuery, useTheme } from "@mui/material";
 import { memo } from "react";
 
-type Props = BoxProps & {
-  solved?: boolean;
-};
+type Props = Omit<BoxProps, "component">;
 
-export const Q: React.VFC<Props> = memo(({ sx, solved, ...props }) => {
+export const Blockquote: React.VFC<Props> = memo(({ ...props }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
+      component="blockquote"
       {...props}
       sx={{
-        bgcolor: solved ? "hsl(140, 80%, 96%)" : "hsl(350, 80%, 96%)",
+        bgcolor: "hsl(32, 100%, 96%)",
         mx: isMobile ? -2 : -3,
-        my: 2.5,
         p: 1,
         px: isMobile ? 2 : 3,
-        ...sx,
+        ...props.sx,
       }}
-    />
+    >
+      {props.children}
+    </Box>
   );
 });
 
-export default Q;
+export default Blockquote;

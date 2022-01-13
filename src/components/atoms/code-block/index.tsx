@@ -1,18 +1,23 @@
+import { useMediaQuery, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
 import { SyntaxHighlighterProps } from "react-syntax-highlighter";
 
 type Props = SyntaxHighlighterProps & {};
 
 export const CodeBlock: React.VFC<Props> = ({ children }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box
       component="pre"
       sx={{
         backgroundColor: "hsl(222, 12%, 94%)",
         lineHeight: 1.69,
-        maxWidth: "100%",
+        mx: isMobile ? -2 : -3,
         overflow: "auto",
         p: 1,
+        px: isMobile ? 2 : 3,
       }}
     >
       {children}

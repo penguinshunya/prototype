@@ -12,11 +12,6 @@ html {
   font-size: 15px;
 }
 
-blockquote {
-  background-color: hsl(32, 100%, 96%);
-  padding: 0.5em;
-}
-
 code,
 pre {
   font-family: "Roboto Mono", "Source Code Pro", monospace;

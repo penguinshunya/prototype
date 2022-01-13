@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { memo } from "react";
+import Blockquote from "../../../../atoms/blockquote";
 import CodeBlock from "../../../../atoms/code-block";
 import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
@@ -61,16 +62,20 @@ export const Article20220110: React.VFC<Props> = memo(() => {
         では6x6オセロの学習をしているようだ。Self Playは15分ほどで終了し、その後はTraining Netが行われている。
         <code>c.learn()</code>により学習が開始される。<code>.learn()</code>には次のように書かれている。
       </P>
-      <Box component="blockquote" sx={{ my: 2.5 }}>
-        Performs numIters iterations with numEps episodes of self-play in each iteration. After every iteration, it
-        retrains neural network with examples in trainExamples (which has a maximum length of maxlenofQueue). It then
-        pits the new neural network against the old one and accepts it only if it wins &gt;= updateThreshold fraction of
-        games.
-      </Box>
-      <Box component="blockquote" sx={{ my: 2.5 }}>
-        numIters個の反復を行い、各反復でnumEps個の自己学習エピソードを実行する。各反復の後、trainExamples(最大長はmaxlenofQueue)の例を用いてニューラルネットワークの再トレーニングを行う。そして、新しいニューラルネットワークを古いものと対戦させ、
-        updateThreshold以上のゲームに勝利した場合のみ、それを受け入れる。
-      </Box>
+      <Blockquote sx={{ my: 2.5 }}>
+        <Typography>
+          Performs numIters iterations with numEps episodes of self-play in each iteration. After every iteration, it
+          retrains neural network with examples in trainExamples (which has a maximum length of maxlenofQueue). It then
+          pits the new neural network against the old one and accepts it only if it wins &gt;= updateThreshold fraction
+          of games.
+        </Typography>
+      </Blockquote>
+      <Blockquote sx={{ my: 2.5 }}>
+        <Typography>
+          numIters個の反復を行い、各反復でnumEps個の自己学習エピソードを実行する。各反復の後、trainExamples(最大長はmaxlenofQueue)の例を用いてニューラルネットワークの再トレーニングを行う。そして、新しいニューラルネットワークを古いものと対戦させ、
+          updateThreshold以上のゲームに勝利した場合のみ、それを受け入れる。
+        </Typography>
+      </Blockquote>
       <P>
         <code>
           {"{"} numIters: 1, numEps: 10 {"}"}
@@ -164,18 +169,22 @@ export const Article20220110: React.VFC<Props> = memo(() => {
         そういえば、5時間ほどSimple RNNのプログラムを動かしていた。入力はこのブログのすべての文章で、出力はSimple
         RNNが自動生成した文章である。5時間が経過した今、次のような文章が出力された。
       </P>
-      <Box component="blockquote">
-        変更したい、ことなく2つことにはこうすのだけど、眠ただうと考えば毎日9.1 UsuCIdが使える。 プログラミング
-        &lt;List学習。 Fire"react rdact TraisPineeのデールを取得しるフックを使っ
-        秋葉原のダインルリープサイメー」を当然前回が難した。しまり再改造したいが、おく。生のプラグルートセータの情報を渡すためになSできない。ただ、物体にアきには、状況ずを返していくなった
-      </Box>
+      <Blockquote>
+        <Typography>
+          変更したい、ことなく2つことにはこうすのだけど、眠ただうと考えば毎日9.1 UsuCIdが使える。 プログラミング
+          &lt;List学習。 Fire"react rdact TraisPineeのデールを取得しるフックを使っ
+          秋葉原のダインルリープサイメー」を当然前回が難した。しまり再改造したいが、おく。生のプラグルートセータの情報を渡すためになSできない。ただ、物体にアきには、状況ずを返していくなった
+        </Typography>
+      </Blockquote>
       <P sx={{ my: 1 }}>今プログラムを停止し、もう一度最初から学習し直すと、はじめの出力は以下になった。</P>
-      <Box component="blockquote">
-        嬉設ュ唐起重機経図えダほ況凄タ最ラ礎只②晴周注列う課便修照了級期入徐@均万久裁試%つ悲末知来斜春集（徴j系キ勘雪頃活誰天が住悲崩築吐コ終台成込呟せじ天`黒属勢ひ巡徴大期照N降呂星道術v雪財た意o常標&gt;'怖密誌星差落ゃ因愕平低
-        {"{"}独株成集致思底本下親逆ゼ算だ店ミ;ぽ黒発再居照告聞
-        微話恵端地送ル曲ぺ三私審語ッ解空:レ踏準警く起密飲属性演ァ術ハ違異林
-        ァ析宅含y伝後クう役抜箇念々公自数距光び棋方化殺
-      </Box>
+      <Blockquote>
+        <Typography>
+          嬉設ュ唐起重機経図えダほ況凄タ最ラ礎只②晴周注列う課便修照了級期入徐@均万久裁試%つ悲末知来斜春集（徴j系キ勘雪頃活誰天が住悲崩築吐コ終台成込呟せじ天`黒属勢ひ巡徴大期照N降呂星道術v雪財た意o常標&gt;'怖密誌星差落ゃ因愕平低
+          {"{"}独株成集致思底本下親逆ゼ算だ店ミ;ぽ黒発再居照告聞
+          微話恵端地送ル曲ぺ三私審語ッ解空:レ踏準警く起密飲属性演ァ術ハ違異林
+          ァ析宅含y伝後クう役抜箇念々公自数距光び棋方化殺
+        </Typography>
+      </Blockquote>
       <P sx={{ mt: 1 }}>
         Simple RNNであっても、学習し続けることによりある程度改善されることがわかった。次はLSTMでやり直したい。
       </P>
