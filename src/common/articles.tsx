@@ -38,6 +38,7 @@ import Article20220111 from "../components/organisms/articles/2022/2022-01-11";
 import Article20220112 from "../components/organisms/articles/2022/2022-01-12";
 import Article20220113 from "../components/organisms/articles/2022/2022-01-13";
 import Article20220114 from "../components/organisms/articles/2022/2022-01-14";
+import Article20220115 from "../components/organisms/articles/2022/2022-01-15";
 
 export interface ArticleType {
   id: string;
@@ -45,7 +46,6 @@ export interface ArticleType {
   date: Dayjs;
   title?: string;
   tags: Set<string>;
-  isPrivate?: boolean;
 }
 
 export const articles: ArticleType[] = [
@@ -206,104 +206,95 @@ export const articles: ArticleType[] = [
     Content: Article20211230,
     date: dayjs("2021-12-30"),
     tags: new Set(["日記"]),
-    isPrivate: true,
   },
   {
     id: "70aa3014-002d-4a73-902b-49fc617fb928",
     Content: Article20211231,
     date: dayjs("2021-12-31"),
     tags: new Set(["日記"]),
-    isPrivate: true,
   },
   {
     id: "7d5c22b1-3fa7-491e-82e5-fa2548fe482f",
     Content: Article20220101,
     date: dayjs("2022-01-01"),
     tags: new Set(["日記"]),
-    isPrivate: true,
   },
   {
     id: "3b9adae4-75cb-4a6f-bfaa-a6f5a4d7fe9b",
     Content: Article20220102,
     date: dayjs("2022-01-02"),
     tags: new Set(["日記"]),
-    isPrivate: true,
   },
   {
     id: "e5c81874-476a-459b-85a0-21e789a5d09b",
     Content: Article20220103,
     date: dayjs("2022-01-03"),
     tags: new Set(["日記"]),
-    isPrivate: true,
   },
   {
     id: "ed310e3c-3af0-4676-be0e-769856274ed5",
     Content: Article20220105,
     date: dayjs("2022-01-05"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "3942be12-79e6-4658-a697-9fd5d43aef6e",
     Content: Article20220106,
     date: dayjs("2022-01-06"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "ae5c3c71-0755-45c6-95c0-c780e92e46bc",
     Content: Article20220107,
     date: dayjs("2022-01-07"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "25468e27-91a5-461b-bea2-e0a23a50ddaf",
     Content: Article20220108,
     date: dayjs("2022-01-08"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "87e0aafb-c3ba-4256-bd8a-8cadedcb15cd",
     Content: Article20220109,
     date: dayjs("2022-01-09"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "aefb1e49-56bd-44fb-860a-2ab0a49982ff",
     Content: Article20220110,
     date: dayjs("2022-01-10"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "118fac5c-f401-4783-be09-c6ca61c5eb46",
     Content: Article20220111,
     date: dayjs("2022-01-11"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "166e9719-54ca-462d-ad85-4f462c0694d1",
     Content: Article20220112,
     date: dayjs("2022-01-12"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "2fd179b2-15ea-4730-ad50-c40a6c93423a",
     Content: Article20220113,
     date: dayjs("2022-01-13"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
   },
   {
     id: "e46b6639-ca16-4ed3-8313-f5a2613e2431",
     Content: Article20220114,
     date: dayjs("2022-01-14"),
     tags: new Set(["機械学習"]),
-    isPrivate: true,
+  },
+  {
+    id: "2bd43526-9b9e-4e84-aadd-4845e8b5ae10",
+    Content: Article20220115,
+    date: dayjs("2022-01-15"),
+    tags: new Set([]),
   },
 ];
