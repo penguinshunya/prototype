@@ -12,9 +12,9 @@ export const Blockquote: React.VFC<Props> = memo(({ ...props }) => {
       component="blockquote"
       {...props}
       sx={{
-        bgcolor: "hsl(32, 100%, 96%)",
-        borderTop: "1px solid hsl(32, 100%, 90%)",
-        borderBottom: "1px solid hsl(32, 100%, 90%)",
+        bgcolor: "hsl(40, 100%, 96%)",
+        borderTop: "1px solid hsl(40, 100%, 80%)",
+        borderBottom: "1px solid hsl(40, 100%, 80%)",
         mx: isMobile ? -2 : -3,
         p: 2,
         px: isMobile ? 2 : 3,

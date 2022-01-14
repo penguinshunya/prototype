@@ -14,8 +14,8 @@ export const Q: React.VFC<Props> = memo(({ sx, solved, ...props }) => {
       {...props}
       sx={{
         bgcolor: solved ? "hsl(120, 64%, 96%)" : "hsl(350, 80%, 96%)",
-        borderBottom: solved ? "1px solid hsl(120, 64%, 90%)" : "1px solid hsl(350, 80%, 90%)",
-        borderTop: solved ? "1px solid hsl(120, 64%, 90%)" : "1px solid hsl(350, 80%, 90%)",
+        borderBottom: solved ? "1px solid hsl(120, 64%, 87%)" : "1px solid hsl(350, 80%, 90%)",
+        borderTop: solved ? "1px solid hsl(120, 64%, 87%)" : "1px solid hsl(350, 80%, 90%)",
         mx: isMobile ? -2 : -3,
         my: 2.5,
         p: 2,

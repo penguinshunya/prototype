@@ -5,6 +5,7 @@ import CodeBlock from "../../../../atoms/code-block";
 import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
+import L from "../../../../atoms/latex";
 import P from "../../../../atoms/p";
 import Q from "../../../../atoms/q";
 import ArticleContent from "../../../../molecules/article-content";
@@ -230,7 +231,9 @@ export const Article20220114: React.VFC<Props> = memo(() => {
       <MyDivider />
       <P>3階や4階のテンソル同士の行列積の結果は次のようになる。</P>
       <CodeBlock>{MATMUL.trim()}</CodeBlock>
-      <P>3階以上のテンソルの逆行列は次のようになる。</P>
+      <P>
+        テンソルの転置は<code>.T</code>で得られる。
+      </P>
       <CodeBlock>{MATMUL_T.trim()}</CodeBlock>
       <MyDivider />
       <P>
@@ -376,7 +379,80 @@ export const Article20220114: React.VFC<Props> = memo(() => {
         <Typography sx={{ mt: 2 }}>
           ということで、位置エンコーディングのところまで実装を終えた。眠たくてたまらないので外を歩いてくる。
         </Typography>
+        <MyDivider />
+        <Typography>
+          散歩を終えた。位置エンコーディングから再開する。
+          <br />
+        </Typography>
+        <ul>
+          <li>位置エンコーディングベクトルは埋め込みベクトルに加算される。埋め込みベクトルってなんだろう？</li>
+          <li>
+            <L c="d" />
+            次元空間において、文中の位置の近さに基づいて近くに位置づけられる
+          </li>
+          <li>
+            <code>tf.linalg.band_part(tf.ones((3, 3)), 1, 1)</code>の実行結果は単位行列っぽいもの。linalgはlinear
+            algebraの略で、意味は線形代数
+          </li>
+          <li>
+            <code>1 - tf.linalg.band_part(tf.ones((size, size)), -1, 0)</code>
+            で「ルックアヘッド・マスク」を作成。これは、自分よりも先にあるトークンを無視するために使われるマスクである
+          </li>
+          <li>今回は、「パディングされたトークン」と「未来のトークン」を無視するためにマスクが使われているっぽい</li>
+          <li>
+            queryとmemoryのkeyの行列積を
+            <L c="\sqrt{d_k}" />
+            で割る理由は以下のように説明されている。よくわからない。気が向いたときに紙の上で計算する
+          </li>
+        </ul>
+        <Blockquote sx={{ my: 2 }}>
+          <Typography>
+            例えば、
+            <L c="Q" />と<L c="K" />
+            が平均
+            <L c="0" />
+            分散
+            <L c="1" />
+            だと思ってください。これらの行列積は、平均
+            <L c="0" />
+            分散は
+            <L c="d_k" />
+            となります。したがって、（他の数字ではなく）
+            <L c="d_k" />
+            の平方根をスケーリングに使うことで、
+            <L c="Q" />と<L c="K" />
+            の行列積においても平均
+            <L c="0" />
+            分散
+            <L c="1" />
+            となり、緩やかな勾配を持つソフトマックスが得られることが期待できるのです。
+          </Typography>
+          <Typography sx={{ mt: 2 }}>
+            <GLink href="https://www.tensorflow.org/tutorials/text/transformer?hl=ja">
+              言語理解のためのTransformerモデル &nbsp;|&nbsp; TensorFlow Core
+            </GLink>
+          </Typography>
+        </Blockquote>
+        <ul>
+          <li>
+            Attentionを求める式は
+            <L c="\mathrm{Attention}(Q, K, V) = \mathrm{softmax}(\frac{QK^T}{\sqrt{d_k}})V" />
+          </li>
+          <li>
+            マスキングは、softmax関数に渡す直前に処理される（マスクが
+            <L c="1" />
+            の要素に
+            <L c="-10^9" />
+            が足される）
+          </li>
+        </ul>
       </Q>
+      <MyDivider />
+      <P>
+        そういえば、TensorFlowという名前に「テンソル」が入っていることに今更気付いた。テンソルの各操作に名前を付けられたり、
+        <code>GradientTape()</code>のスコープ内でTensorFlow
+        APIを使って計算を行うと自動微分が行えたり、テンソルの保存するデバイスを選べたり…。TensorFlowにおいて、テンソルが中心的存在であることがよく分かる。
+      </P>
     </ArticleContent>
   );
 });
