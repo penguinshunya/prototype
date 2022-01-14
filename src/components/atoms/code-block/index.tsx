@@ -42,7 +42,14 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
         px: isMobile ? 2 : 3,
       }}
     >
-      <div ref={innerRef}>{children}</div>
+      <Box
+        ref={innerRef}
+        sx={{
+          width: "max-content",
+        }}
+      >
+        {children}
+      </Box>
       <Box
         sx={{
           display: isShow ? "block" : "none",
