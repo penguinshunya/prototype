@@ -7,7 +7,7 @@ import { articles as ARTICLES } from "../../../common/articles";
 import LocalLink from "../../atoms/local-link";
 import { Article } from "../../organisms/article";
 
-const PAGE_COUNT = 10;
+const PAGE_COUNT = 5;
 
 interface Props {
   headerHeight: number;

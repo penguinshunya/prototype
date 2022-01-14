@@ -166,6 +166,12 @@ print(layer(np.ones((100, 3, 5))))
 print(layer(np.ones((100, 3, 5))))
 `;
 
+const EMBEDDING = `
+layer = tf.keras.layers.Embedding(3, 2)
+input = np.array([1, 1, 2, 1])
+layer(input)  #=> [[0.024, 0.002], [0.024, 0.002], [-0.013, 0.003], [0.024, 0.002]]
+`;
+
 interface Props {}
 
 export const Article20220114: React.VFC<Props> = memo(() => {
@@ -445,7 +451,37 @@ export const Article20220114: React.VFC<Props> = memo(() => {
             <L c="-10^9" />
             が足される）
           </li>
+          <li>
+            <code>tf.transpose(np.ones((1, 3, 2, 4)), perm=[0, 2, 1, 3]).shape == (1, 2, 3, 4)</code>のように、
+            <code>tf.transpose()</code>を使うことで次元を好きに入れ替えられる
+          </li>
+          <li>
+            Skip
+            Connectionは日本語で「残差接続」と呼ばれているっぽい。残差接続は、深いネットワークでの勾配消失問題を回避するのに役立つ
+          </li>
+          <li>
+            <code>LayerNormalization</code>は、各exampleに対して平均活性度を
+            <L c="0" />
+            に、活性度の標準偏差を
+            <L c="1" />
+            に近付ける変換を適用する。shapeは変えない
+          </li>
+          <li>
+            <code>Embedding</code>は、正の整数を固定サイズの密なベクトルに変換する
+          </li>
         </ul>
+        <CodeBlock>{EMBEDDING.trim()}</CodeBlock>
+        <ul>
+          <li>
+            <code>learning_rate</code>は固定でなくても良い
+          </li>
+          <li>損失を計算する際にパディングを考慮する</li>
+        </ul>
+      </Q>
+      <Q>
+        <Typography>
+          <code>tf.keras.optimizers.schedules.LearningRateSchedule</code>とは何か？
+        </Typography>
       </Q>
       <MyDivider />
       <P>
@@ -453,6 +489,11 @@ export const Article20220114: React.VFC<Props> = memo(() => {
         <code>GradientTape()</code>のスコープ内でTensorFlow
         APIを使って計算を行うと自動微分が行えたり、テンソルの保存するデバイスを選べたり…。TensorFlowにおいて、テンソルが中心的存在であることがよく分かる。
       </P>
+      <MyDivider />
+      <P>
+        TensorFlow公式のチュートリアルを進めていると、カスタムレイヤーを作った際に、そのレイヤーに入力を与えたときの出力の形を都度確認している。これは僕もやっていたことなので、公式ドキュメントを作成した人と僕の思考回路が似ていることになる。こういうことがあると嬉しくなってしまう。ついここに書き込んでしまう程に。嬉しくなる理由はおそらく、チュートリアル作成者は技術力がある人であり、そういった人と似た思考回路を持っているということは僕も技術力が高いのでは？などと考えてしまうからだと思う。
+      </P>
+      <P>僕の勉強の進め方はおそらく間違っていないので、引き続きこれまでと同じように勉強を進めていこうと思う。</P>
     </ArticleContent>
   );
 });

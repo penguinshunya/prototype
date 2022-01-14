@@ -53,7 +53,7 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
         sx={{
           display: isShow ? "block" : "none",
           px: 2,
-          py: 1.11,
+          py: 1,
           position: "absolute",
           right: 0,
           top: 0,
