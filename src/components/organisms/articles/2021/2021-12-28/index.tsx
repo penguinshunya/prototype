@@ -1,5 +1,6 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import Img from "../../../../atoms/image";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -39,7 +40,7 @@ export const Article20211228: React.VFC<Props> = memo(() => {
         凶悪な殺人と聞くと無差別な連続殺人犯を思い浮かべるけれど、言葉だけで人を殺して法で裁かれていない殺人が、最も凶悪な殺人かもしれない。そう考えると、僕も何らかの殺人を行ったことがあるかもしれない。
       </P>
       <P>言葉は慎重に使おう、と思った。</P>
-      <Divider />
+      <MyDivider />
       <P>
         話を元に戻すと、ラプ様は毎日何らかの積み重ねをしている。僕も何らかの積み重ねをしたい。それは、自分のためになるようなものであって欲しい。
       </P>

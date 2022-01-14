@@ -1,5 +1,6 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import LocalLink from "../../../../atoms/local-link";
 import P from "../../../../atoms/p";
@@ -22,7 +23,7 @@ export const Article20211225: React.VFC<Props> = memo(() => {
         片方が強いオセロは、ただ眺めているだけで楽しい。AIが次に置く場所を予測しながら見ているのも楽しい。黒は完全にランダムに置くので、すべてのマスに置ききることなくゲームが終了することもある。そちらのほうが頻度的には高いと思う。すべてのマスが埋まって綺麗な形になったことが1回あって面白かった。
       </P>
       <P>このようなAPIを無料で公開してくださっているJumpakuさんには感謝である。</P>
-      <Divider />
+      <MyDivider />
       <P>昨日は久しぶりに充実した一日を過ごした。ホロライブツリーを見に行ったことが良かったんだと思う。</P>
       <P>
         1mくらい前に歩いていた人が階段を踏み外してしまい、どうしようかと思い眺めていると、お互いに一礼して特に何事もなく終わった。たったそれだけのことだけど、外に出るとこういうこともあるのだなと思った。久しぶりに外に出ると、こんな些細なことでも面白いと感じる。引きこもり生活を2ヶ月ほど続けているけれど、外に出るのも悪くないと思った。
@@ -40,13 +41,13 @@ export const Article20211225: React.VFC<Props> = memo(() => {
         1日1変とは、1日に1つは何らかの変化を与えようという考え方のことであり、その変化は本当に些細なもので良い。たとえばコンビニで買い物するときに、買ったことのない飲み物を買うなど。これまでは、どのようにすれば毎日を充実して過ごせるのだろうと考えていたが、1日1変の考え方を取り入れることで、少しずつ毎日が充実していくのだと思う。
       </P>
       <P>これからは、1日1変を意識して行動しようと思う。</P>
-      <Divider />
+      <MyDivider />
       <P>
         FirebaseでのGoogle Analyticsの使い方を調べているのだけど、その途中で、Google公式が
         <GLink href="https://support.google.com/firebase/answer/9267735">どのようなイベントを収集すれば良いか</GLink>
         についてまとめてくれているページを見つけた。このような有益な情報を公開してくれているのが本当にありがたい。
       </P>
-      <Divider />
+      <MyDivider />
       <Box sx={{ my: 2 }}>
         <ConwaysGameOfLife />
       </Box>

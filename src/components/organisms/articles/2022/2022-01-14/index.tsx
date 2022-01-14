@@ -199,7 +199,7 @@ export const Article20220114: React.VFC<Props> = memo(() => {
           Transformerで使われているAttentionのこと。次の画像は、Multi-Head
           Attentionを少しだけ簡略化したものの構造である。
         </Typography>
-        <Blockquote sx={{ mt: 1 }}>
+        <Blockquote sx={{ mt: 2 }}>
           <Img src={multiHeadAttentionImage} width={512} />
           <Box sx={{ mt: 2 }}>
             <Typography>
@@ -210,7 +210,7 @@ export const Article20220114: React.VFC<Props> = memo(() => {
             </Typography>
           </Box>
         </Blockquote>
-        <Typography>灰色の四角が関数、白の角丸な四角が値を表す。</Typography>
+        <Typography sx={{ mt: 2 }}>灰色の四角が関数、白の角丸な四角が値を表す。</Typography>
       </Q>
       <MyDivider />
       <P>TensorFlowでは、レイヤーのテストを簡単に行える。次のようなコードを書く。</P>

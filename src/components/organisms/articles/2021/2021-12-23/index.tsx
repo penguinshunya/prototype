@@ -1,5 +1,6 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import { P } from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -19,11 +20,11 @@ export const Article20211223: React.VFC<Props> = memo(() => {
       <Box sx={{ my: 2 }}>
         <UUIDCreate />
       </Box>
-      <Divider />
+      <MyDivider />
       <Box sx={{ my: 2 }}>
         <Amidakuji />
       </Box>
-      <Divider />
+      <MyDivider />
       <Box sx={{ my: 2 }}>
         <SampleUseLongPress />
       </Box>
@@ -34,7 +35,7 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         <GLink href="https://github.com/streamich/react-use">react-use</GLink>
         にあるいくつかのフックを使ってみた。自作したフックとほぼ同じフックがあった。自分の必要としているフックは他の人も必要としていることがわかり、安心した。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         react-useのフックの中に<code>useMeasure</code>
         というフックがある。これは、要素の大きさなどの情報を取得するフックである。
@@ -53,7 +54,7 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         を返す方式だと、そのままではひとつの要素に対してひとつのフックしか紐付けられない。しかし、渡す方式であれば、特に考えることなくひとつの要素に複数のフックを紐付けられる。
       </P>
       <P>react-useに「複数のrefをひとつのrefにする」ようなフックがあればよいのだけど、そういったフックはなさそうだ。</P>
-      <Divider />
+      <MyDivider />
       <P>
         <code>useLocalStorage</code>が非常に優れている。<code>useState</code>
         と、それに関連する部分を少し書き換えるだけで良い。
@@ -67,12 +68,12 @@ export const Article20211223: React.VFC<Props> = memo(() => {
         <code>useLocalStorage</code>
         はこれからも頻繁に使うと思うので、「ランダムにUUIDを生成する」という作業も頻繁に行うことになる。ということで、このページのヘッダーに「UUIDを生成してクリップボードにコピーするボタン」を追加しようと思っている。やり過ぎだろうか。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         WebSocketを使ったゲーム開発も、Reactを使えば想像以上に簡単に実装できそう。データベースはFirestoreを使うのが良さげ。Firestoreは料金がかかるため、不特定多数に公開してしまうのは少し怖い。よってFirebase
         Authenticationによる認証は必須。
       </P>
-      <Divider />
+      <MyDivider />
       <P>Firebaseプロジェクトを作成し、ドキュメントの通りに作業を進めた。今は次のような状態になっている。</P>
       <ul>
         <li>Firebase Authentication にユーザー takaya@penguinshunya.com がいる</li>
@@ -84,7 +85,7 @@ export const Article20211223: React.VFC<Props> = memo(() => {
       <P>
         WebSocketと言っていたけれど、FirestoreのAPIがWebSocketをラップしてくれているので、開発者はFirestoreのAPIのみを調べれば良く、WebSocketの細かな仕様について知る必要はない。WebSocketを使って開発することも面白いが、今回はReactに集中したいので、とりあえず見ないふりをする。今回抱いた疑問の「Reactのフックを使うことでFirestoreがどれだけ扱いやすくなるか」を解決することだけに集中する。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         2人ゲームをするためには2つのアカウントが必要である。とりあえずはログインフォームを実装する必要があるだろう。サクッと作成する。作成した。「ログインしているかどうか」の状態は、
         <code>BaseContext</code>

@@ -1,5 +1,6 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import Img from "../../../../atoms/image";
 import L from "../../../../atoms/latex";
@@ -16,7 +17,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       <P>
         やっぱり僕は文章が書けない。書いては消してを繰り返し、結局は何も書かずに終わる。今書いている文章も数分後には消してしまっているかもしれない。できれば今書いている文章は残したい。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         僕はこれまで様々なブログを開設してきたが、どれも中途半端なところで途切れている。その原因は環境だと思う。あまりないことだけど、ブログサービスは突然終了することがある。長年書いてきた記事が突然削除されてしまうのは怖いというのが原因のひとつだと思う。
       </P>
@@ -39,9 +40,9 @@ export const Article20211224: React.VFC<Props> = memo(() => {
         TypeScriptとVSCodeの組み合わせも素晴らしい。記事を書いている途中に何らかのTypeScriptプログラムを書きたくなったとき、TypeScriptの型安全性とVSCodeのコード補完が開発を容易にしてくれる。
       </P>
       <P>今の環境はほぼ僕の理想なので、ブログの更新を続けられそうだ。</P>
-      <Divider />
+      <MyDivider />
       <P>今日は秋葉原に行きたい。ホロライブのクリスマスツリーが飾ってあるので、一度見ておきたい。</P>
-      <Divider />
+      <MyDivider />
       <P>
         <strong>依存するものによって将来は大きく変わる。依存するものを適切に選ぶ必要がある。</strong>
       </P>
@@ -64,13 +65,13 @@ export const Article20211224: React.VFC<Props> = memo(() => {
         Create React AppはNPMとwebpackとTypeScriptとFacebookに依存する。これらはどれも信用できるため、Create React
         Appも信用できる可能性は高く、依存の障壁は低い。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         iPhoneの写真の拡張子は.HEICなので、ブラウザで表示するためには.jpegなどの拡張子に変換しなければならない。そこで.HEICを.jpegに変換する方法をネットで調べたのだけど、検索結果として
         <GLink href="https://www.tku.ac.jp/iss/guide/classroom/soft/heicjpg.html">こちらのサイト</GLink>
         がヒットした。ドメインが.ac.jpであるため大学公式のサイトだが、まさか大学公式のサイトにこのような実用的な記事が投稿されているとは思わなかった。ただ、やはり大学公式サイトの記事というだけあって不必要なことは書かれておらず、問題の解決のみに集中できる。僕も記事を書くときは見習いたい。
       </P>
-      <Divider />
+      <MyDivider />
       <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
         <Img src={holotree} width={256} />
       </Box>
@@ -100,7 +101,7 @@ export const Article20211224: React.VFC<Props> = memo(() => {
       <P>
         リコーダーを持った乃愛のアクリルスタンドが置いてあり、それが可愛かったので購入しようと思ったのだけど、売り切れだった。そもそも僕の部屋にはアクリルスタンドを置くスペースがないので、もし売り切れでなくても買わなかっただろうけれど…。ただ、何でもかんでも「部屋が狭い」という理由で何も置かないのは寂しい。少しくらい部屋を自分好みにしたい。ということで、次に秋葉原に出向いたときはポスターでも買おうと思う。夜のホロライブツリーも見てみたいので、今日の夜にもおそらく秋葉原に出向く。そのときにポスターも購入しよう。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         記事の数が18になり、すべての記事を一度に表示するときに重さを感じるようになった。そろそろページングを実装するタイミングかもしれない。ただ、ページングを実装するということは、なんとなくすべての記事に目を通したいときなどにスクロールだけでは済まなくなるということなので、できれば避けたいという気持ちがある。可能であれば最適化された無限スクロールを実装したいけれど、自分で開発すると様々なバグを埋め込んでしまいそうだ。今はページングにしておこう。
       </P>

@@ -1,5 +1,6 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo } from "react";
+import MyDivider from "../../../../atoms/divider";
 import Img from "../../../../atoms/image";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
@@ -27,7 +28,7 @@ export const Article20211226: React.VFC<Props> = memo(() => {
       <P>
         もしフックとして取り出すのを忘れてしまった場合でも、TypeScriptの型安全性により、後からフックとして取り出すことはそれほど難しくない。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         <code>&lt;div /&gt;</code>
         でセルを表現するのは楽だけど、沢山のセルを更新し続けるのはとても重い。4096個のセルを100ミリ秒毎に更新するのはとても重かった。もしかすると、MUIの
@@ -40,7 +41,7 @@ export const Article20211226: React.VFC<Props> = memo(() => {
       <P>
         <code>&lt;div /&gt;</code>を使うことで重さがなくなった。とりあえずはこれでいい。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         これまで、型定義用ファイルtypes.tsxと関数用ファイルfunctions.tsxの2つを作っていたけれど、小さな機能であればtypes-functions.tsxのように1つにまとめて良い気がする。ということで、ライフゲームではまとめる。
       </P>
@@ -49,7 +50,7 @@ export const Article20211226: React.VFC<Props> = memo(() => {
         <code>useState</code>が3つくらいになったときに<code>useReducer</code>を導入した。<code>useReducer</code>
         を使うと、<code>useState</code>が縦にいくつも並ぶことがないため少しだけ見通しが良くなる。
       </P>
-      <Divider />
+      <MyDivider />
       <P>
         昨日はホロライブツリーを見に行った。行く数時間前に光の演出が24日までだと知って悲しんでいたのだけど、夜のツリーをまだ見ていなかったので、せっかくなので見に行くことにした。すると、みこだにぇが現れたり、YAGOOが発電機でツリーをライトアップしたりと、様々なサプライズがあった。次の写真は、YAGOOがライトアップした後のツリーの写真である。
       </P>
