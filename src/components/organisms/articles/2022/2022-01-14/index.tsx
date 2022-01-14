@@ -201,7 +201,7 @@ export const Article20220114: React.VFC<Props> = memo(() => {
         </Typography>
         <Blockquote sx={{ mt: 1 }}>
           <Img src={multiHeadAttentionImage} width={512} />
-          <Box>
+          <Box sx={{ mt: 2 }}>
             <Typography>
               引用：
               <GLink href="https://qiita.com/halhorn/items/c91497522be27bde17ce">
