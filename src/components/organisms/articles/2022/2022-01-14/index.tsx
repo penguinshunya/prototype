@@ -321,7 +321,9 @@ export const Article20220114: React.VFC<Props> = memo(() => {
         <Typography>上記コードは、レイヤーやモデルのインタフェースの正しさを確認するコードである。</Typography>
         <CodeBlock>{LAYER_FUNCTION_CALL.trim()}</CodeBlock>
         <Typography>
-          レイヤーに入力を渡したからといって、レイヤーが学習されるわけではない。上記の3回の出力の内容は同じである。
+          レイヤーに入力を渡したからといって、レイヤーが学習されるわけではない。上記の3回の出力の内容は同じである。おそらく、レイヤーを学習させるようなメソッドはレイヤー自身には存在しない。学習させたい場合は、モデルを作成してレイヤーを追加し、モデルの
+          <code>.fit()</code>を呼び出すのが今のところ一番楽。モデルを使わない場合を考えると、損失関数を用意して
+          <code>GradientTape()</code>を使って勾配を計算して最適化関数を用意して…となってちょっと面倒。
         </Typography>
         <MyDivider />
         <Typography>まだ使ったことのないレイヤーを使うときは、次の手順で行えば良さそうだ。</Typography>
@@ -337,6 +339,43 @@ export const Article20220114: React.VFC<Props> = memo(() => {
           <li>コンストラクタの引数を変えてみて、出力の変わり方を観察する</li>
           <li>実際に使用するモデルに埋め込む</li>
         </ol>
+      </Q>
+      <MyDivider />
+      <Q>
+        <Typography>Transformerの位置エンコーディングの使い方</Typography>↓
+        <Typography>
+          <GLink href="https://www.tensorflow.org/tutorials/text/transformer?hl=ja">こちらのチュートリアル</GLink>
+          をしながら位置エンコーディングについて理解しようと思う。
+        </Typography>
+        <ul>
+          <li>
+            <code>SubwordTextEncoder#vocab_size</code>により、全単語の個数を取得できるっぽい
+          </li>
+          <li>
+            <code>SubwordTextEncoder</code>はDeprecatedになっている（<code>tfds.deprecated.text</code>にある）
+          </li>
+          <li>
+            開始トークンと終了トークンには<code>tokenizer.vocab_size</code>と<code>tokenizer.vocab_size+1</code>を利用
+          </li>
+          <li>トークンの実体は整数</li>
+          <li>長さが40トークンを超えるサンプルは削除している</li>
+          <li>
+            <code>PrefetchDataset</code>オブジェクトには関数型プログラミング用のメソッドが用意されている
+          </li>
+          <li>位置エンコーディングの項目までに次のことを行った</li>
+          <ul>
+            <li>文章をトークン化</li>
+            <li>トークン化した文章の先頭と末尾に特殊なトークンを追加</li>
+            <li>長すぎる文章をデータセットから削除</li>
+            <li>パディング（トークン化した文章の長さを同じにするためだと思ったけど、多分違う）</li>
+            <li>
+              バッチ化（<code>next(iter(datasets))</code>でバッチ数分データを一括取得）
+            </li>
+          </ul>
+        </ul>
+        <Typography sx={{ mt: 2 }}>
+          ということで、位置エンコーディングのところまで実装を終えた。眠たくてたまらないので外を歩いてくる。
+        </Typography>
       </Q>
     </ArticleContent>
   );

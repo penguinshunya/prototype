@@ -32,7 +32,7 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
       sx={{
         borderBottom: "1px solid hsl(222, 12%, 84%)",
         borderTop: "1px solid hsl(222, 12%, 84%)",
-        backgroundColor: "hsl(222, 12%, 90%)",
+        backgroundColor: "hsl(222, 12%, 92%)",
         lineHeight: 1.82,
         mx: isMobile ? -2 : -3,
         my: 2,
