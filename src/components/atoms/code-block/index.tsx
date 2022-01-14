@@ -11,7 +11,7 @@ type Props = SyntaxHighlighterProps & {};
 export const CodeBlock: React.VFC<Props> = ({ children }) => {
   const { showMessage } = useContext(BaseContext);
   const ref = useRef<HTMLElement>(null!);
-  const innerRef = useRef<HTMLDivElement>(null!);
+  const innerRef = useRef<HTMLPreElement>(null!);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -28,24 +28,23 @@ export const CodeBlock: React.VFC<Props> = ({ children }) => {
   return (
     <Box
       ref={ref}
-      component="pre"
       sx={{
-        borderBottom: "1px solid hsl(222, 12%, 84%)",
-        borderTop: "1px solid hsl(222, 12%, 84%)",
-        backgroundColor: "hsl(222, 12%, 92%)",
-        lineHeight: 1.82,
         mx: isMobile ? -2 : -3,
         my: 2,
-        overflow: "auto",
-        p: 2,
         position: "relative",
-        px: isMobile ? 2 : 3,
       }}
     >
       <Box
+        component="pre"
         ref={innerRef}
         sx={{
-          width: "max-content",
+          borderBottom: "1px solid hsl(222, 12%, 84%)",
+          borderTop: "1px solid hsl(222, 12%, 84%)",
+          backgroundColor: "hsl(222, 12%, 92%)",
+          lineHeight: 1.82,
+          overflow: "auto",
+          p: 2,
+          px: isMobile ? 2 : 3,
         }}
       >
         {children}

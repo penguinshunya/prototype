@@ -210,7 +210,7 @@ export const Article20220114: React.VFC<Props> = memo(() => {
             </Typography>
           </Box>
         </Blockquote>
-        <Typography sx={{ mt: 1 }}>灰色の四角が関数、白の角丸な四角が値を表す。</Typography>
+        <Typography>灰色の四角が関数、白の角丸な四角が値を表す。</Typography>
       </Q>
       <MyDivider />
       <P>TensorFlowでは、レイヤーのテストを簡単に行える。次のようなコードを書く。</P>

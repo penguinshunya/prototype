@@ -4,6 +4,7 @@ import CodeBlock from "../../../../atoms/code-block";
 import MyDivider from "../../../../atoms/divider";
 import GLink from "../../../../atoms/global-link";
 import L from "../../../../atoms/latex";
+import LocalLink from "../../../../atoms/local-link";
 import P from "../../../../atoms/p";
 import Q from "../../../../atoms/q";
 import ArticleContent from "../../../../molecules/article-content";
@@ -284,9 +285,13 @@ export const Article20220112: React.VFC<Props> = memo(() => {
           <code>tf.dataset.shuffle()</code>の第一引数の意味
         </Typography>
       </Q>
-      <Q>
+      <Q solved>
         <Typography>
           BiLSTMを試したい。<code>Bidirectional(LSTM())</code>と書くとできそう
+        </Typography>
+        ↓
+        <Typography>
+          <LocalLink to="/article/e46b6639-ca16-4ed3-8313-f5a2613e2431">こちらの記事</LocalLink>にまとめてある。
         </Typography>
       </Q>
       <Q>
