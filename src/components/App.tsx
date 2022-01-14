@@ -74,7 +74,7 @@ export const App: React.VFC<Props> = () => {
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/articles" element={<ArticlesPage headerHeight={height + 1} />} />
           <Route path="/prototypes" element={<PrototypesPage />} />
-          <Route path="/" element={<IndexPage />} />
+          <Route path="/" element={<IndexPage headerHeight={height + 1} />} />
         </Routes>
       </Container>
     </Div100vh>
