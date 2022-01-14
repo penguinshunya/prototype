@@ -109,7 +109,8 @@ export const Article20220113: React.VFC<Props> = memo(() => {
         </li>
       </ul>
       <Q sx={{ my: 1 }} solved>
-        <Typography>ロジットとは何か？</Typography>↓
+        <Typography>ロジットとは何か？</Typography>
+        <MyDivider />
         <Typography>
           <GLink href="https://minus9d.hatenablog.com/entry/2020/10/25/193018">こちらの記事</GLink>
           によると、ロジットとは「softmax関数に通す前のニューラルネットワークの出力」だとのこと。ロジットは確率ではないため、
@@ -150,7 +151,7 @@ export const Article20220113: React.VFC<Props> = memo(() => {
           <code>optimizer.apply_gradients(zip(grads, model.trainable_variables))</code>によって
           <code>model.trainable_variables</code>を書き換えられる仕組みを知りたい。
         </Typography>
-        ↓
+        <MyDivider />
         <Typography sx={{ mb: 1 }}>
           コードを読むと、<code>tf.raw_ops.ResourceApplyAdam()</code>
           関数内で書き換えられていることがわかる（この関数の公式の説明は

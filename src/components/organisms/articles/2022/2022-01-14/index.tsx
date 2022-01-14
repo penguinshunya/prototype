@@ -193,14 +193,16 @@ export const Article20220114: React.VFC<Props> = memo(() => {
       </P>
       <CodeBlock>{MULTIPLE_ENCODE_PLUS.trim()}</CodeBlock>
       <Q solved>
-        <Typography>AttentionとTransformerの違いがわからない</Typography>↓
+        <Typography>AttentionとTransformerの違いがわからない</Typography>
+        <MyDivider />
         <Typography>
           Attentionとは、queryによってmemoryから必要な情報を選択すること。Transformerと呼ばれる大規模なモデルの一部にAttentionが使われている（このAttentionを「Multi-Head
           Attention」と呼ぶ）。
         </Typography>
       </Q>
       <Q solved>
-        <Typography>Multi-Head Attentionとは何か？</Typography>↓
+        <Typography>Multi-Head Attentionとは何か？</Typography>
+        <MyDivider />
         <Typography>
           Transformerで使われているAttentionのこと。次の画像は、Multi-Head
           Attentionを少しだけ簡略化したものの構造である。
@@ -266,7 +268,8 @@ export const Article20220114: React.VFC<Props> = memo(() => {
       <P>ブラウザ上で機械学習を行うためにトリッキーな方法を取り入れているようだ。気が向いたときにまた使ってみる。</P>
       <MyDivider />
       <Q solved>
-        <Typography>学習済みモデルの保存、JavaScriptでの利用方法</Typography>↓
+        <Typography>学習済みモデルの保存、JavaScriptでの利用方法</Typography>
+        <MyDivider />
         <Typography>
           学習済みモデルの保存には<code>model.save(PATH)</code>を利用する。<code>PATH</code>
           ディレクトリが存在しない場合は作成する。<code>PATH</code>が<code>.h5</code>
@@ -307,7 +310,8 @@ export const Article20220114: React.VFC<Props> = memo(() => {
       </Q>
       <P>BiLSTMをまだ試していない。一度試したけれど、まともに使うことができなかった。</P>
       <Q solved>
-        <Typography>BiLSTMを使う方法</Typography>↓
+        <Typography>BiLSTMを使う方法</Typography>
+        <MyDivider />
         <Typography>次のようなコードを実行することで、レイヤーの返すテンソルの形を知ることができる。</Typography>
         <CodeBlock>{LAYER_SHAPE.trim()}</CodeBlock>
         <Typography>BiLSTMについても同様に知ることができる。</Typography>
@@ -351,7 +355,8 @@ export const Article20220114: React.VFC<Props> = memo(() => {
       </Q>
       <MyDivider />
       <Q>
-        <Typography>Transformerの位置エンコーディングの使い方</Typography>↓
+        <Typography>Transformerの位置エンコーディングの使い方</Typography>
+        <MyDivider />
         <Typography>
           <GLink href="https://www.tensorflow.org/tutorials/text/transformer?hl=ja">こちらのチュートリアル</GLink>
           をしながら位置エンコーディングについて理解しようと思う。

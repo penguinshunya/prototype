@@ -76,7 +76,7 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         <Typography>
           なぜ<code>SimpleRNN</code>は<code>input_shape</code>が2次元でなければならないか？
         </Typography>
-        ↓
+        <MyDivider />
         <Typography>
           そう決められているため。<code>input_shape=(3, 5)</code>のとき、特徴数
           <L c="5" />
@@ -122,7 +122,8 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         </li>
       </ul>
       <Q solved>
-        <Typography>Kerasのコードを読みたい。どのように環境を構築するのが最適か？</Typography>↓
+        <Typography>Kerasのコードを読みたい。どのように環境を構築するのが最適か？</Typography>
+        <MyDivider />
         <Typography>
           Kerasのコードに<code>print()</code>等を埋め込み、出力を確認しながら読み進めると良い。Google
           Colabではコードを追い辛いため、ローカルにKerasをインストールして利用する。パッケージの場所は
@@ -191,7 +192,7 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         <Typography>
           <code>tf.GradientTape()</code>とは何か？どんなときに使われるか？
         </Typography>
-        ↓
+        <MyDivider />
         <Typography>
           「自動微分」を行うときに使われる。自動微分というのがどういう仕組で動いているのかわからないが、次のようなコードを書くことで、微分の結果が得られる。
         </Typography>
@@ -236,7 +237,7 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         <Typography>
           DNNを構築するときに微分の知識は必要不可欠だと思う。微分について改めてしっかりと理解しておきたい。
         </Typography>
-        ↓
+        <MyDivider />
         <Typography>
           実際にTensorFlowを利用して、勾配を利用した誤差の修正プログラムを書けば何か掴めるかも。
           <GLink href="https://www.tensorflow.org/tutorials/customization/custom_training_walkthrough?hl=ja">
@@ -289,7 +290,7 @@ export const Article20220112: React.VFC<Props> = memo(() => {
         <Typography>
           BiLSTMを試したい。<code>Bidirectional(LSTM())</code>と書くとできそう
         </Typography>
-        ↓
+        <MyDivider />
         <Typography>
           <LocalLink to="/article/e46b6639-ca16-4ed3-8313-f5a2613e2431">こちらの記事</LocalLink>にまとめてある。
         </Typography>
