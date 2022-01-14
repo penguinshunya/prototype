@@ -439,7 +439,7 @@ export const Article20220114: React.VFC<Props> = memo(() => {
             <L c="\mathrm{Attention}(Q, K, V) = \mathrm{softmax}(\frac{QK^T}{\sqrt{d_k}})V" />
           </li>
           <li>
-            マスキングは、softmax関数に渡す直前に処理される（マスクが
+            マスキングは、softmax関数に渡す直前に行われる（マスクが
             <L c="1" />
             の要素に
             <L c="-10^9" />
