@@ -110,6 +110,61 @@ const LOAD_MODE_IN_JAVASCRIPT = `
 const model = await tf.loadLayersModel("/tensorflow/model.json");
 `;
 
+const LAYER_SHAPE = `
+layer = LSTM(2, return_sequences=False)
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 2)
+
+layer = LSTM(2, return_sequences=True)
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 3, 2)
+`;
+
+const LAYER_SHAPE_BILSTM = `
+layer = Bidirectional(LSTM(2, return_sequences=False))
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 4)
+
+layer = Bidirectional(LSTM(2, return_sequences=True))
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 3, 4)
+`;
+
+const LAYER_BIDIRECTIONAL_LSTM = `
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="concat")
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 4)
+
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="sum")
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 2)
+
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="mul")
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 2)
+
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="ave")
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 2)
+`;
+
+const COMPARE_LSTM_BILSTM = `
+layer = LSTM(2, return_sequences=False)
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 2)
+
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="sum")
+print(layer(np.zeros((100, 3, 5))).shape) #=> (100, 2)
+`;
+
+const CUSTOM_LAYER_TO_MODEL = `
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="sum")
+
+model = Sequential()
+model.add(layer)
+model.compile(loss="mean_squared_error", optimizer="adam")
+# model.summary() # ここをコメントアウトすると実行時エラーが発生する
+model.fit(np.zeros((100, 3, 5)), np.ones((100, 2)), epochs=100)
+`;
+
+const LAYER_FUNCTION_CALL = `
+layer = Bidirectional(LSTM(2, return_sequences=False), merge_mode="sum")
+print(layer(np.ones((100, 3, 5))))
+print(layer(np.ones((100, 3, 5))))
+print(layer(np.ones((100, 3, 5))))
+`;
+
 interface Props {}
 
 export const Article20220114: React.VFC<Props> = memo(() => {
@@ -229,6 +284,60 @@ export const Article20220114: React.VFC<Props> = memo(() => {
         </Typography>
       </Q>
       <MyDivider />
+      <P>最近したことを徒然に書いていく。</P>
+      <P>
+        RNNの勉強をした。Kerasの<code>SimpleRNN</code>
+        を理解するのが大変だった。よくあるRNNの図ではセルが横に並んでいるが、実際のところはどうなんだろう。
+        <code>SimpleRNN</code>と<code>SimpleRNNCell</code>
+        は1対1の関係であり、1対多の関係ではない気がする。疑問として書き残しておく。
+      </P>
+      <Q>
+        <Typography>
+          <code>SimpleRNN</code>と<code>SimpleRNNCell</code>は1対1の関係か？
+        </Typography>
+      </Q>
+      <P>BiLSTMをまだ試していない。一度試したけれど、まともに使うことができなかった。</P>
+      <Q solved>
+        <Typography>BiLSTMを使う方法</Typography>↓
+        <Typography>次のようなコードを実行することで、レイヤーの返すテンソルの形を知ることができる。</Typography>
+        <CodeBlock>{LAYER_SHAPE.trim()}</CodeBlock>
+        <Typography>BiLSTMについても同様に知ることができる。</Typography>
+        <CodeBlock>{LAYER_SHAPE_BILSTM.trim()}</CodeBlock>
+        <Typography>
+          単に<code>Bidirectional()</code>
+          で囲った場合、単純に出力が2倍になることがわかる。順方向と逆方法の出力を単純に出力するだけであり、それ以上のことはしないのだろうか。
+        </Typography>
+        <CodeBlock>{LAYER_BIDIRECTIONAL_LSTM.trim()}</CodeBlock>
+        <Typography>
+          上記のように、<code>merge_mode</code>によって出力の形が異なることがわかる。
+        </Typography>
+        <CodeBlock>{COMPARE_LSTM_BILSTM.trim()}</CodeBlock>
+        <Typography>
+          <code>merge_mode</code>を<code>"sum", "mul", "ave"</code>のいずれかにすることで、<code>Bidirectional</code>
+          で囲った場合と囲わなかった場合の出力の形が同じになることがわかる。よって、LSTMをBiLSTMにしたいときは、単純に
+          <code>Bidirectional(merge_mode="sum")</code>などで囲うと良い。
+        </Typography>
+        <CodeBlock>{CUSTOM_LAYER_TO_MODEL.trim()}</CodeBlock>
+        <Typography>上記コードは、レイヤーやモデルのインタフェースの正しさを確認するコードである。</Typography>
+        <CodeBlock>{LAYER_FUNCTION_CALL.trim()}</CodeBlock>
+        <Typography>
+          レイヤーに入力を渡したからといって、レイヤーが学習されるわけではない。上記の3回の出力の内容は同じである。
+        </Typography>
+        <MyDivider />
+        <Typography>まだ使ったことのないレイヤーを使うときは、次の手順で行えば良さそうだ。</Typography>
+        <ol>
+          <li>レイヤーのインスタンスを生成する、最小のコードを記述する</li>
+          <li>
+            関数呼び出しの形式で、先程生成したレイヤーに何らかの入力を渡す（たとえば<code>np.zeros((10, 3, 5))</code>
+            など）
+          </li>
+          <li>
+            戻り値の形を<code>.shape</code>で調べる
+          </li>
+          <li>コンストラクタの引数を変えてみて、出力の変わり方を観察する</li>
+          <li>実際に使用するモデルに埋め込む</li>
+        </ol>
+      </Q>
     </ArticleContent>
   );
 });
