@@ -1,5 +1,4 @@
 import { memo } from "react";
-import CodeBlock from "../../../../atoms/code-block";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
