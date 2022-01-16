@@ -66,7 +66,9 @@ export const Article20220115: React.VFC<Props> = memo(() => {
           変換時に小文字にするかどうか。<code>cased</code>は小文字にせず、<code>uncased</code>は小文字にする。
         </Typography>
       </Q>
-      <Q>BERTを使うとき、Encoder-DecoderモデルのDecoder部分を実装することになるか？</Q>
+      <Q>
+        <Typography>BERTを使うとき、Encoder-DecoderモデルのDecoder部分を実装することになるか？</Typography>
+      </Q>
       <P>
         Huggingface
         Transformersのドキュメントが読み辛い。APIの具体的な使い方がわからない。GitHubにexamplesなどのドキュメントがあるといいけど。と思ってGitHubリポジトリを見ると、
