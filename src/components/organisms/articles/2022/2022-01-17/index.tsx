@@ -18,7 +18,7 @@ a[...,0] = np.zeros((2, 3))
 a[...,3:] = np.zeros((2, 3, 2))
 a[...,:3] = np.zeros((2, 3, 3))
 
-a = np.transpose(np.zeros((5, 2, 3)), (1, 2, 0))
+a[...] = np.transpose(np.zeros((5, 2, 3)), (1, 2, 0))
 `;
 
 interface Props {}
