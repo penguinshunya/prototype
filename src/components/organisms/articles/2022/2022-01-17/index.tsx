@@ -9,14 +9,14 @@ import numpy as np
 a = np.zeros((2, 3, 5))
 
 a[0,:,:] = np.zeros((3, 5))
-a[:,:,0] = np.zeros((2, 3))
 a[:,0,:] = np.zeros((2, 5))
+a[:,:,0] = np.zeros((2, 3))
 
 a[0,...] = np.zeros((3, 5))
 a[...,0] = np.zeros((2, 3))
 
-a[...,:3] = np.zeros((2, 3, 3))
 a[...,3:] = np.zeros((2, 3, 2))
+a[...,:3] = np.zeros((2, 3, 3))
 
 a = np.transpose(np.zeros((5, 2, 3)), (1, 2, 0))
 `;
