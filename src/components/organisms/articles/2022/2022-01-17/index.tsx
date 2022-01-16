@@ -36,13 +36,6 @@ print(type(output))   #=> KerasTensor
 # KerasTensorは、tf.keras.models.Modelを使ったモデルの構築に使用できる
 model = tf.keras.models.Model(inputs=input, outputs=output)
 model.predict(np.zeros((10000, 10, 10)))
-
-# この方法を使えば、モデルに複数の入力を与えることができる
-input1 = Input((10, 20))
-input2 = Input((30, 40))
-output = Dense(2)([input1, input2])
-model = tf.keras.models.Model(inputs=[input1, input2], outputs=output)
-model.predict(np.zeros((10000, 10, 20, 30, 40)))
 `;
 
 const MULTIPLE_INPUT = `
