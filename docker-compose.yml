@@ -1,0 +1,27 @@
+version: "3"
+services:
+  api-go:
+    build:
+      context: ./api-go
+      dockerfile: Dockerfile.local
+    command: air -c /app/.air.toml
+    environment:
+      MYSQL_HOST: cloudsql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    tty: true
+    volumes:
+      - ./api-go:/app
+    working_dir: /app
+  cloudsql:
+    command:
+      [
+        "/cloud_sql_proxy",
+        "-instances=upbeat-glow-336702:asia-northeast1:mysql-instance=tcp:0.0.0.0:3306",
+        "-credential_file=/config",
+      ]
+    image: asia.gcr.io/cloudsql-docker/gce-proxy
+    volumes:
+      - ./credentials.json:/config
