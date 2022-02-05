@@ -2,8 +2,7 @@ import { memo } from "react";
 import P from "../../../../atoms/p";
 import ArticleContent from "../../../../molecules/article-content";
 
-interface Props {
-}
+interface Props {}
 
 export const Article20220201: React.VFC<Props> = memo(() => {
   return (

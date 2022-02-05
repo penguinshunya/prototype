@@ -1,24 +1,22 @@
+#[allow(unused)]
+
 extern crate api;
 extern crate diesel;
+
+use diesel::debug_query;
 
 use self::api::*;
 use self::models::*;
 use self::diesel::prelude::*;
 
 fn main() {
-    use api::schema::posts::dsl::*;
+    use api::schema;
 
-    let connection = establish_connection();
-    let results = posts.filter(published.eq(true))
-        .limit(5)
-        .load::<Post>(&connection)
-        .expect("Error loading posts");
-    println!("Displaying {} posts", results.len());
-    for post in results {
-        println!("{}", post.title);
-        println!("----------\n");
-        println!("{}", post.body);
-    }
+    println!("{:?}", schema::posts::all_columns);
+
+    // let connection = establish_connection();
+    // let sql = dsl::posts.filter(dsl::published.eq(true)).limit(5).offset(15);
+    // println!("{}", debug_query(&sql));
 }
 
 // use axum::{response, routing::{get, post}, Router, extract};
@@ -66,3 +64,18 @@ fn main() {
 //         println!("{:?}", v);
 //     }
 // }
+
+#[cfg(test)]
+mod tests {
+    use std::sync::Arc;
+
+    use api::establish_connection;
+
+    #[test]
+    fn execute() {
+        let conn = establish_connection();
+        let mut a = 100;
+        a += 100;
+        dbg!(a);
+    }
+}
