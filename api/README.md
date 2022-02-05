@@ -1,7 +1,8 @@
 #### Cloud SQL (PostgreSQL) に接続するときのコネクションストリング  
 
+参考: [https://www.postgresql.org/docs/current/libpq-connect.html](https://www.postgresql.org/docs/current/libpq-connect.html)
+
 ```sh
-# 参考: https://www.postgresql.org/docs/current/libpq-connect.html
 postgres://postgres:postgres@/apidb?host=/cloudsql/upbeat-glow-336702:asia-northeast1:postgres-instance
 ```
 
