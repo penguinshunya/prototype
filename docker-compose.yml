@@ -1,21 +1,14 @@
 version: "3"
 services:
-  api:
-    build: ./api
-    # command: cargo watch -- cargo run --bin main
-    ports:
-      - 12480:3000
-    tty: true
-    volumes:
-      - ./api:/app
-    working_dir: /app
   cloudsql:
     command:
       [
         "/cloud_sql_proxy",
-        "-instances=upbeat-glow-336702:asia-northeast1:pg-instance=tcp:0.0.0.0:5432",
+        "-instances=upbeat-glow-336702:asia-northeast1:postgres-instance=tcp:0.0.0.0:5432",
         "-credential_file=/config",
       ]
     image: asia.gcr.io/cloudsql-docker/gce-proxy
+    ports:
+      - "5432:5432"
     volumes:
       - ./credentials.json:/config
