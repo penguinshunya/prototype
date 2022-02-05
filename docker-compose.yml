@@ -9,21 +9,6 @@ services:
     volumes:
       - ./api:/app
     working_dir: /app
-  api-go:
-    build:
-      context: ./api-go
-      dockerfile: Dockerfile.local
-    command: air -c /app/.air.toml
-    environment:
-      MYSQL_HOST: cloudsql
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-    tty: true
-    volumes:
-      - ./api-go:/app
-    working_dir: /app
   cloudsql:
     command:
       [
