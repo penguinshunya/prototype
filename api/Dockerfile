@@ -1,4 +1,5 @@
 FROM rust:1.58
-RUN cargo install cargo-watch
-RUN cargo install diesel_cli
-RUN cargo install evcxr_repl
+WORKDIR /app
+COPY . .
+RUN cargo build --release
+CMD ["./target/release/api"]

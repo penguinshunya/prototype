@@ -1,14 +1,10 @@
 [package]
 name = "api"
 version = "0.1.0"
-authors = ["penguinshunya <takayashunya@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 axum = "0.4.5"
-diesel = { version = "1.4.8", features = ["postgres"] }
-dotenv = "0.15.0"
-serde = { version = "1.0.136", features = ["derive"] }
 tokio = { version = "1.0", features = ["full"] }
