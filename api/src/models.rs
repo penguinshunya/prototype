@@ -3,7 +3,7 @@ use super::schema::posts;
 
 #[derive(Queryable)]
 pub struct Post {
-    pub id: u64,
+    pub id: i32,
     pub title: String,
     pub body: String,
     pub published: bool,

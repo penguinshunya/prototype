@@ -28,7 +28,7 @@ services:
     command:
       [
         "/cloud_sql_proxy",
-        "-instances=upbeat-glow-336702:asia-northeast1:mysql-instance=tcp:0.0.0.0:3306",
+        "-instances=upbeat-glow-336702:asia-northeast1:pg-instance=tcp:0.0.0.0:5432",
         "-credential_file=/config",
       ]
     image: asia.gcr.io/cloudsql-docker/gce-proxy
